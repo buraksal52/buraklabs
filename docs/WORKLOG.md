@@ -23,6 +23,15 @@ Follow `docs/REMAINING_PLAN.md` from Batch 1. Every completed batch must include
 - Commands run: `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS (0 errors, 0 warnings, 0 hints); `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS (14 pages; Pagefind indexed 12 pages across EN/TR); `git diff --check` — PASS.
 - Known issues / risks: Search has not been browser-tested; no visual screenshot matrix or E2E suite exists. Theme and search are not yet verified on real mobile/keyboard flows.
 
+## Batch 1 handoff
+- Date and agent: 2026-10-09 — Codex
+- Scope / changes: Started the local preview, verified route availability and inspected final build assets over HTTP.
+- Decisions and ADR updates: No architectural decision changed.
+- Commands run: `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS; `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS; preview HTTP checks for EN/TR routes — PASS (200); `/pagefind/pagefind.js` and `/pagefind/pagefind-entry.json` — PASS (200); `git diff --check` — PASS.
+- Browser/E2E: NOT RUN. The in-app Browser control tool was unavailable in this session, so clicks, keyboard interaction, theme persistence, filter state and mobile screenshots were not claimed as verified.
+- Known issues / risks: Batch 1 has HTTP route evidence but no visual or interactive evidence. Continue with Batch 2 SEO/i18n hardening after browser tooling is available, or keep it explicitly unverified.
+- Example commit message: `test(quality): verify localized routes, theme and search flows`
+
 ## Update format
 - Date and agent:
 - Scope / changes:
