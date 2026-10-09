@@ -7,7 +7,7 @@ const projects = (await getCollection('projects', ({ data }) => data.locale === 
 const categories = [...new Set(projects.flatMap((project) => project.data.categories))].sort();
 const technologies = [...new Set(projects.flatMap((project) => project.data.technologies))].sort();
 ---
-<BaseLayout locale={locale} title="Projects — BurakLabs" description="Selected BurakLabs engineering, research and creative projects.">
+<BaseLayout locale={locale} path="/projects" alternatePath="/tr/projects" title="Projects — BurakLabs" description="Selected BurakLabs engineering, research and creative projects.">
   <main data-pagefind-body>
     <p class="eyebrow">BurakLabs / Projects</p>
     <h1>Selected work.</h1>

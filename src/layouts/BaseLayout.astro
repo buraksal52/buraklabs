@@ -1,9 +1,22 @@
 ---
 import '../styles/global.css';
 
-interface Props { title: string; description: string; locale: 'en' | 'tr'; }
-const { title, description, locale } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+  locale: 'en' | 'tr';
+  path?: string;
+  alternatePath?: string;
+  noindex?: boolean;
+}
+const { title, description, locale, path, alternatePath, noindex = false } = Astro.props;
 const prefix = locale === 'tr' ? '/tr' : '';
+const canonicalPath = path ?? Astro.url.pathname;
+const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://buraklabs.studio');
+const alternateUrl = alternatePath ? new URL(alternatePath, Astro.site ?? 'https://buraklabs.studio') : undefined;
+const otherLocale = locale === 'tr' ? 'en' : 'tr';
+const languageHref = alternatePath ?? (locale === 'tr' ? '/' : '/tr');
+const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
 ---
 <!doctype html>
 <html lang={locale}>
@@ -14,6 +27,11 @@ const prefix = locale === 'tr' ? '/tr' : '';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang={locale} href={canonicalUrl} />
+    {alternateUrl && <link rel="alternate" hreflang={otherLocale} href={alternateUrl} />}
+    {alternateUrl && isHome && <link rel="alternate" hreflang="x-default" href={locale === 'en' ? canonicalUrl : alternateUrl} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <script is:inline>
       const systemTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       try {
@@ -32,7 +50,7 @@ const prefix = locale === 'tr' ? '/tr' : '';
         <nav aria-label={locale === 'tr' ? 'Ana navigasyon' : 'Main navigation'}>
           <a href={`${prefix}/projects`}>{locale === 'tr' ? 'Projeler' : 'Projects'}</a>
           <a href={`${prefix}/search`}>{locale === 'tr' ? 'Ara' : 'Search'}</a>
-          <a href={locale === 'tr' ? '/' : '/tr'}>{locale === 'tr' ? 'English' : 'Türkçe'}</a>
+          <a href={languageHref}>{locale === 'tr' ? 'English' : 'Türkçe'}</a>
           <button type="button" data-theme-toggle aria-label={locale === 'tr' ? 'Temayı değiştir' : 'Change theme'}>◐</button>
         </nav>
       </header>

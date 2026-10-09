@@ -16,7 +16,7 @@ Her batch sonunda gerçek komut sonuçları, bilinen sınırlılıklar ve örnek
 
 **Commit example:** `test(quality): verify localized routes, theme and search flows`
 
-## Batch 2 — SEO and localization hardening
+## Batch 2 — SEO and localization hardening — completed
 
 **Goal:** Locale-safe metadata ve bağlantı davranışını tamamlamak.
 
@@ -29,6 +29,8 @@ Her batch sonunda gerçek komut sonuçları, bilinen sınırlılıklar ve örnek
 **Exit:** Route matrix, metadata ve internal-link kontrolü PASS.
 
 **Commit example:** `feat(i18n): add locale alternates, canonical metadata and sitemap rules`
+
+Browser-level visual and interaction validation remains open and is tracked as a Batch 1 limitation.
 
 ## Batch 3 — Homepage and visual direction
 

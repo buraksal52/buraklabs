@@ -32,6 +32,14 @@ Follow `docs/REMAINING_PLAN.md` from Batch 1. Every completed batch must include
 - Known issues / risks: Batch 1 has HTTP route evidence but no visual or interactive evidence. Continue with Batch 2 SEO/i18n hardening after browser tooling is available, or keep it explicitly unverified.
 - Example commit message: `test(quality): verify localized routes, theme and search flows`
 
+## Batch 2 handoff
+- Date and agent: 2026-10-09 — Codex
+- Scope / changes: Added site URL configuration, canonical metadata, self/alternate hreflang links, homepage `x-default`, search `noindex`, locale-safe language links and sitemap generation excluding search routes.
+- Decisions and ADR updates: Kept manual EN/TR route tree; no content or translation claim was invented.
+- Commands run: `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS (0 errors, 0 warnings, 0 hints); `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS (14 pages; sitemap and Pagefind generated); SEO assertions — PASS; `git diff --check` — PASS.
+- Known issues / risks: Browser visual and interaction checks remain NOT RUN because in-app Browser tooling was unavailable. Sitemap uses the configured target domain but production deployment has not been verified.
+- Example commit message: `feat(i18n): add locale alternates, canonical metadata and sitemap rules`
+
 ## Update format
 - Date and agent:
 - Scope / changes:
