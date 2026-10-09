@@ -1,0 +1,44 @@
+---
+id: ghostellar-en
+translationKey: ghostellar
+locale: en
+slug: ghostellar
+title: Ghostellar
+summary: An offline-first payment prototype exploring how Stellar transactions could be prepared and synchronized when connectivity is unreliable.
+draft: false
+categories: [Blockchain, Fintech, Payments, Hackathon]
+technologies: [Stellar, QR codes]
+status: archived
+maturity: prototyped
+featured: true
+sources: []
+seo:
+  title: Ghostellar — Offline-first payment prototype
+  description: A Stellar-based offline payment prototype developed during the Stellar Pro Hackathon.
+---
+
+## Problem
+
+Blockchain payments usually assume a reliable network connection. Ghostellar explored the payment experience in places where connectivity is unavailable or intermittent.
+
+## Approach
+
+The prototype used QR codes to share payment information while offline. Pending operations could be held in a temporary pool and considered for online verification and blockchain processing once connectivity returned.
+
+The design also considered transaction timestamps, metadata, pending-operation prioritization, transaction ordering and double-spending risks.
+
+## Engineering decisions
+
+- Treat offline operations as pending intent rather than as already-finalized blockchain transactions.
+- Keep synchronization and verification separate from the offline exchange step.
+- Make security limitations explicit in the product model.
+
+## Context and outcome
+
+Ghostellar was developed during the Stellar Pro Hackathon in an approximately 27-hour working period. The project reached the final round among approximately 80 teams, where six teams presented.
+
+These statements describe the hackathon context and prototype result. They do not mean that the prototype solved all security concerns or finalized transactions on-chain without an internet connection.
+
+## Verification boundary
+
+The repository, demo URL, individual contributor roles and implementation-level security evidence still require owner verification before publication.

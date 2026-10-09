@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const locale = 'en';
+const projects = (await getCollection('projects', ({ data }) => data.locale === locale && !data.draft)).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+const categories = [...new Set(projects.flatMap((project) => project.data.categories))].sort();
+const technologies = [...new Set(projects.flatMap((project) => project.data.technologies))].sort();
+---
+<BaseLayout locale={locale} title="Projects — BurakLabs" description="Selected BurakLabs engineering, research and creative projects.">
+  <main>
+    <p class="eyebrow">BurakLabs / Projects</p>
+    <h1>Selected work.</h1>
+    <p class="lede">Each record separates implemented features, prototypes, explored ideas and unresolved evidence.</p>
+    <form class="filters" aria-label="Filter projects" data-project-filters>
+      <label>Category<select data-filter="category"><option value="">All categories</option>{categories.map((item) => <option value={item}>{item}</option>)}</select></label>
+      <label>Technology<select data-filter="technology"><option value="">All technologies</option>{technologies.map((item) => <option value={item}>{item}</option>)}</select></label>
+    </form>
+    <div class="project-grid" data-project-grid>
+      {projects.map((project) => <a class="project-card" href={`/projects/${project.data.slug}`} data-category={project.data.categories.join('|')} data-technology={project.data.technologies.join('|')}>
+        <div><span class="eyebrow">{project.data.maturity}</span><h2>{project.data.title}</h2><p>{project.data.summary}</p></div>
+        <div class="tags">{project.data.categories.map((tag) => <span class="tag">{tag}</span>)}</div>
+      </a>)}
+    </div>
+    {projects.length === 0 && <p class="notice">No verified public projects are available yet. Draft records remain excluded until owner review.</p>}
+  </main>
+</BaseLayout>
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-project-filters]');
+  const cards = [...document.querySelectorAll<HTMLAnchorElement>('[data-project-grid] .project-card')];
+  form?.addEventListener('change', () => {
+    const category = form.querySelector<HTMLSelectElement>('[data-filter="category"]')?.value ?? '';
+    const technology = form.querySelector<HTMLSelectElement>('[data-filter="technology"]')?.value ?? '';
+    cards.forEach((card) => {
+      const matchesCategory = !category || (card.dataset.category ?? '').split('|').includes(category);
+      const matchesTechnology = !technology || (card.dataset.technology ?? '').split('|').includes(technology);
+      card.classList.toggle('hidden', !(matchesCategory && matchesTechnology));
+    });
+  });
+</script>

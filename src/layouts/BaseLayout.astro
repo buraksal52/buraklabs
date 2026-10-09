@@ -1,0 +1,31 @@
+---
+import '../styles/global.css';
+
+interface Props { title: string; description: string; locale: 'en' | 'tr'; }
+const { title, description, locale } = Astro.props;
+const prefix = locale === 'tr' ? '/tr' : '';
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="site-header">
+        <a class="brand" href={prefix || '/'}>BurakLabs</a>
+        <nav aria-label={locale === 'tr' ? 'Ana navigasyon' : 'Main navigation'}>
+          <a href={`${prefix}/projects`}>{locale === 'tr' ? 'Projeler' : 'Projects'}</a>
+          <a href={locale === 'tr' ? '/' : '/tr'}>{locale === 'tr' ? 'English' : 'Türkçe'}</a>
+        </nav>
+      </header>
+      <slot />
+    </div>
+  </body>
+</html>

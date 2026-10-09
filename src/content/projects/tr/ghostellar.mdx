@@ -1,0 +1,44 @@
+---
+id: ghostellar-tr
+translationKey: ghostellar
+locale: tr
+slug: ghostellar
+title: Ghostellar
+summary: Bağlantının güvenilir olmadığı durumlarda Stellar işlemlerinin hazırlanıp senkronize edilmesini araştıran offline-first ödeme prototipi.
+draft: false
+categories: [Blockchain, Fintech, Ödemeler, Hackathon]
+technologies: [Stellar, QR kodları]
+status: archived
+maturity: prototyped
+featured: true
+sources: []
+seo:
+  title: Ghostellar — Offline-first ödeme prototipi
+  description: Stellar Pro Hackathon kapsamında geliştirilen Stellar tabanlı offline ödeme prototipi.
+---
+
+## Problem
+
+Blockchain ödemeleri genellikle güvenilir bir internet bağlantısı varsayar. Ghostellar, bağlantının olmadığı veya kesintili olduğu ortamlardaki ödeme deneyimini araştırdı.
+
+## Yaklaşım
+
+Prototip, internet yokken ödeme bilgisini paylaşmak için QR kodlarını kullandı. Bekleyen işlemler geçici bir havuzda tutulabilir; bağlantı geri geldiğinde çevrim içi doğrulama ve blockchain üzerinde işleme alma yaklaşımı değerlendirilebilirdi.
+
+Tasarımda işlem zamanı, metadata, bekleyen işlemlerin önceliklendirilmesi, işlem sıralaması ve double-spending riskleri de ele alındı.
+
+## Mühendislik kararları
+
+- Offline işlemleri kesinleşmiş blockchain işlemleri değil, bekleyen ödeme niyeti olarak modellemek.
+- Senkronizasyon ve doğrulamayı offline paylaşım adımından ayırmak.
+- Güvenlik sınırlılıklarını ürün modelinde açıkça belirtmek.
+
+## Bağlam ve sonuç
+
+Ghostellar, Stellar Pro Hackathon kapsamında yaklaşık 27 saatlik çalışma sürecinde geliştirildi. Yaklaşık 80 takım arasından finale kaldı ve finalde altı takım sunum yaptı.
+
+Bu bilgiler hackathon bağlamını ve prototip sonucunu ifade eder. Prototipin tüm güvenlik sorunlarını çözdüğü veya internet olmadan işlemleri blockchain üzerinde kesinleştirdiği anlamına gelmez.
+
+## Doğrulama sınırı
+
+Repository, demo URL’si, bireysel katkı rolleri ve uygulama seviyesindeki güvenlik kanıtları yayınlanmadan önce owner tarafından doğrulanmalıdır.
