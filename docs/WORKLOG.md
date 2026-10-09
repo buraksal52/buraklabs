@@ -56,6 +56,14 @@ Follow `docs/REMAINING_PLAN.md` from Batch 1. Every completed batch must include
 - Known issues / risks: These are content shells, not final authored pages. Verified CV PDFs, research metadata, article content and public contact details are still missing.
 - Example commit message: `feat(content): add verified research writing CV and contact surfaces`
 
+## Release baseline progress
+- Date and agent: 2026-10-09 — Codex
+- Scope / changes: Added Node pin, GitHub Actions check/build workflow, Node test script, safe empty demo registry with HTTPS allowlist helper, EN/TR 404 pages and robots.txt.
+- Decisions and ADR updates: No external API, repo URL, demo URL, secret or public personal claim was invented.
+- Commands run: `npm test` — PASS (2 tests); `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS (0 errors, 0 warnings, 0 hints); `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS (26 pages; Pagefind indexed 22 pages); `git diff --check` — PASS.
+- Known issues / risks: CI workflow has not run on GitHub; real demos, GitHub snapshot, Cloudflare deployment, CV PDFs, verified contact facts and project provenance are still missing.
+- Example commit message: `ci(release): add quality gates and Cloudflare Pages release checks`
+
 ## Batch 3 progress
 - Date and agent: 2026-10-09 — Codex
 - Scope / changes: Documented three homepage compositions with hierarchy, grid, typography, mobile behavior, motion purpose and evidence constraints in `docs/HOMEPAGE_DESIGN_PROPOSALS.md`.

@@ -62,7 +62,7 @@ Option A — Evidence Field was selected and implemented. Screenshot and browser
 
 **Commit example:** `content(projects): complete verified project provenance and case studies`
 
-## Batch 5 — Demo registry
+## Batch 5 — Demo registry — safe contract implemented, real demos pending
 
 **Goal:** Native, embedded ve external demo sözleşmesini uygulamak.
 
@@ -75,6 +75,8 @@ Option A — Evidence Field was selected and implemented. Screenshot and browser
 **Exit:** Demo matrix and keyboard/fallback tests PASS.
 
 **Commit example:** `feat(demos): add validated demo registry and safe fallbacks`
+
+Typed empty registry and HTTPS host allowlist are implemented. Real native/embedded/external demos still require owner-approved targets.
 
 ## Batch 6 — GitHub snapshot integration
 
@@ -104,7 +106,7 @@ Option A — Evidence Field was selected and implemented. Screenshot and browser
 
 EN/TR route shells and honest empty states are implemented. Verified research, writing, CV and contact facts remain required before adding public claims.
 
-## Batch 8 — CI, security and release
+## Batch 8 — CI, security and release — baseline implemented, release pending
 
 **Goal:** Production release kapılarını kurmak.
 
@@ -117,6 +119,8 @@ EN/TR route shells and honest empty states are implemented. Verified research, w
 **Exit:** Release checklist complete; deployment only after live verification.
 
 **Commit example:** `ci(release): add quality gates and Cloudflare Pages release checks`
+
+Node pin, npm CI workflow, test/check/build scripts, robots and 404 surfaces are implemented. Cloudflare deployment and measured release evidence remain pending.
 
 ## Current blockers
 

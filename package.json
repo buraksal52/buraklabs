@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "node --test tests/**/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
