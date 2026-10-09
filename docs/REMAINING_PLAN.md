@@ -32,7 +32,7 @@ Her batch sonunda gerçek komut sonuçları, bilinen sınırlılıklar ve örnek
 
 Browser-level visual and interaction validation remains open and is tracked as a Batch 1 limitation.
 
-## Batch 3 — Homepage and visual direction
+## Batch 3 — Homepage and visual direction — proposal ready, approval pending
 
 **Goal:** Creative Studio ana sayfasını tamamlamak ve görsel yönü doğrulamak.
 

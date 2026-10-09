@@ -40,6 +40,15 @@ Follow `docs/REMAINING_PLAN.md` from Batch 1. Every completed batch must include
 - Known issues / risks: Browser visual and interaction checks remain NOT RUN because in-app Browser tooling was unavailable. Sitemap uses the configured target domain but production deployment has not been verified.
 - Example commit message: `feat(i18n): add locale alternates, canonical metadata and sitemap rules`
 
+## Batch 3 progress
+- Date and agent: 2026-10-09 — Codex
+- Scope / changes: Documented three homepage compositions with hierarchy, grid, typography, mobile behavior, motion purpose and evidence constraints in `docs/HOMEPAGE_DESIGN_PROPOSALS.md`.
+- Decisions and ADR updates: No final hero/composition decision made; Option A is recommended but requires owner selection.
+- Commands run: No code changed; no build required. Visual verification — NOT RUN.
+- Known issues / risks: Final homepage implementation is intentionally paused until a composition is selected. Research/writing/CV/demo sections cannot be populated without verified content.
+- Next concrete task: Owner selects Option A, B or C; then implement the chosen homepage and run screenshot QA.
+- Example commit message: `feat(home): add approved creative studio homepage composition`
+
 ## Update format
 - Date and agent:
 - Scope / changes:
