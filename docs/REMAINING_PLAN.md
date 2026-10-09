@@ -89,7 +89,7 @@ Option A — Evidence Field was selected and implemented. Screenshot and browser
 
 **Commit example:** `feat(integrations): add validated scheduled GitHub metadata snapshot`
 
-## Batch 7 — Research, writing, CV and contact
+## Batch 7 — Research, writing, CV and contact — shells implemented, content pending
 
 **Goal:** Kalan content collections ve kişisel bilgi yüzeylerini eklemek.
 
@@ -101,6 +101,8 @@ Option A — Evidence Field was selected and implemented. Screenshot and browser
 **Exit:** No invented claims; draft/sitemap/search rules PASS.
 
 **Commit example:** `feat(content): add verified research writing CV and contact surfaces`
+
+EN/TR route shells and honest empty states are implemented. Verified research, writing, CV and contact facts remain required before adding public claims.
 
 ## Batch 8 — CI, security and release
 

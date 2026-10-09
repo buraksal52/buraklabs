@@ -48,6 +48,14 @@ Follow `docs/REMAINING_PLAN.md` from Batch 1. Every completed batch must include
 - Known issues / risks: Screenshot matrix, browser interaction, contrast measurement and final visual approval are NOT RUN. No project imagery, research, writing, CV or demo content was invented.
 - Example commit message: `feat(home): add approved creative studio homepage composition`
 
+## Content surface progress
+- Date and agent: 2026-10-09 — Codex
+- Scope / changes: Added EN/TR route shells for Research, Writing, About, CV and Contact with honest empty states; expanded global navigation and preserved canonical/hreflang metadata.
+- Decisions and ADR updates: No public personal, publication, contact or credential claims were invented.
+- Commands run: `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS (0 errors, 0 warnings, 0 hints); `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS (24 pages; Pagefind indexed 22 pages across EN/TR); `git diff --check` — PASS.
+- Known issues / risks: These are content shells, not final authored pages. Verified CV PDFs, research metadata, article content and public contact details are still missing.
+- Example commit message: `feat(content): add verified research writing CV and contact surfaces`
+
 ## Batch 3 progress
 - Date and agent: 2026-10-09 — Codex
 - Scope / changes: Documented three homepage compositions with hierarchy, grid, typography, mobile behavior, motion purpose and evidence constraints in `docs/HOMEPAGE_DESIGN_PROPOSALS.md`.

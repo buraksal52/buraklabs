@@ -49,6 +49,11 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
         <a class="brand" href={prefix || '/'}>BurakLabs</a>
         <nav aria-label={locale === 'tr' ? 'Ana navigasyon' : 'Main navigation'}>
           <a href={`${prefix}/projects`}>{locale === 'tr' ? 'Projeler' : 'Projects'}</a>
+          <a href={`${prefix}/research`}>{locale === 'tr' ? 'Araştırma' : 'Research'}</a>
+          <a href={`${prefix}/writing`}>{locale === 'tr' ? 'Yazılar' : 'Writing'}</a>
+          <a href={`${prefix}/about`}>{locale === 'tr' ? 'Hakkında' : 'About'}</a>
+          <a href={`${prefix}/cv`}>CV</a>
+          <a href={`${prefix}/contact`}>{locale === 'tr' ? 'İletişim' : 'Contact'}</a>
           <a href={`${prefix}/search`}>{locale === 'tr' ? 'Ara' : 'Search'}</a>
           <a href={languageHref}>{locale === 'tr' ? 'English' : 'Türkçe'}</a>
           <button type="button" data-theme-toggle aria-label={locale === 'tr' ? 'Temayı değiştir' : 'Change theme'}>◐</button>
