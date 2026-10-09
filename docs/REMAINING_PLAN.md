@@ -32,7 +32,7 @@ Her batch sonunda gerçek komut sonuçları, bilinen sınırlılıklar ve örnek
 
 Browser-level visual and interaction validation remains open and is tracked as a Batch 1 limitation.
 
-## Batch 3 — Homepage and visual direction — proposal ready, approval pending
+## Batch 3 — Homepage and visual direction — implemented, visual QA pending
 
 **Goal:** Creative Studio ana sayfasını tamamlamak ve görsel yönü doğrulamak.
 
@@ -45,6 +45,8 @@ Browser-level visual and interaction validation remains open and is tracked as a
 **Exit:** Seçilen kompozisyon owner tarafından onaylanmış; screenshot matrix raporlanmış.
 
 **Commit example:** `feat(home): add approved creative studio homepage composition`
+
+Option A — Evidence Field was selected and implemented. Screenshot and browser QA remain open.
 
 ## Batch 4 — Content completion and evidence
 

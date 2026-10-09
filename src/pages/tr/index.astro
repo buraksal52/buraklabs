@@ -1,11 +1,44 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects', ({ data }) => data.locale === 'tr' && !data.draft)).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+const featured = projects.filter((project) => project.data.featured).slice(0, 2);
+const supporting = projects.filter((project) => !featured.includes(project)).slice(0, 2);
 ---
 <BaseLayout locale="tr" path="/tr/" alternatePath="/" title="BurakLabs — Mühendislik, araştırma ve yaratıcı stüdyo" description="Bağımsız mühendislik, araştırma ve yaratıcı stüdyo.">
-  <main data-pagefind-body>
-    <p class="eyebrow">Mühendislik × araştırma × yaratıcı stüdyo</p>
-    <h1>Gerçek problemler ve dürüst kanıtlar etrafında üretilen işler.</h1>
-    <p class="lede">İlk proje kayıtları inceleme için hazırlanıyor. Mevcut içerik durumunu görmek için proje indeksine geçin.</p>
-    <p><a class="back" href="/tr/projects">Projeleri görüntüle →</a></p>
+  <main data-pagefind-body class="home-main">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Mühendislik × araştırma × yaratıcı stüdyo</p>
+        <h1 id="home-title">Gerçek problemler ve dürüst kanıtlar etrafında üretilen işler.</h1>
+        <p class="lede">BurakLabs; prototipleri, araştırma yönlerini ve mühendislik kararlarını, her iddianın sınırlarını görünür tutarak kaydeder.</p>
+        <div class="hero-actions"><a class="button-link" href="/tr/projects">Seçili işleri keşfet</a><a class="back" href="/tr/search">Arşivde ara →</a></div>
+      </div>
+      <div class="evidence-field" aria-label="Problemden prototipe ve kanıt sınırına uzanan statik harita">
+        <div class="field-line line-one"></div><div class="field-line line-two"></div><div class="field-line line-three"></div>
+        <span class="field-node node-problem">problem</span>
+        <span class="field-node node-prototype">prototip</span>
+        <span class="field-node node-evidence">kanıt<br />sınırı</span>
+        <span class="field-caption">Her proje; neyin üretildiği, neyin araştırıldığı ve neyin hâlâ doğrulanmadığı üzerinden okunur.</span>
+      </div>
+    </section>
+
+    <section class="home-section" aria-labelledby="selected-work-title">
+      <div class="section-intro"><p class="eyebrow">01 / Seçili işler</p><h2 id="selected-work-title">Dört farklı problem, tek bir kanıt standardı.</h2></div>
+      <div class="featured-work">
+        {featured.map((project) => <a class="feature-project" href={`/tr/projects/${project.data.slug}`}>
+          <span class="eyebrow">{project.data.maturity} / {project.data.categories[0]}</span>
+          <h3>{project.data.title}</h3>
+          <p>{project.data.summary}</p>
+          <span class="project-arrow">Kaydı oku →</span>
+        </a>)}
+      </div>
+      <div class="supporting-work">
+        {supporting.map((project) => <a class="supporting-project" href={`/tr/projects/${project.data.slug}`}><span><strong>{project.data.title}</strong><small>{project.data.categories[0]}</small></span><span aria-hidden="true">↗</span></a>)}
+      </div>
+    </section>
+
+    <section class="home-note" aria-labelledby="home-note-title"><p class="eyebrow">02 / Çalışma ilkesi</p><h2 id="home-note-title">Bir iddianın etrafındaki sınır, iddianın kendisi kadar önemlidir.</h2><p>Uygulanan, prototiplenen, araştırılan ve planlanan işler proje kayıtlarında ayrı tutulur. Eksik linkler, tarihler ve medya doğrulanana kadar açıkça çözülmemiş bırakılır.</p></section>
   </main>
 </BaseLayout>

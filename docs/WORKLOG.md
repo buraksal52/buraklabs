@@ -40,6 +40,14 @@ Follow `docs/REMAINING_PLAN.md` from Batch 1. Every completed batch must include
 - Known issues / risks: Browser visual and interaction checks remain NOT RUN because in-app Browser tooling was unavailable. Sitemap uses the configured target domain but production deployment has not been verified.
 - Example commit message: `feat(i18n): add locale alternates, canonical metadata and sitemap rules`
 
+## Batch 3 handoff
+- Date and agent: 2026-10-09 — Codex
+- Scope / changes: Implemented Option A — Evidence Field homepage in EN/TR with static accessible hero fallback, asymmetric featured/supporting work layout, verified project data, working-principle section and responsive styles.
+- Decisions and ADR updates: User selected the design direction consistent with the documents; no new ADR required.
+- Commands run: `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS (0 errors, 0 warnings, 0 hints); `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS (14 pages; Pagefind indexed 811 words across 2 locales); `git diff --check` — PASS.
+- Known issues / risks: Screenshot matrix, browser interaction, contrast measurement and final visual approval are NOT RUN. No project imagery, research, writing, CV or demo content was invented.
+- Example commit message: `feat(home): add approved creative studio homepage composition`
+
 ## Batch 3 progress
 - Date and agent: 2026-10-09 — Codex
 - Scope / changes: Documented three homepage compositions with hierarchy, grid, typography, mobile behavior, motion purpose and evidence constraints in `docs/HOMEPAGE_DESIGN_PROPOSALS.md`.

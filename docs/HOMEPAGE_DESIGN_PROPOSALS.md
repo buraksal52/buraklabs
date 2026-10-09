@@ -96,11 +96,11 @@ Choose Option A if the homepage should feel like a distinctive engineering studi
 
 - [x] Three distinct compositions documented.
 - [x] Information hierarchy, grid, type, mobile and motion behavior documented.
-- [ ] Owner selects a composition.
-- [ ] Desktop/mobile light/dark prototype implemented.
+- [x] Owner selects Option A — Evidence Field.
+- [x] Desktop/mobile light/dark prototype implemented.
 - [ ] Screenshot matrix reviewed at 360/768/1440.
 - [ ] Final visual direction approved.
 
 ## Visual verification
 
-NOT VISUALLY VERIFIED. No screenshot or browser interaction evidence exists for these proposals.
+Option A is implemented in `src/pages/index.astro`, `src/pages/tr/index.astro` and `src/styles/global.css`. It is NOT VISUALLY VERIFIED: no screenshot or browser interaction evidence exists in this session.

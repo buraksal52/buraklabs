@@ -1,11 +1,44 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects', ({ data }) => data.locale === 'en' && !data.draft)).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+const featured = projects.filter((project) => project.data.featured).slice(0, 2);
+const supporting = projects.filter((project) => !featured.includes(project)).slice(0, 2);
 ---
 <BaseLayout locale="en" path="/" alternatePath="/tr/" title="BurakLabs — Engineering, research and creative studio" description="An independent engineering, research and creative studio.">
-  <main data-pagefind-body>
-    <p class="eyebrow">Engineering × research × creative studio</p>
-    <h1>Work built around real problems and honest evidence.</h1>
-    <p class="lede">A first set of project records is being prepared for review. Explore the project index to see the current content status.</p>
-    <p><a class="back" href="/projects">View projects →</a></p>
+  <main data-pagefind-body class="home-main">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Engineering × research × creative studio</p>
+        <h1 id="home-title">Work built around real problems and honest evidence.</h1>
+        <p class="lede">BurakLabs is a record of prototypes, research directions and engineering decisions — with the limits of each claim kept visible.</p>
+        <div class="hero-actions"><a class="button-link" href="/projects">Explore selected work</a><a class="back" href="/search">Search the archive →</a></div>
+      </div>
+      <div class="evidence-field" aria-label="A static map from problem to prototype to evidence boundary">
+        <div class="field-line line-one"></div><div class="field-line line-two"></div><div class="field-line line-three"></div>
+        <span class="field-node node-problem">problem</span>
+        <span class="field-node node-prototype">prototype</span>
+        <span class="field-node node-evidence">evidence<br />boundary</span>
+        <span class="field-caption">Every project is read through what was built, what was explored and what remains unverified.</span>
+      </div>
+    </section>
+
+    <section class="home-section" aria-labelledby="selected-work-title">
+      <div class="section-intro"><p class="eyebrow">01 / Selected work</p><h2 id="selected-work-title">Four different problems, one evidence standard.</h2></div>
+      <div class="featured-work">
+        {featured.map((project) => <a class="feature-project" href={`/projects/${project.data.slug}`}>
+          <span class="eyebrow">{project.data.maturity} / {project.data.categories[0]}</span>
+          <h3>{project.data.title}</h3>
+          <p>{project.data.summary}</p>
+          <span class="project-arrow">Read the record →</span>
+        </a>)}
+      </div>
+      <div class="supporting-work">
+        {supporting.map((project) => <a class="supporting-project" href={`/projects/${project.data.slug}`}><span><strong>{project.data.title}</strong><small>{project.data.categories[0]}</small></span><span aria-hidden="true">↗</span></a>)}
+      </div>
+    </section>
+
+    <section class="home-note" aria-labelledby="home-note-title"><p class="eyebrow">02 / Working principle</p><h2 id="home-note-title">The boundary around a claim matters as much as the claim.</h2><p>Implemented, prototyped, explored and planned are kept separate throughout the project records. Missing links, dates and media are left unresolved until they can be verified.</p></section>
   </main>
 </BaseLayout>
