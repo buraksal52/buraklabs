@@ -73,6 +73,7 @@ p { max-width: 70ch; line-height: 1.7; }
 .home-note { max-width: 900px; margin: 120px 0 40px auto; padding: 28px; border-left: 3px solid var(--accent); background: var(--surface); }
 .home-note h2 { max-width: 650px; }
 .content-empty { max-width: 760px; padding: 28px; border: 1px solid var(--border); background: var(--surface); }
+.research-list { display: grid; gap: 16px; max-width: 900px; }
 .content-empty h2 { margin-top: 0; }
 .content-empty p:last-child { margin-bottom: 0; color: var(--muted); }
 .content-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; }

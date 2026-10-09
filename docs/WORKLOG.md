@@ -64,6 +64,14 @@ Follow `docs/REMAINING_PLAN.md` from Batch 1. Every completed batch must include
 - Known issues / risks: CI workflow has not run on GitHub; real demos, GitHub snapshot, Cloudflare deployment, CV PDFs, verified contact facts and project provenance are still missing.
 - Example commit message: `ci(release): add quality gates and Cloudflare Pages release checks`
 
+## Owner data integration handoff
+- Date and agent: 2026-10-09 — Codex
+- Scope / changes: Integrated owner-supplied profile, project roles/context, CV facts, public GitHub/LinkedIn links and LucidUI ongoing research record. Added research/writing collection schemas; created one public LucidUI research entry and draft-only writing metadata.
+- Decisions and ADR updates: Kept TODO fields unresolved; no repository, demo, publication, efficacy, CV PDF or personal email was invented.
+- Commands run: `npm test` — PASS (2 tests); `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS (0 errors, 0 warnings, 0 hints); `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS (26 pages; Pagefind indexed 1,038 words across 2 locales); `git diff --check` — PASS.
+- Known issues / risks: Project repositories, demos, screenshots, exact dates, contribution splits, CV PDFs, email, research evidence and Cloudflare project details remain unresolved.
+- Example commit message: `content(profile): add owner-approved portfolio and research data`
+
 ## Batch 3 progress
 - Date and agent: 2026-10-09 — Codex
 - Scope / changes: Documented three homepage compositions with hierarchy, grid, typography, mobile behavior, motion purpose and evidence constraints in `docs/HOMEPAGE_DESIGN_PROPOSALS.md`.

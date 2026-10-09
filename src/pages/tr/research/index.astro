@@ -1,10 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const research = await getCollection('research', ({ data }) => data.locale === 'tr' && !data.draft);
 ---
 <BaseLayout locale="tr" path="/tr/research" alternatePath="/research" title="Araştırma — BurakLabs" description="BurakLabs araştırma projeleri ve yayın durumları.">
   <main data-pagefind-body>
     <p class="eyebrow">BurakLabs / Araştırma</p>
     <h1>Sonuçlardan önce sorular.</h1>
-    <div class="content-empty"><h2>Araştırma kayıtları doğrulanıyor.</h2><p>Yayın durumu, yazarlık, tarihler, venue ve linkler yalnızca doğrulandıktan sonra eklenecek. Araştırma bağlamı şu an LucidUI ve Physim kayıtlarında bulunuyor.</p><p><a class="back" href="/tr/projects/lucidui">LucidUI’yi oku →</a> · <a class="back" href="/tr/projects/physim">Physim’i oku →</a></p></div>
+    <div class="research-list">{research.map((item) => <article class="content-empty"><p class="eyebrow">{item.data.status}</p><h2>{item.data.title}</h2><p>{item.data.summary}</p><p><strong>Yazarlar:</strong> {item.data.authors.join(', ')}</p><div class="tags">{item.data.researchAreas.map((area) => <span class="tag">{area}</span>)}</div><p><a class="back" href="/tr/projects/lucidui">İlgili proje →</a></p></article>)}</div>
+    <p class="notice">Yayın durumu, diğer yazarlar, tarihler, venue ve linkler doğrulamaya tabidir.</p>
   </main>
 </BaseLayout>

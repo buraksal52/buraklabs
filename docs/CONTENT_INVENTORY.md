@@ -25,6 +25,32 @@ Bu belge, public içerik yazmadan önce hangi bilgilerin mevcut olduğunu ve han
 | Görseller/logolar | Yok | Hak ve alt text doğrulaması gerekli | Repository taraması |
 | Deploy/test kanıtı | Yalnızca playbook validation | UI/build/deploy doğrulanmadı | `docs/WORKLOG.md` |
 
+## Owner-supplied portfolio data — 2026-10-09
+
+The attached `Portfolio Content Data` brief is now an approved source for the following public facts:
+
+- Display name: Ömer Burak Şal.
+- English and Turkish bios.
+- GitHub: `https://github.com/buraksal52`.
+- LinkedIn: `https://www.linkedin.com/in/brksal`.
+- No portrait until a real photo is supplied.
+- Ghostellar and MIV Blockspace: September 2026 hackathon context and stated outcomes.
+- Ghostellar role: blockchain payment system design and development, with individual details still unresolved.
+- LucidUI role, Dr. Didem Tufan attribution, ongoing research status and E-HCI target context.
+- Physim role and learning-engineering positioning without efficacy claims.
+- MIV Blockspace role and Monad Blitz Istanbul v2 context without production/backend or detection-performance claims.
+- CV education, public skill areas and community activity as supplied; expected graduation remains subject to reconfirmation.
+
+Still unresolved and intentionally omitted from public links/claims:
+
+- Public email, other profiles, portrait, CV PDFs.
+- Repository/demo URLs and detailed contribution splits.
+- Exact dates except supplied September 2026 context.
+- Project screenshots and asset licenses.
+- LucidUI dataset, evaluation protocol, paper/DOI and other authors.
+- Physim implementation modules, users and experiments.
+- MIV real data source, live deployment and evaluation evidence.
+
 ## Candidate projects — owner verification required
 
 These four records were supplied and approved for the initial portfolio pass by the user in the attached project brief. Repository/demo URLs, dates and individual roles remain unresolved and are not claimed.

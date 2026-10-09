@@ -1,10 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const research = await getCollection('research', ({ data }) => data.locale === 'en' && !data.draft);
 ---
 <BaseLayout locale="en" path="/research" alternatePath="/tr/research" title="Research — BurakLabs" description="Research projects and publication statuses from BurakLabs.">
   <main data-pagefind-body>
     <p class="eyebrow">BurakLabs / Research</p>
     <h1>Questions before conclusions.</h1>
-    <div class="content-empty"><h2>Research records are being verified.</h2><p>Publication status, authorship, dates, venues and links will be added only after they are confirmed. Project research context is currently available in the LucidUI and Physim records.</p><p><a class="back" href="/projects/lucidui">Read LucidUI →</a> · <a class="back" href="/projects/physim">Read Physim →</a></p></div>
+    <div class="research-list">{research.map((item) => <article class="content-empty"><p class="eyebrow">{item.data.status}</p><h2>{item.data.title}</h2><p>{item.data.summary}</p><p><strong>Authors:</strong> {item.data.authors.join(', ')}</p><div class="tags">{item.data.researchAreas.map((area) => <span class="tag">{area}</span>)}</div><p><a class="back" href="/projects/lucidui">Related project →</a></p></article>)}</div>
+    <p class="notice">Publication status, additional authors, dates, venues and links remain subject to verification.</p>
   </main>
 </BaseLayout>
