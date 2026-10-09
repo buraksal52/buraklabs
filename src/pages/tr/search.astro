@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout locale="tr" title="Ara — BurakLabs" description="BurakLabs projelerinde ve yazılarında ara.">
+  <main data-pagefind-ignore>
+    <p class="eyebrow">BurakLabs / Ara</p>
+    <h1>Bir proje veya fikir bul.</h1>
+    <form class="search-box" data-search-form>
+      <label class="hidden" for="search-query">Ara</label>
+      <input id="search-query" name="q" type="search" placeholder="Projelerde ara…" autocomplete="off" />
+      <button type="submit">Ara</button>
+    </form>
+    <p class="notice" data-search-status>Yayınlanmış içerikte aramak için bir sorgu yazın.</p>
+    <div class="search-results" data-search-results></div>
+  </main>
+</BaseLayout>
+<script>
+  type SearchResult = { url: string; meta: { title?: string; description?: string }; excerpt?: string };
+  type Pagefind = { search: (query: string) => Promise<{ results: Array<{ data: () => Promise<SearchResult> }> }> };
+  const form = document.querySelector<HTMLFormElement>('[data-search-form]');
+  const input = document.querySelector<HTMLInputElement>('#search-query');
+  const status = document.querySelector<HTMLElement>('[data-search-status]');
+  const results = document.querySelector<HTMLElement>('[data-search-results]');
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const query = input?.value.trim() ?? '';
+    if (!status || !results) return;
+    results.replaceChildren();
+    if (!query) { status.textContent = 'Yayınlanmış içerikte aramak için bir sorgu yazın.'; return; }
+    status.textContent = 'Aranıyor…';
+    try {
+      const loadPagefind = new Function('url', 'return import(url)') as (url: string) => Promise<unknown>;
+      const pagefind = await loadPagefind('/pagefind/pagefind.js') as Pagefind;
+      const response = await pagefind.search(query);
+      const entries = await Promise.all(response.results.slice(0, 20).map((result) => result.data()));
+      status.textContent = entries.length ? `${entries.length} sonuç` : 'Eşleşen yayınlanmış içerik bulunamadı.';
+      entries.forEach((entry) => {
+        const article = document.createElement('article');
+        article.className = 'search-result';
+        article.innerHTML = `<a href="${entry.url}"><strong>${entry.meta.title ?? 'Başlıksız'}</strong></a><p>${entry.excerpt ?? entry.meta.description ?? ''}</p>`;
+        results.append(article);
+      });
+    } catch {
+      status.textContent = 'Arama şu anda kullanılamıyor.';
+    }
+  });
+</script>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout locale="en" title="Search — BurakLabs" description="Search BurakLabs projects and writing.">
+  <main data-pagefind-ignore>
+    <p class="eyebrow">BurakLabs / Search</p>
+    <h1>Find a project or idea.</h1>
+    <form class="search-box" data-search-form>
+      <label class="hidden" for="search-query">Search</label>
+      <input id="search-query" name="q" type="search" placeholder="Search projects…" autocomplete="off" />
+      <button type="submit">Search</button>
+    </form>
+    <p class="notice" data-search-status>Type a query to search published content.</p>
+    <div class="search-results" data-search-results></div>
+  </main>
+</BaseLayout>
+<script>
+  type SearchResult = { url: string; meta: { title?: string; description?: string }; excerpt?: string };
+  type Pagefind = { search: (query: string) => Promise<{ results: Array<{ data: () => Promise<SearchResult> }> }> };
+  const form = document.querySelector<HTMLFormElement>('[data-search-form]');
+  const input = document.querySelector<HTMLInputElement>('#search-query');
+  const status = document.querySelector<HTMLElement>('[data-search-status]');
+  const results = document.querySelector<HTMLElement>('[data-search-results]');
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const query = input?.value.trim() ?? '';
+    if (!status || !results) return;
+    results.replaceChildren();
+    if (!query) { status.textContent = 'Type a query to search published content.'; return; }
+    status.textContent = 'Searching…';
+    try {
+      const loadPagefind = new Function('url', 'return import(url)') as (url: string) => Promise<unknown>;
+      const pagefind = await loadPagefind('/pagefind/pagefind.js') as Pagefind;
+      const response = await pagefind.search(query);
+      const entries = await Promise.all(response.results.slice(0, 20).map((result) => result.data()));
+      status.textContent = entries.length ? `${entries.length} result${entries.length === 1 ? '' : 's'}` : 'No matching published content.';
+      entries.forEach((entry) => {
+        const article = document.createElement('article');
+        article.className = 'search-result';
+        article.innerHTML = `<a href="${entry.url}"><strong>${entry.meta.title ?? 'Untitled'}</strong></a><p>${entry.excerpt ?? entry.meta.description ?? ''}</p>`;
+        results.append(article);
+      });
+    } catch {
+      status.textContent = 'Search is temporarily unavailable.';
+    }
+  });
+</script>

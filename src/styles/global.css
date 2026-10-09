@@ -49,6 +49,13 @@ p { max-width: 70ch; line-height: 1.7; }
 .filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; padding: 20px; margin-top: 36px; background: var(--surface); border: 1px solid var(--border); }
 .filters label { display: grid; gap: 6px; color: var(--muted); font-size: .8rem; }
 select { min-width: 150px; padding: 9px; color: var(--ink); background: var(--canvas); border: 1px solid var(--border); }
+button { padding: 8px 10px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); cursor: pointer; }
+.search-box { display: grid; grid-template-columns: 1fr auto; gap: 12px; max-width: 720px; margin-top: 32px; }
+.search-box input { min-width: 0; padding: 13px; color: var(--ink); background: var(--surface); border: 1px solid var(--border); }
+.search-results { display: grid; gap: 12px; max-width: 820px; margin-top: 32px; }
+.search-result { padding: 20px; background: var(--surface); border: 1px solid var(--border); }
+.search-result a { text-decoration: none; }
+.search-result p { color: var(--muted); margin-bottom: 0; }
 .case-study { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 64px; }
 .case-study aside { border-left: 1px solid var(--border); padding-left: 24px; }
 .case-study article { min-width: 0; }
@@ -61,6 +68,7 @@ select { min-width: 150px; padding: 9px; color: var(--ink); background: var(--ca
   .site-header { align-items: flex-start; flex-direction: column; }
   main { padding-top: 48px; }
   .project-grid, .case-study { grid-template-columns: 1fr; }
+  .search-box { grid-template-columns: 1fr; }
   .case-study aside { border-left: 0; border-top: 1px solid var(--border); padding: 24px 0 0; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }

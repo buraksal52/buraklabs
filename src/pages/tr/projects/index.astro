@@ -8,7 +8,7 @@ const categories = [...new Set(projects.flatMap((project) => project.data.catego
 const technologies = [...new Set(projects.flatMap((project) => project.data.technologies))].sort();
 ---
 <BaseLayout locale={locale} title="Projeler — BurakLabs" description="BurakLabs mühendislik, araştırma ve yaratıcı projeleri.">
-  <main>
+  <main data-pagefind-body>
     <p class="eyebrow">BurakLabs / Projeler</p>
     <h1>Seçili işler.</h1>
     <p class="lede">Her kayıt uygulanan özellikleri, prototipleri, araştırılan fikirleri ve doğrulanmamış kanıtları birbirinden ayırır.</p>

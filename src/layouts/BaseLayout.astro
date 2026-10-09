@@ -14,18 +14,37 @@ const prefix = locale === 'tr' ? '/tr' : '';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <script is:inline>
+      const systemTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      try {
+        const savedTheme = localStorage.getItem('buraklabs-theme');
+        document.documentElement.dataset.theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : systemTheme;
+      } catch {
+        document.documentElement.dataset.theme = systemTheme;
+      }
+    </script>
     <title>{title}</title>
   </head>
   <body>
     <div class="shell">
-      <header class="site-header">
+      <header class="site-header" data-pagefind-ignore>
         <a class="brand" href={prefix || '/'}>BurakLabs</a>
         <nav aria-label={locale === 'tr' ? 'Ana navigasyon' : 'Main navigation'}>
           <a href={`${prefix}/projects`}>{locale === 'tr' ? 'Projeler' : 'Projects'}</a>
+          <a href={`${prefix}/search`}>{locale === 'tr' ? 'Ara' : 'Search'}</a>
           <a href={locale === 'tr' ? '/' : '/tr'}>{locale === 'tr' ? 'English' : 'Türkçe'}</a>
+          <button type="button" data-theme-toggle aria-label={locale === 'tr' ? 'Temayı değiştir' : 'Change theme'}>◐</button>
         </nav>
       </header>
       <slot />
     </div>
   </body>
 </html>
+<script>
+  const themeToggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  themeToggle?.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nextTheme;
+    try { localStorage.setItem('buraklabs-theme', nextTheme); } catch { /* system preference remains active */ }
+  });
+</script>
