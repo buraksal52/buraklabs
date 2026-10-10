@@ -4,7 +4,7 @@
 Phase 1 foundation, the first four project records, theme switching and locale-aware Pagefind search are now scaffolded. Phase 0 content inventory continues in `docs/CONTENT_INVENTORY.md`. User approved Warm Neutral initial palette, experimental hero, mixed page layouts and Creative Studio direction. Colors remain token-swappable.
 
 ## Next action
-Follow `docs/REMAINING_PLAN.md` from Batch 1. Every completed batch must include actual checks, limitations and an example commit message.
+Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer final owner profile/CV/contact/provenance completion until the site direction has been reviewed. Every completed batch must include actual checks, limitations and an example commit message.
 
 ## Last verified checks
 `scripts/validate_playbook.py` is absent in this checkout. Astro typecheck and static build have been verified below; no browser/E2E, deployment or screenshot review has been run.
@@ -71,6 +71,12 @@ Follow `docs/REMAINING_PLAN.md` from Batch 1. Every completed batch must include
 - Commands run: `npm test` — PASS (2 tests); `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS (0 errors, 0 warnings, 0 hints); `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS (26 pages; Pagefind indexed 1,038 words across 2 locales); `git diff --check` — PASS.
 - Known issues / risks: Project repositories, demos, screenshots, exact dates, contribution splits, CV PDFs, email, research evidence and Cloudflare project details remain unresolved.
 - Example commit message: `content(profile): add owner-approved portfolio and research data`
+
+## Priority decision
+- Date and agent: 2026-10-10 — Codex
+- Decision: Site/product prototype first; final owner-specific information pass later.
+- Consequence: Existing supplied facts remain available, but missing personal data, repository provenance and final CV/contact details are not blockers for the next design/interaction batches.
+- Next concrete task: Implement and review project storytelling plus clearly labeled interactive simulations.
 
 ## Batch 3 progress
 - Date and agent: 2026-10-09 — Codex

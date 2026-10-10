@@ -48,21 +48,36 @@ Browser-level visual and interaction validation remains open and is tracked as a
 
 Option A — Evidence Field was selected and implemented. Screenshot and browser QA remain open.
 
-## Batch 4 — Content completion and evidence
+## Revised priority
 
-**Goal:** Proje içeriklerini public kullanıma hazır kanıt seviyesine taşımak.
+Owner-specific profile, CV, contact and detailed provenance work is intentionally deferred. The immediate goal is to make the site useful as a product/design prototype: explore the visual language, navigation, project storytelling, filters, search and clearly labeled interactive simulations first. Existing owner-supplied facts remain in the repository, but new personal-data completion is not on the critical path.
 
-- Repository ve demo URL’leri.
-- Gerçek rol, tarih, ekip katkısı ve durum bilgileri.
-- Görseller, alt text, lisans ve attribution.
-- Implemented/prototyped/explored/planned ayrımı.
-- Case-study architecture, decisions, challenges and evidence sections.
+## Batch 4 — Site prototype and project experience
 
-**Exit:** Dört proje için provenance checklist tamamlanmış.
+**Goal:** Make the site feel complete enough to evaluate before the final personal-content pass.
 
-**Commit example:** `content(projects): complete verified project provenance and case studies`
+- Project storytelling and case-study navigation.
+- Clearly labeled interactive simulations using example data only.
+- Empty/loading/error states and missing-demo behavior.
+- Homepage, project index, detail, research and writing flow.
+- Responsive and reduced-motion behavior.
 
-## Batch 5 — Demo registry — safe contract implemented, real demos pending
+**Exit:** A coherent local prototype can be reviewed without requiring final CV, email or repository data.
+
+**Commit example:** `feat(prototype): complete project storytelling and interactive states`
+
+## Batch 5 — Content completion and evidence — deferred
+
+**Goal:** Complete project provenance and owner-specific public information after the prototype direction is approved.
+
+- Repository/demo URLs, exact dates, roles and contribution splits.
+- Screenshots, licenses and attribution.
+- Verified CV PDFs, public email and profile details.
+- Research evidence, paper metadata and writing bodies.
+
+**Commit example:** `content(profile): complete verified owner and project provenance`
+
+## Batch 6 — Demo registry — safe contract implemented, real demos pending
 
 **Goal:** Native, embedded ve external demo sözleşmesini uygulamak.
 
@@ -78,7 +93,7 @@ Option A — Evidence Field was selected and implemented. Screenshot and browser
 
 Typed empty registry and HTTPS host allowlist are implemented. Real native/embedded/external demos still require owner-approved targets.
 
-## Batch 6 — GitHub snapshot integration
+## Batch 7 — GitHub snapshot integration
 
 **Goal:** Visitor-side API çağrısı olmadan doğrulanmış repo metadata’sı göstermek.
 
@@ -91,7 +106,7 @@ Typed empty registry and HTTPS host allowlist are implemented. Real native/embed
 
 **Commit example:** `feat(integrations): add validated scheduled GitHub metadata snapshot`
 
-## Batch 7 — Research, writing, CV and contact — shells implemented, content pending
+## Batch 8 — Research, writing, CV and contact — shells implemented, content deferred
 
 **Goal:** Kalan content collections ve kişisel bilgi yüzeylerini eklemek.
 
@@ -106,7 +121,7 @@ Typed empty registry and HTTPS host allowlist are implemented. Real native/embed
 
 EN/TR route shells and honest empty states are implemented. Verified research, writing, CV and contact facts remain required before adding public claims.
 
-## Batch 8 — CI, security and release — baseline implemented, release pending
+## Batch 9 — CI, security and release — baseline implemented, release pending
 
 **Goal:** Production release kapılarını kurmak.
 
