@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 
 const registryModule = await import('../src/features/demos/registry.mjs');
 
-test('demo registry is empty until approved demo evidence exists', () => {
-  assert.deepEqual(registryModule.demoRegistry, []);
+test('demo registry contains only approved local simulations', () => {
+  assert.deepEqual(registryModule.demoRegistry.map((demo) => demo.id), ['ghostellar-lifecycle', 'physim-mastery']);
+  assert.equal(registryModule.demoRegistry.every((demo) => demo.kind === 'native'), true);
 });
 
 test('demo URL allowlist rejects unsafe or unapproved URLs', () => {

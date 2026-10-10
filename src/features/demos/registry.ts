@@ -9,7 +9,7 @@ export type DemoDefinition =
  * Deliberately empty until owner-approved demo URLs/components are supplied.
  * No untrusted URL is accepted by default.
  */
-export const demoRegistry: readonly DemoDefinition[] = rawRegistry;
+export const demoRegistry: readonly DemoDefinition[] = rawRegistry as readonly DemoDefinition[];
 
 export function getDemo(id: string): DemoDefinition | undefined {
   return rawGetDemo(id) as DemoDefinition | undefined;

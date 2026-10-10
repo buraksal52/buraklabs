@@ -78,6 +78,14 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Consequence: Existing supplied facts remain available, but missing personal data, repository provenance and final CV/contact details are not blockers for the next design/interaction batches.
 - Next concrete task: Implement and review project storytelling plus clearly labeled interactive simulations.
 
+## Prototype experience handoff
+- Date and agent: 2026-10-10 — Codex
+- Scope / changes: Added React/Astro native demo host, Ghostellar offline payment lifecycle simulation, Physim mastery/review simulation, typed demo registry entries, accessible status/actions, reduced-motion-safe meter transition and project-role sidebars.
+- Decisions and ADR updates: Simulations are explicitly example-data interactions; no real blockchain, backend, learning efficacy or production analytics claim is made. LucidUI and MIV receive no invented demo.
+- Commands run: `npm test` — PASS (2 tests); `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS (0 errors, 0 warnings, 0 hints); `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS (26 pages; Pagefind indexed 1,084 words across 2 locales); `git diff --check` — PASS.
+- Known issues / risks: Browser click/touch/keyboard QA is still NOT RUN. React runtime and demo interactions need visual verification at 360/768/1440. npm audit still reports 4 vulnerabilities.
+- Example commit message: `feat(prototype): complete project storytelling and interactive states`
+
 ## Batch 3 progress
 - Date and agent: 2026-10-09 — Codex
 - Scope / changes: Documented three homepage compositions with hierarchy, grid, typography, mobile behavior, motion purpose and evidence constraints in `docs/HOMEPAGE_DESIGN_PROPOSALS.md`.

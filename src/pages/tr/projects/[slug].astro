@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import DemoHost from '../../../components/demos/DemoHost.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects', ({ data }) => data.locale === 'tr' && !data.draft);
@@ -16,8 +17,9 @@ const { Content } = await render(project);
       <p class="eyebrow">{project.data.maturity} / {project.data.status}</p>
       <h1>{project.data.title}</h1>
       <p class="lede">{project.data.summary}</p>
+      {project.data.demoId && <DemoHost demoId={project.data.demoId} locale="tr" />}
       <Content />
     </article>
-    <aside><h2>Proje notları</h2><div class="tags">{project.data.categories.map((tag) => <span class="tag">{tag}</span>)}</div><p><strong>Kanıt durumu:</strong> {project.data.maturity}</p></aside>
+    <aside><h2>Proje notları</h2><div class="tags">{project.data.categories.map((tag) => <span class="tag">{tag}</span>)}</div><p><strong>Kanıt durumu:</strong> {project.data.maturity}</p>{project.data.myRole && <p><strong>Rol:</strong> {project.data.myRole}</p>}</aside>
   </main>
 </BaseLayout>

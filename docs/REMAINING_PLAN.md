@@ -52,7 +52,7 @@ Option A — Evidence Field was selected and implemented. Screenshot and browser
 
 Owner-specific profile, CV, contact and detailed provenance work is intentionally deferred. The immediate goal is to make the site useful as a product/design prototype: explore the visual language, navigation, project storytelling, filters, search and clearly labeled interactive simulations first. Existing owner-supplied facts remain in the repository, but new personal-data completion is not on the critical path.
 
-## Batch 4 — Site prototype and project experience
+## Batch 4 — Site prototype and project experience — implemented, review pending
 
 **Goal:** Make the site feel complete enough to evaluate before the final personal-content pass.
 
@@ -65,6 +65,8 @@ Owner-specific profile, CV, contact and detailed provenance work is intentionall
 **Exit:** A coherent local prototype can be reviewed without requiring final CV, email or repository data.
 
 **Commit example:** `feat(prototype): complete project storytelling and interactive states`
+
+Ghostellar and Physim now have labeled native interactive simulations. LucidUI and MIV remain without fabricated demos until their actual behavior/data is verified.
 
 ## Batch 5 — Content completion and evidence — deferred
 
