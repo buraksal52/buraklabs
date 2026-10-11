@@ -155,6 +155,45 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Verification: Chrome DevTools test confirmed overview/cards become visible after scrolling; reduced-motion confirmed `scroll-motion-ready` is absent and content remains visible. `npm run check`, `npm run build`, `npm test` and `git diff --check` all PASS.
 - Example commit message: `feat(motion): add accessible scroll reveal transitions`
 
+## Homepage narrative flow handoff
+- Date and agent: 2026-10-12 — Codex
+- Scope / changes: Reordered the homepage into the approved narrative: existing hero → three-step personal introduction → four project cards → writing/experiments block → Science → Engineering → Product cycle. Project cards expose category, technology stack, summary and owner-supplied role text, with hover/focus lift and border transitions. Added a clear all-projects link to `/projects`.
+- Content integrity: Blog remains an honest empty/public-draft state because no writing entry is currently `draft: false`; no article title, experiment result or publication claim was invented. Personal copy uses previously owner-supplied profile facts.
+- Motion: Existing scroll reveal now covers the personal sequence, project cards, writing block and cycle; cycle connectors animate a directional pulse and stop under reduced motion.
+- Visual evidence: `/tmp/buraklabs-qa/flow-top-1440.png`, `/tmp/buraklabs-qa/flow-about-projects-1440.png`, `/tmp/buraklabs-qa/flow-cycle-1440.png`, `/tmp/buraklabs-qa/flow-top-360.png` inspected.
+- Commands run: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,245 words); `npm test` — PASS (2 tests); `git diff --check` — PASS. Chromium confirmed `scrollWidth === 360`, cycle present and 4 project cards rendered.
+- Example commit message: `feat(home): add personal story project archive and studio cycle`
+
+## Sticky about storytelling handoff
+- Date and agent: 2026-10-12 — Codex
+- Scope / changes: Reworked the homepage About section into an Apple-style sticky scroll story. The left visual frame stays pinned on desktop while three right-side narrative steps move through the viewport; the visual stage switches 01 → 02 → 03 as each step becomes active. Mobile intentionally falls back to a normal readable flow.
+- Motion and accessibility: Stage transitions use opacity/translate only; reduced-motion disables motion through the existing global rule. The story remains semantic text and links, with no required interaction or invented visual data.
+- Verification: Chrome DevTools confirmed `position: sticky`, visual stage transitions at three scroll positions, mobile `position: relative` fallback and `scrollWidth === 360`. Screenshots: `/tmp/buraklabs-qa/about-sticky-stage-2-1440.png`, `/tmp/buraklabs-qa/about-sticky-mobile-360.png`.
+- Commands run: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,267 words); `npm test` — PASS (2 tests); `git diff --check` — PASS.
+- Example commit message: `feat(home): add sticky about storytelling sequence`
+
+## Sticky about visual balance handoff
+- Date and agent: 2026-10-12 — Codex
+- Scope / changes: Reworked the left sticky About visual to fill the viewport while its story is active: `top: 0`, `height: 100vh`, full-width frame, and no artificial aspect-ratio constraint. This removes the upper/lower page gaps and lets the black panel travel with the scroll as a true sticky visual. Mobile still uses a bounded 360px readable fallback.
+- Verification: `position: sticky`, `top: 0` and `height: 100vh` are now the desktop visual contract; mobile overrides to `position: relative` and 360px height. The user-provided screenshot was used to target the visible top/bottom gaps. A new Chrome screenshot could not be produced because the headless command exited without output in this environment.
+- Commands run: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,267 words); `npm test` — PASS (2 tests); `git diff --check` — PASS.
+- Example commit message: `fix(home): make about visual viewport sticky`
+
+## Sticky about SVG stage handoff
+- Date and agent: 2026-10-12 — Codex
+- Scope / changes: Added stage-specific inline SVG art to both homepage locales. Stage 01 now has a restrained portrait-frame placeholder for a future owner-supplied photo; stage 02 animates a research-to-software signal path; stage 03 animates orbiting nodes for the living archive idea. SVGs are local, lightweight and switch with the existing scroll-driven stage observer.
+- Content integrity: No personal photo or fabricated image was added. The profile art is explicitly an abstract placement frame until the content owner supplies approved photographs.
+- Accessibility: SVGs are decorative (`aria-hidden`), text remains the semantic content, and the existing reduced-motion rule limits animation duration and iteration.
+- Commands run: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,267 words); `npm test` — PASS (2 tests); `git diff --check` — PASS.
+- Example commit message: `feat(home): add animated SVG story stages`
+
+## Content input handoff
+- Date and agent: 2026-10-12 — Codex
+- Scope / changes: Added `docs/CONTENT_INPUT.md` as the owner-managed intake file for profile details, About copy, projects, writing/experiments, research records and visual assets. It uses explicit `TODO(content-owner)` placeholders, public flags, locale fields and evidence/rights fields so future updates can be made from one agreed source.
+- Decision: This is an editorial input file, not a runtime CMS. The current static-first MDX content pipeline stays unchanged; after the owner fills the file, entries are validated and transferred into the appropriate content collection.
+- Commands run: `git diff --check` — PASS.
+- Example commit message: `docs(content): add owner input source of truth`
+
 ## Update format
 - Date and agent:
 - Scope / changes:

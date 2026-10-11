@@ -87,4 +87,18 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
   } else {
     revealItems.forEach((item) => item.classList.add('is-visible'));
   }
+
+  const aboutSteps = [...document.querySelectorAll<HTMLElement>('[data-about-step]')];
+  const aboutStages = [...document.querySelectorAll<HTMLElement>('[data-about-stage]')];
+  if (aboutSteps.length && aboutStages.length && 'IntersectionObserver' in window) {
+    const aboutObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const step = entry.target.getAttribute('data-about-step');
+          aboutStages.forEach((stage) => stage.classList.toggle('is-active', stage.getAttribute('data-about-stage') === step));
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '-10% 0px -10% 0px' });
+    aboutSteps.forEach((step) => aboutObserver.observe(step));
+  }
 </script>

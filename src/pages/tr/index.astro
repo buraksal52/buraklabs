@@ -28,17 +28,51 @@ const writing = (await getCollection('writing', ({ data }) => data.locale === 't
       </div>
     </section>
 
-    <section class="home-section studio-overview" aria-labelledby="studio-overview-title" data-scroll-reveal>
-      <div class="section-intro"><p class="eyebrow">02 / Projelerden fazlası</p><h2 id="studio-overview-title">Stüdyo; kişinin, soruların ve deneylerin de göründüğü bir alan.</h2></div>
-      <div class="studio-overview-grid">
-        <a class="studio-overview-projects" href="/tr/projects" data-scroll-reveal="card"><span class="eyebrow">Projeler / {projects.length} kayıt</span><h3>Gerçek kısıtlar etrafında üretilen işler.</h3><p>Vaka kayıtları; uygulanan işleri, prototipleri ve çözülmemiş kanıtları ayrı tutar.</p><span class="project-arrow">Proje arşivini aç <span aria-hidden="true">↗</span></span></a>
-        <div class="studio-overview-stack">
-          <a class="studio-overview-card" href="/tr/about" data-scroll-reveal="card"><span class="eyebrow">Hakkında</span><h3>Ömer Burak Şal</h3><p>Yazılım mühendisliği, yapay zekâ, HCI ve uygulamalı araştırma kesişiminde çalışan bilgisayar mühendisliği öğrencisi.</p><span class="project-arrow">Tanıtımı oku <span aria-hidden="true">↗</span></span></a>
-          <a class="studio-overview-card" href="/tr/writing" data-scroll-reveal="card"><span class="eyebrow">Yazılar ve deneyler</span><h3>{writing.length ? 'İşlerden kalan notlar.' : 'Notlar, deneyler ve tamamlanmamış sorular için alan.'}</h3><p>{writing.length ? 'Public yazılar ve deneyler burada toplanır.' : 'Taslak konu başlıkları mevcut; public yazılar incelemeden sonra burada yer alacak.'}</p><span class="project-arrow">Yazıları aç <span aria-hidden="true">↗</span></span></a>
+    <section class="home-section home-about-flow" aria-labelledby="home-about-title">
+      <div class="section-intro" data-scroll-reveal><p class="eyebrow">02 / Hakkında</p><h2 id="home-about-title">Projelerin arkasındaki kişi.</h2></div>
+      <div class="about-sticky-story">
+        <aside class="about-sticky-visual" aria-label="BurakLabs hakkında hikâye aşamaları">
+          <div class="about-visual-frame">
+            <div class="about-visual-kicker"><span class="eyebrow">Hakkında / BurakLabs</span><span>Kaydırarak keşfet</span></div>
+            <div class="about-visual-stage is-active" data-about-stage="0"><svg class="about-visual-art about-visual-art-profile" viewBox="0 0 320 220" aria-hidden="true"><rect x="82" y="20" width="156" height="180" rx="2" /><circle cx="160" cy="84" r="34" /><path d="M102 178c8-34 28-52 58-52s50 18 58 52" /><path d="M116 56c10-20 25-30 45-30s35 10 45 30" /></svg><span class="about-visual-index">01</span><strong>İşin<br />arkasındaki kişi.</strong><span>Ömer Burak Şal</span></div>
+            <div class="about-visual-stage" data-about-stage="1"><svg class="about-visual-art about-visual-art-system" viewBox="0 0 320 220" aria-hidden="true"><path class="art-path" d="M38 110h72l35-56 42 112 34-56h61" /><circle class="art-node art-node-one" cx="38" cy="110" r="7" /><circle class="art-node art-node-two" cx="145" cy="54" r="7" /><circle class="art-node art-node-three" cx="187" cy="166" r="7" /><circle class="art-node art-node-four" cx="282" cy="110" r="7" /></svg><span class="about-visual-index">02</span><strong>Fikirler<br />çalışan sistemlere dönüşür.</strong><span>Araştırma → yazılım</span></div>
+            <div class="about-visual-stage" data-about-stage="2"><svg class="about-visual-art about-visual-art-archive" viewBox="0 0 320 220" aria-hidden="true"><circle class="art-orbit" cx="160" cy="110" r="66" /><circle class="art-orbit art-orbit-inner" cx="160" cy="110" r="36" /><circle class="art-node art-node-one" cx="160" cy="44" r="7" /><circle class="art-node art-node-two" cx="217" cy="143" r="7" /><circle class="art-node art-node-three" cx="103" cy="143" r="7" /><path class="art-loop" d="M160 110c22-22 52-18 64 3" /></svg><span class="about-visual-index">03</span><strong>Projeler<br />yaşayan arşive dönüşür.</strong><span>Üret → açıkla → sürdür</span></div>
+          </div>
+        </aside>
+        <div class="about-sticky-steps">
+          <article class="about-step" data-scroll-reveal data-about-step="0"><span class="about-step-number">01</span><div><p class="eyebrow">Ben kimim</p><h3>Ömer Burak Şal</h3><p>Yazılım mühendisliği, yapay zekâ, insan-bilgisayar etkileşimi ve uygulamalı araştırma kesişiminde çalışan bilgisayar mühendisliği öğrencisi.</p></div></article>
+          <article class="about-step" data-scroll-reveal data-about-step="1"><span class="about-step-number">02</span><div><p class="eyebrow">Ne yapıyorum</p><h3>Araştırma fikirlerini çalışan yazılıma dönüştürüyorum.</h3><p>Deneysel sistemler, geliştirici araçları ve dijital ürünler tasarlıyor; fikir ile kanıt arasındaki mesafeyi görünür tutuyorum.</p></div></article>
+          <article class="about-step" data-scroll-reveal data-about-step="2"><span class="about-step-number">03</span><div><p class="eyebrow">Nereye gidiyor</p><h3>Projeler, notlar ve deneyler aynı kayda ait.</h3><p>BurakLabs; üretilen şeyi, arkasındaki soruyu ve hâlâ test edilmesi gereken sonraki sürümü birlikte kaydeder.</p><a class="back" href="/tr/about">Tanıtımın tamamını oku →</a></div></article>
         </div>
       </div>
     </section>
 
-    <section class="home-closing" aria-labelledby="home-closing-title" data-scroll-reveal><div><p class="eyebrow">03 / Takipte kal</p><h2 id="home-closing-title">Arşiv işlerle birlikte büyüyecek.</h2></div><div><p>Uygulanan, prototiplenen, araştırılan ve planlanan işler ayrı tutulur. Eksik linkler ve kanıtlar doğrulanana kadar görünür kalır.</p><a class="back" href="/tr/contact">İletişime geç →</a></div></section>
+    <section class="home-section home-projects" aria-labelledby="home-projects-title">
+      <div class="section-intro" data-scroll-reveal><p class="eyebrow">03 / Projeler</p><h2 id="home-projects-title">Dört proje, gerçek bağlamlarıyla birlikte.</h2></div>
+      <div class="home-project-grid">
+        {projects.slice(0, 4).map((project, index) => <a class="home-project-card" href={`/tr/projects/${project.data.slug}`} data-scroll-reveal="card">
+          <div class="home-project-card-top"><span class="project-number">0{index + 1}</span><span class="status">{project.data.maturity}</span></div>
+          <h3>{project.data.title}</h3><p>{project.data.summary}</p>
+          <div class="home-project-meta"><div><small>Kategori</small><strong>{project.data.categories.slice(0, 2).join(' · ')}</strong></div><div><small>Tech stack</small><strong>{project.data.technologies.slice(0, 3).join(' · ')}</strong></div></div>
+          <div class="home-project-role"><small>Rolüm</small><span>{project.data.myRole ?? 'Rol detayları doğrulanıyor.'}</span></div><span class="project-arrow">Projeyi aç <span aria-hidden="true">↗</span></span>
+        </a>)}
+      </div>
+      <a class="archive-link" href="/tr/projects">Tüm projeleri gör <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <section class="home-section home-writing" aria-labelledby="home-writing-title">
+      <div class="section-intro" data-scroll-reveal><p class="eyebrow">04 / Yazılar ve deneyler</p><h2 id="home-writing-title">Blog, tamamlanmamış soruların daha uzun forma kavuştuğu yer.</h2></div>
+      <div class="writing-feature" data-scroll-reveal>
+        <div><p class="eyebrow">Notlar / deneyler / araştırma çevresi</p><h3>{writing.length ? 'İşlerden kalan notlar.' : 'Notlar, deneyler ve tamamlanmamış sorular için alan.'}</h3></div>
+        <div><p>{writing.length ? 'Public yazılar ve deneyler burada toplanır.' : 'Taslak konu başlıkları mevcut. Public yazılar kaynakları, kodu ve yayın durumu incelendikten sonra burada yer alacak.'}</p><a class="button-link" href="/tr/writing">Blogu aç</a></div>
+      </div>
+    </section>
+
+    <section class="home-section home-cycle" aria-labelledby="home-cycle-title">
+      <div class="section-intro" data-scroll-reveal><p class="eyebrow">05 / Çalışma döngüsü</p><h2 id="home-cycle-title">Bilim soruyu verir. Mühendislik ona biçim verir. Ürün dünyada bir yer açar.</h2></div>
+      <ol class="cycle-track" data-scroll-reveal>
+        <li class="cycle-step"><span class="cycle-step-index">01</span><strong>Bilim</strong><span>Daha iyi sorular sor.</span></li><li class="cycle-connector" aria-hidden="true"></li><li class="cycle-step"><span class="cycle-step-index">02</span><strong>Mühendislik</strong><span>Fikri test edilebilir kıl.</span></li><li class="cycle-connector" aria-hidden="true"></li><li class="cycle-step"><span class="cycle-step-index">03</span><strong>Ürün</strong><span>Kullanılabilir bir biçim ver.</span></li>
+      </ol>
+    </section>
   </main>
 </BaseLayout>

@@ -28,17 +28,51 @@ const writing = (await getCollection('writing', ({ data }) => data.locale === 'e
       </div>
     </section>
 
-    <section class="home-section studio-overview" aria-labelledby="studio-overview-title" data-scroll-reveal>
-      <div class="section-intro"><p class="eyebrow">02 / More than projects</p><h2 id="studio-overview-title">The studio is also a place to introduce the person, the questions and the experiments behind the work.</h2></div>
-      <div class="studio-overview-grid">
-        <a class="studio-overview-projects" href="/projects" data-scroll-reveal="card"><span class="eyebrow">Projects / {projects.length} records</span><h3>Things built around real constraints.</h3><p>Case studies keep implementation, prototypes and unresolved evidence separate.</p><span class="project-arrow">Open project archive <span aria-hidden="true">↗</span></span></a>
-        <div class="studio-overview-stack">
-          <a class="studio-overview-card" href="/about" data-scroll-reveal="card"><span class="eyebrow">About</span><h3>Ömer Burak Şal</h3><p>Computer engineering student working across software engineering, AI, HCI and applied research.</p><span class="project-arrow">Read the introduction <span aria-hidden="true">↗</span></span></a>
-          <a class="studio-overview-card" href="/writing" data-scroll-reveal="card"><span class="eyebrow">Writing & experiments</span><h3>{writing.length ? 'Notes from the work.' : 'A place for notes, experiments and unfinished questions.'}</h3><p>{writing.length ? 'Public articles and experiments are collected here.' : 'Draft topics exist internally; public posts will appear here after review.'}</p><span class="project-arrow">Open writing <span aria-hidden="true">↗</span></span></a>
+    <section class="home-section home-about-flow" aria-labelledby="home-about-title">
+      <div class="section-intro" data-scroll-reveal><p class="eyebrow">02 / About</p><h2 id="home-about-title">The person behind the projects.</h2></div>
+      <div class="about-sticky-story">
+        <aside class="about-sticky-visual" aria-label="About BurakLabs story stages">
+          <div class="about-visual-frame">
+            <div class="about-visual-kicker"><span class="eyebrow">About / BurakLabs</span><span>Scroll to explore</span></div>
+            <div class="about-visual-stage is-active" data-about-stage="0"><svg class="about-visual-art about-visual-art-profile" viewBox="0 0 320 220" aria-hidden="true"><rect x="82" y="20" width="156" height="180" rx="2" /><circle cx="160" cy="84" r="34" /><path d="M102 178c8-34 28-52 58-52s50 18 58 52" /><path d="M116 56c10-20 25-30 45-30s35 10 45 30" /></svg><span class="about-visual-index">01</span><strong>A person<br />behind the work.</strong><span>Ömer Burak Şal</span></div>
+            <div class="about-visual-stage" data-about-stage="1"><svg class="about-visual-art about-visual-art-system" viewBox="0 0 320 220" aria-hidden="true"><path class="art-path" d="M38 110h72l35-56 42 112 34-56h61" /><circle class="art-node art-node-one" cx="38" cy="110" r="7" /><circle class="art-node art-node-two" cx="145" cy="54" r="7" /><circle class="art-node art-node-three" cx="187" cy="166" r="7" /><circle class="art-node art-node-four" cx="282" cy="110" r="7" /></svg><span class="about-visual-index">02</span><strong>Ideas become<br />working systems.</strong><span>Research → software</span></div>
+            <div class="about-visual-stage" data-about-stage="2"><svg class="about-visual-art about-visual-art-archive" viewBox="0 0 320 220" aria-hidden="true"><circle class="art-orbit" cx="160" cy="110" r="66" /><circle class="art-orbit art-orbit-inner" cx="160" cy="110" r="36" /><circle class="art-node art-node-one" cx="160" cy="44" r="7" /><circle class="art-node art-node-two" cx="217" cy="143" r="7" /><circle class="art-node art-node-three" cx="103" cy="143" r="7" /><path class="art-loop" d="M160 110c22-22 52-18 64 3" /></svg><span class="about-visual-index">03</span><strong>Projects become<br />a living archive.</strong><span>Build → explain → continue</span></div>
+          </div>
+        </aside>
+        <div class="about-sticky-steps">
+          <article class="about-step" data-scroll-reveal data-about-step="0"><span class="about-step-number">01</span><div><p class="eyebrow">Who I am</p><h3>Ömer Burak Şal</h3><p>Computer engineering student working at the intersection of software engineering, artificial intelligence, human-computer interaction and applied research.</p></div></article>
+          <article class="about-step" data-scroll-reveal data-about-step="1"><span class="about-step-number">02</span><div><p class="eyebrow">What I do</p><h3>I turn research ideas into working software.</h3><p>I design and build experimental systems, developer tools and digital products, keeping the distance between an idea and its evidence visible.</p></div></article>
+          <article class="about-step" data-scroll-reveal data-about-step="2"><span class="about-step-number">03</span><div><p class="eyebrow">Where this leads</p><h3>Projects, notes and experiments belong together.</h3><p>BurakLabs is the working record: the built thing, the question behind it and the next version that still needs to be tested.</p><a class="back" href="/about">Read the full introduction →</a></div></article>
         </div>
       </div>
     </section>
 
-    <section class="home-closing" aria-labelledby="home-closing-title" data-scroll-reveal><div><p class="eyebrow">03 / Keep looking</p><h2 id="home-closing-title">The archive will grow with the work.</h2></div><div><p>Implemented, prototyped, explored and planned stay separate. Missing links and evidence remain visible until they can be verified.</p><a class="back" href="/contact">Start a conversation →</a></div></section>
+    <section class="home-section home-projects" aria-labelledby="home-projects-title">
+      <div class="section-intro" data-scroll-reveal><p class="eyebrow">03 / Projects</p><h2 id="home-projects-title">Four projects, shown with their actual context.</h2></div>
+      <div class="home-project-grid">
+        {projects.slice(0, 4).map((project, index) => <a class="home-project-card" href={`/projects/${project.data.slug}`} data-scroll-reveal="card">
+          <div class="home-project-card-top"><span class="project-number">0{index + 1}</span><span class="status">{project.data.maturity}</span></div>
+          <h3>{project.data.title}</h3><p>{project.data.summary}</p>
+          <div class="home-project-meta"><div><small>Category</small><strong>{project.data.categories.slice(0, 2).join(' · ')}</strong></div><div><small>Tech stack</small><strong>{project.data.technologies.slice(0, 3).join(' · ')}</strong></div></div>
+          <div class="home-project-role"><small>My role</small><span>{project.data.myRole ?? 'Role details are being verified.'}</span></div><span class="project-arrow">Open project <span aria-hidden="true">↗</span></span>
+        </a>)}
+      </div>
+      <a class="archive-link" href="/projects">View all projects <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <section class="home-section home-writing" aria-labelledby="home-writing-title">
+      <div class="section-intro" data-scroll-reveal><p class="eyebrow">04 / Writing & experiments</p><h2 id="home-writing-title">The blog is where the unfinished questions get a longer form.</h2></div>
+      <div class="writing-feature" data-scroll-reveal>
+        <div><p class="eyebrow">Notes / experiments / research-adjacent work</p><h3>{writing.length ? 'Notes from the work.' : 'A place for notes, experiments and unfinished questions.'}</h3></div>
+        <div><p>{writing.length ? 'Public articles and experiments are collected here.' : 'Draft topics exist internally. Public posts will appear after their sources, code and publication status are reviewed.'}</p><a class="button-link" href="/writing">Open the blog</a></div>
+      </div>
+    </section>
+
+    <section class="home-section home-cycle" aria-labelledby="home-cycle-title">
+      <div class="section-intro" data-scroll-reveal><p class="eyebrow">05 / Working cycle</p><h2 id="home-cycle-title">Science gives the question. Engineering gives it form. Product gives it a place in the world.</h2></div>
+      <ol class="cycle-track" data-scroll-reveal>
+        <li class="cycle-step"><span class="cycle-step-index">01</span><strong>Science</strong><span>Ask better questions.</span></li><li class="cycle-connector" aria-hidden="true"></li><li class="cycle-step"><span class="cycle-step-index">02</span><strong>Engineering</strong><span>Make the idea testable.</span></li><li class="cycle-connector" aria-hidden="true"></li><li class="cycle-step"><span class="cycle-step-index">03</span><strong>Product</strong><span>Give it a useful shape.</span></li>
+      </ol>
+    </section>
   </main>
 </BaseLayout>
