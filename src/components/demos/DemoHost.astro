@@ -1,9 +1,10 @@
 ---
 import NativeSimulation from './NativeSimulation';
+import type { DemoId } from '../../features/demos/registry';
 import { getDemo } from '../../features/demos/registry';
 
 interface Props { demoId: string; locale: 'en' | 'tr'; }
 const { demoId, locale } = Astro.props;
 const demo = getDemo(demoId);
 ---
-{demo?.kind === 'native' ? <NativeSimulation client:visible demoId={demo.id as 'ghostellar-lifecycle' | 'physim-mastery'} locale={locale} /> : <p class="notice">{locale === 'tr' ? 'Bu demo şu anda kullanılamıyor.' : 'This demo is currently unavailable.'}</p>}
+{demo?.kind === 'native' ? <NativeSimulation client:visible demoId={demo.id as DemoId} locale={locale} /> : <p class="notice">{locale === 'tr' ? 'Bu demo şu anda kullanılamıyor.' : 'This demo is currently unavailable.'}</p>}

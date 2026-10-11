@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 const registryModule = await import('../src/features/demos/registry.mjs');
 
 test('demo registry contains only approved local simulations', () => {
-  assert.deepEqual(registryModule.demoRegistry.map((demo) => demo.id), ['ghostellar-lifecycle', 'physim-mastery']);
+  assert.deepEqual(registryModule.demoRegistry.map((demo) => demo.id), ['ghostellar-lifecycle', 'physim-mastery', 'lucidui-review', 'miv-patterns']);
   assert.equal(registryModule.demoRegistry.every((demo) => demo.kind === 'native'), true);
 });
 

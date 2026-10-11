@@ -66,7 +66,7 @@ Owner-specific profile, CV, contact and detailed provenance work is intentionall
 
 **Commit example:** `feat(prototype): complete project storytelling and interactive states`
 
-Ghostellar and Physim now have labeled native interactive simulations. LucidUI and MIV remain without fabricated demos until their actual behavior/data is verified.
+All four projects now have labeled local interactive simulations using example data only. These are prototype experiences, not claims about the underlying production systems.
 
 ## Batch 5 — Content completion and evidence — deferred
 

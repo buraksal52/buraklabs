@@ -86,6 +86,14 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks: Browser click/touch/keyboard QA is still NOT RUN. React runtime and demo interactions need visual verification at 360/768/1440. npm audit still reports 4 vulnerabilities.
 - Example commit message: `feat(prototype): complete project storytelling and interactive states`
 
+## Prototype experience continuation
+- Date and agent: 2026-10-11 — Codex
+- Scope / changes: Extended the native simulation set to all four projects: LucidUI rule-review checklist and MIV Blockspace mock transaction-pattern explorer, alongside the existing Ghostellar and Physim simulations. Updated registry types, project demo IDs, tests and localized labels.
+- Decisions and ADR updates: All four interactions are explicitly example-data simulations; none claims real UI evaluation output, live blockchain data, detection accuracy, learning efficacy or backend behavior.
+- Commands run: `npm test` — PASS (2 tests); `ASTRO_TELEMETRY_DISABLED=1 npm run check` — PASS (0 errors, 0 warnings, 0 hints); `ASTRO_TELEMETRY_DISABLED=1 npm run build` — PASS (26 pages; Pagefind indexed 1,117 words across 2 locales); `git diff --check` — PASS.
+- Known issues / risks: Browser click/touch/keyboard QA remains NOT RUN. Visual review at 360/768/1440 and CI-on-GitHub remain pending.
+- Example commit message: `feat(demos): add localized example-data project simulations`
+
 ## Batch 3 progress
 - Date and agent: 2026-10-09 — Codex
 - Scope / changes: Documented three homepage compositions with hierarchy, grid, typography, mobile behavior, motion purpose and evidence constraints in `docs/HOMEPAGE_DESIGN_PROPOSALS.md`.

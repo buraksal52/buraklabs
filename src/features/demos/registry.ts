@@ -1,5 +1,7 @@
 import { demoRegistry as rawRegistry, getDemo as rawGetDemo, isApprovedDemoUrl as rawIsApprovedDemoUrl } from './registry.mjs';
 
+export type DemoId = 'ghostellar-lifecycle' | 'physim-mastery' | 'lucidui-review' | 'miv-patterns';
+
 export type DemoDefinition =
   | { kind: 'native'; id: string; componentKey: string }
   | { kind: 'embedded'; id: string; url: string; title: string }

@@ -1,6 +1,8 @@
 export const demoRegistry = [
   { kind: 'native', id: 'ghostellar-lifecycle', componentKey: 'ghostellar-lifecycle' },
-  { kind: 'native', id: 'physim-mastery', componentKey: 'physim-mastery' }
+  { kind: 'native', id: 'physim-mastery', componentKey: 'physim-mastery' },
+  { kind: 'native', id: 'lucidui-review', componentKey: 'lucidui-review' },
+  { kind: 'native', id: 'miv-patterns', componentKey: 'miv-patterns' }
 ];
 
 export function getDemo(id) {
