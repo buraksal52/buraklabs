@@ -70,4 +70,21 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
     document.documentElement.dataset.theme = nextTheme;
     try { localStorage.setItem('buraklabs-theme', nextTheme); } catch { /* system preference remains active */ }
   });
+
+  const revealItems = [...document.querySelectorAll<HTMLElement>('[data-scroll-reveal]')];
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (revealItems.length && !reducedMotion && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('scroll-motion-ready');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    revealItems.forEach((item) => revealObserver.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+  }
 </script>

@@ -3,42 +3,42 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const projects = (await getCollection('projects', ({ data }) => data.locale === 'en' && !data.draft)).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
-const featured = projects.filter((project) => project.data.featured).slice(0, 2);
-const supporting = projects.filter((project) => !featured.includes(project)).slice(0, 2);
+const research = (await getCollection('research', ({ data }) => data.locale === 'en' && !data.draft)).sort((a, b) => (b.data.startedAt ?? '').localeCompare(a.data.startedAt ?? ''));
+const writing = (await getCollection('writing', ({ data }) => data.locale === 'en' && !data.draft)).slice(0, 2);
 ---
 <BaseLayout locale="en" path="/" alternatePath="/tr/" title="BurakLabs — Engineering, research and creative studio" description="An independent engineering, research and creative studio.">
   <main data-pagefind-body class="home-main">
-    <section class="home-hero" aria-labelledby="home-title">
+    <section class="home-hero home-hero-editorial" aria-labelledby="home-title">
       <div class="hero-copy">
         <p class="eyebrow">Engineering × research × creative studio</p>
-        <h1 id="home-title">Work built around real problems and honest evidence.</h1>
-        <p class="lede">BurakLabs is a record of prototypes, research directions and engineering decisions — with the limits of each claim kept visible.</p>
-        <div class="hero-actions"><a class="button-link" href="/projects">Explore selected work</a><a class="back" href="/search">Search the archive →</a></div>
+        <h1 id="home-title">A working record of things built, tested and still being figured out.</h1>
+        <p class="lede">BurakLabs documents independent engineering, research and creative work without making the unfinished parts look finished.</p>
+        <div class="hero-actions"><a class="button-link" href="/about">Meet the person behind it</a><a class="back" href="/projects">Browse the work →</a></div>
       </div>
-      <div class="evidence-field" aria-label="A static map from problem to prototype to evidence boundary">
-        <div class="field-line line-one"></div><div class="field-line line-two"></div><div class="field-line line-three"></div>
-        <span class="field-node node-problem">problem</span>
-        <span class="field-node node-prototype">prototype</span>
-        <span class="field-node node-evidence">evidence<br />boundary</span>
-        <span class="field-caption">Every project is read through what was built, what was explored and what remains unverified.</span>
-      </div>
-    </section>
-
-    <section class="home-section" aria-labelledby="selected-work-title">
-      <div class="section-intro"><p class="eyebrow">01 / Selected work</p><h2 id="selected-work-title">Four different problems, one evidence standard.</h2></div>
-      <div class="featured-work">
-        {featured.map((project) => <a class="feature-project" href={`/projects/${project.data.slug}`}>
-          <span class="eyebrow">{project.data.maturity} / {project.data.categories[0]}</span>
-          <h3>{project.data.title}</h3>
-          <p>{project.data.summary}</p>
-          <span class="project-arrow">Read the record →</span>
-        </a>)}
-      </div>
-      <div class="supporting-work">
-        {supporting.map((project) => <a class="supporting-project" href={`/projects/${project.data.slug}`}><span><strong>{project.data.title}</strong><small>{project.data.categories[0]}</small></span><span aria-hidden="true">↗</span></a>)}
+      <div class="studio-index" aria-labelledby="studio-index-title">
+        <div class="studio-index-heading"><span class="eyebrow">01 / Studio index</span><span class="index-count">{projects.length} records</span></div>
+        <h2 id="studio-index-title">Inside BurakLabs</h2>
+        <div class="studio-index-list">
+          <a class="studio-index-row" href="/projects"><span class="index-number">01</span><span class="index-title"><strong>Projects</strong><small>{projects.length} verified project records</small></span><span class="index-arrow" aria-hidden="true">↗</span></a>
+          <a class="studio-index-row" href="/about"><span class="index-number">02</span><span class="index-title"><strong>About Ömer Burak Şal</strong><small>Engineering, research and creative practice</small></span><span class="index-arrow" aria-hidden="true">↗</span></a>
+          <a class="studio-index-row" href="/writing"><span class="index-number">03</span><span class="index-title"><strong>Writing & experiments</strong><small>{writing.length ? `${writing.length} public notes` : 'Drafts are being prepared'}</small></span><span class="index-arrow" aria-hidden="true">↗</span></a>
+          <a class="studio-index-row" href="/research"><span class="index-number">04</span><span class="index-title"><strong>Research directions</strong><small>{research.length ? `${research.length} ongoing record` : 'No public record yet'}</small></span><span class="index-arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <p class="index-caption">Projects are one part of the record. The rest is how the work is learned from, explained and continued.</p>
       </div>
     </section>
 
-    <section class="home-note" aria-labelledby="home-note-title"><p class="eyebrow">02 / Working principle</p><h2 id="home-note-title">The boundary around a claim matters as much as the claim.</h2><p>Implemented, prototyped, explored and planned are kept separate throughout the project records. Missing links, dates and media are left unresolved until they can be verified.</p></section>
+    <section class="home-section studio-overview" aria-labelledby="studio-overview-title" data-scroll-reveal>
+      <div class="section-intro"><p class="eyebrow">02 / More than projects</p><h2 id="studio-overview-title">The studio is also a place to introduce the person, the questions and the experiments behind the work.</h2></div>
+      <div class="studio-overview-grid">
+        <a class="studio-overview-projects" href="/projects" data-scroll-reveal="card"><span class="eyebrow">Projects / {projects.length} records</span><h3>Things built around real constraints.</h3><p>Case studies keep implementation, prototypes and unresolved evidence separate.</p><span class="project-arrow">Open project archive <span aria-hidden="true">↗</span></span></a>
+        <div class="studio-overview-stack">
+          <a class="studio-overview-card" href="/about" data-scroll-reveal="card"><span class="eyebrow">About</span><h3>Ömer Burak Şal</h3><p>Computer engineering student working across software engineering, AI, HCI and applied research.</p><span class="project-arrow">Read the introduction <span aria-hidden="true">↗</span></span></a>
+          <a class="studio-overview-card" href="/writing" data-scroll-reveal="card"><span class="eyebrow">Writing & experiments</span><h3>{writing.length ? 'Notes from the work.' : 'A place for notes, experiments and unfinished questions.'}</h3><p>{writing.length ? 'Public articles and experiments are collected here.' : 'Draft topics exist internally; public posts will appear here after review.'}</p><span class="project-arrow">Open writing <span aria-hidden="true">↗</span></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-closing" aria-labelledby="home-closing-title" data-scroll-reveal><div><p class="eyebrow">03 / Keep looking</p><h2 id="home-closing-title">The archive will grow with the work.</h2></div><div><p>Implemented, prototyped, explored and planned stay separate. Missing links and evidence remain visible until they can be verified.</p><a class="back" href="/contact">Start a conversation →</a></div></section>
   </main>
 </BaseLayout>

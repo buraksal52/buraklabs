@@ -122,6 +122,39 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks: GitHub CI and production deployment remain unverified. Owner-specific final content, verified repository/demo links, CV PDF, public contact details and research evidence remain intentionally unresolved.
 - Example commit message: `fix(responsive): complete local visual QA and mobile overflow fixes`
 
+## Browser interaction QA completion
+- Date and agent: 2026-10-11 — Codex
+- Scope / changes: Ran Chrome DevTools automation against the local production preview. Verified theme persistence, project filtering, Pagefind search, all four native simulations, reduced-motion media behavior, Turkish mobile viewport width and visible keyboard focus.
+- Interaction results: Theme `light → dark` and `localStorage` persistence — PASS; project filters `4 → 1` Research result — PASS; Ghostellar `Offline draft → Pending sync → Online verification step` — PASS; Physim `42% → 54%` — PASS; LucidUI checklist `0 → 1/4` — PASS; MIV tab selection to `Spam-like pattern` — PASS; search status `3 results` with Ghostellar result link — PASS; first Tab focus landed on visible `BurakLabs` link — PASS; reduced-motion match and disabled transition — PASS; Turkish mobile `scrollWidth === 360` — PASS.
+- Commands run: Chrome DevTools automation on `astro preview` — PASS; `npm test` — PASS (2 tests); `npm run check` — PASS; `npm run build` — PASS; route matrix and Pagefind asset — PASS.
+- Known issues / risks: This verifies the local built preview, not a deployed production environment. GitHub CI/deployment and final owner content remain separate tasks.
+- Example commit message: `test(quality): complete interactive browser QA across locales`
+
+## Homepage redesign handoff
+- Date and agent: 2026-10-11 — Codex
+- Scope / changes: Replaced the decorative problem/prototype/evidence diagram with an editorial hero and a real four-record studio index. Added a lead-project section that surfaces the first featured project with title, maturity, category, date state and summary. Applied the same structure and content discipline to EN/TR.
+- Motion: Added a restrained page-entry rise on desktop, project-index hover/focus underline and arrow motion, lead-project lift transition, and reduced-motion suppression. Mobile content is visible immediately to prevent screenshot/slow-load fade states.
+- Visual evidence: `/tmp/buraklabs-qa/redesign-final-1440-light.png`, `/tmp/buraklabs-qa/redesign-final-360-light-visible.png`; desktop and mobile inspected after animation settling.
+- Commands run: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,137 words); `npm test` — PASS (2 tests); `git diff --check` — PASS.
+- Known issues / risks: This is a homepage composition improvement; project detail pages still use the existing case-study layout. Final owner media and verified repository/demo links remain intentionally absent.
+- Example commit message: `feat(home): replace decorative hero with editorial project index`
+
+## Personal studio homepage handoff
+- Date and agent: 2026-10-11 — Codex
+- Scope / changes: Reframed the homepage around the person and the full studio archive, not only project showcase. The index now links to Projects, About Ömer Burak Şal, Writing & experiments and Research directions. Replaced the disliked “Selected work” lead section with a “More than projects” composition: project archive, personal introduction and writing/experiments panels. Replaced the angled closing note with a clean two-column archive/contact close.
+- Content integrity: Public writing remains honestly marked as drafts being prepared because no owner-approved article is currently public. Research count is derived from the validated collection; no experiment result or blog claim was invented.
+- Motion and responsive behavior: Existing desktop entrance/hover transitions remain; mobile CTA links now stack to prevent clipping. EN/TR layouts share the same hierarchy.
+- Visual evidence: `/tmp/buraklabs-qa/studio-home-1440.png`, `/tmp/buraklabs-qa/studio-home-360.png` inspected after render settling.
+- Commands run: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,162 words); `npm test` — PASS (2 tests); `git diff --check` — PASS.
+- Example commit message: `feat(home): position BurakLabs as a personal studio archive`
+
+## Scroll motion handoff
+- Date and agent: 2026-10-12 — Codex
+- Scope / changes: Added progressive scroll reveals to the homepage overview and closing sections, including staggered card reveals. Motion is implemented with a small native IntersectionObserver in `BaseLayout.astro`; no dependency or React bundle was added.
+- Accessibility: Content remains visible without JavaScript; reduced-motion skips the hidden/reveal state entirely and keeps computed opacity at `1`. Hover/focus transitions remain short and non-essential.
+- Verification: Chrome DevTools test confirmed overview/cards become visible after scrolling; reduced-motion confirmed `scroll-motion-ready` is absent and content remains visible. `npm run check`, `npm run build`, `npm test` and `git diff --check` all PASS.
+- Example commit message: `feat(motion): add accessible scroll reveal transitions`
+
 ## Update format
 - Date and agent:
 - Scope / changes:

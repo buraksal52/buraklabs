@@ -3,42 +3,42 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const projects = (await getCollection('projects', ({ data }) => data.locale === 'tr' && !data.draft)).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
-const featured = projects.filter((project) => project.data.featured).slice(0, 2);
-const supporting = projects.filter((project) => !featured.includes(project)).slice(0, 2);
+const research = (await getCollection('research', ({ data }) => data.locale === 'tr' && !data.draft)).sort((a, b) => (b.data.startedAt ?? '').localeCompare(a.data.startedAt ?? ''));
+const writing = (await getCollection('writing', ({ data }) => data.locale === 'tr' && !data.draft)).slice(0, 2);
 ---
 <BaseLayout locale="tr" path="/tr/" alternatePath="/" title="BurakLabs — Mühendislik, araştırma ve yaratıcı stüdyo" description="Bağımsız mühendislik, araştırma ve yaratıcı stüdyo.">
   <main data-pagefind-body class="home-main">
-    <section class="home-hero" aria-labelledby="home-title">
+    <section class="home-hero home-hero-editorial" aria-labelledby="home-title">
       <div class="hero-copy">
         <p class="eyebrow">Mühendislik × araştırma × yaratıcı stüdyo</p>
-        <h1 id="home-title">Gerçek problemler ve dürüst kanıtlar etrafında üretilen işler.</h1>
-        <p class="lede">BurakLabs; prototipleri, araştırma yönlerini ve mühendislik kararlarını, her iddianın sınırlarını görünür tutarak kaydeder.</p>
-        <div class="hero-actions"><a class="button-link" href="/tr/projects">Seçili işleri keşfet</a><a class="back" href="/tr/search">Arşivde ara →</a></div>
+        <h1 id="home-title">Üretilen, test edilen ve hâlâ çözülmeye çalışılan işlerin kaydı.</h1>
+        <p class="lede">BurakLabs; bağımsız mühendislik, araştırma ve yaratıcı işleri, tamamlanmamış olanı tamamlanmış gibi göstermeden belgeler.</p>
+        <div class="hero-actions"><a class="button-link" href="/tr/about">Burak’ı tanı</a><a class="back" href="/tr/projects">İşlere göz at →</a></div>
       </div>
-      <div class="evidence-field" aria-label="Problemden prototipe ve kanıt sınırına uzanan statik harita">
-        <div class="field-line line-one"></div><div class="field-line line-two"></div><div class="field-line line-three"></div>
-        <span class="field-node node-problem">problem</span>
-        <span class="field-node node-prototype">prototip</span>
-        <span class="field-node node-evidence">kanıt<br />sınırı</span>
-        <span class="field-caption">Her proje; neyin üretildiği, neyin araştırıldığı ve neyin hâlâ doğrulanmadığı üzerinden okunur.</span>
-      </div>
-    </section>
-
-    <section class="home-section" aria-labelledby="selected-work-title">
-      <div class="section-intro"><p class="eyebrow">01 / Seçili işler</p><h2 id="selected-work-title">Dört farklı problem, tek bir kanıt standardı.</h2></div>
-      <div class="featured-work">
-        {featured.map((project) => <a class="feature-project" href={`/tr/projects/${project.data.slug}`}>
-          <span class="eyebrow">{project.data.maturity} / {project.data.categories[0]}</span>
-          <h3>{project.data.title}</h3>
-          <p>{project.data.summary}</p>
-          <span class="project-arrow">Kaydı oku →</span>
-        </a>)}
-      </div>
-      <div class="supporting-work">
-        {supporting.map((project) => <a class="supporting-project" href={`/tr/projects/${project.data.slug}`}><span><strong>{project.data.title}</strong><small>{project.data.categories[0]}</small></span><span aria-hidden="true">↗</span></a>)}
+      <div class="studio-index" aria-labelledby="studio-index-title">
+        <div class="studio-index-heading"><span class="eyebrow">01 / Stüdyo indeksi</span><span class="index-count">{projects.length} kayıt</span></div>
+        <h2 id="studio-index-title">BurakLabs’ın içi</h2>
+        <div class="studio-index-list">
+          <a class="studio-index-row" href="/tr/projects"><span class="index-number">01</span><span class="index-title"><strong>Projeler</strong><small>{projects.length} doğrulanmış proje kaydı</small></span><span class="index-arrow" aria-hidden="true">↗</span></a>
+          <a class="studio-index-row" href="/tr/about"><span class="index-number">02</span><span class="index-title"><strong>Ömer Burak Şal hakkında</strong><small>Mühendislik, araştırma ve yaratıcı pratik</small></span><span class="index-arrow" aria-hidden="true">↗</span></a>
+          <a class="studio-index-row" href="/tr/writing"><span class="index-number">03</span><span class="index-title"><strong>Yazılar ve deneyler</strong><small>{writing.length ? `${writing.length} public not` : 'Taslaklar hazırlanıyor'}</small></span><span class="index-arrow" aria-hidden="true">↗</span></a>
+          <a class="studio-index-row" href="/tr/research"><span class="index-number">04</span><span class="index-title"><strong>Araştırma yönleri</strong><small>{research.length ? `${research.length} devam eden kayıt` : 'Henüz public kayıt yok'}</small></span><span class="index-arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <p class="index-caption">Projeler bu kaydın yalnızca bir parçası. Geri kalanı; işi öğrenme, açıklama ve sürdürme biçimi.</p>
       </div>
     </section>
 
-    <section class="home-note" aria-labelledby="home-note-title"><p class="eyebrow">02 / Çalışma ilkesi</p><h2 id="home-note-title">Bir iddianın etrafındaki sınır, iddianın kendisi kadar önemlidir.</h2><p>Uygulanan, prototiplenen, araştırılan ve planlanan işler proje kayıtlarında ayrı tutulur. Eksik linkler, tarihler ve medya doğrulanana kadar açıkça çözülmemiş bırakılır.</p></section>
+    <section class="home-section studio-overview" aria-labelledby="studio-overview-title" data-scroll-reveal>
+      <div class="section-intro"><p class="eyebrow">02 / Projelerden fazlası</p><h2 id="studio-overview-title">Stüdyo; kişinin, soruların ve deneylerin de göründüğü bir alan.</h2></div>
+      <div class="studio-overview-grid">
+        <a class="studio-overview-projects" href="/tr/projects" data-scroll-reveal="card"><span class="eyebrow">Projeler / {projects.length} kayıt</span><h3>Gerçek kısıtlar etrafında üretilen işler.</h3><p>Vaka kayıtları; uygulanan işleri, prototipleri ve çözülmemiş kanıtları ayrı tutar.</p><span class="project-arrow">Proje arşivini aç <span aria-hidden="true">↗</span></span></a>
+        <div class="studio-overview-stack">
+          <a class="studio-overview-card" href="/tr/about" data-scroll-reveal="card"><span class="eyebrow">Hakkında</span><h3>Ömer Burak Şal</h3><p>Yazılım mühendisliği, yapay zekâ, HCI ve uygulamalı araştırma kesişiminde çalışan bilgisayar mühendisliği öğrencisi.</p><span class="project-arrow">Tanıtımı oku <span aria-hidden="true">↗</span></span></a>
+          <a class="studio-overview-card" href="/tr/writing" data-scroll-reveal="card"><span class="eyebrow">Yazılar ve deneyler</span><h3>{writing.length ? 'İşlerden kalan notlar.' : 'Notlar, deneyler ve tamamlanmamış sorular için alan.'}</h3><p>{writing.length ? 'Public yazılar ve deneyler burada toplanır.' : 'Taslak konu başlıkları mevcut; public yazılar incelemeden sonra burada yer alacak.'}</p><span class="project-arrow">Yazıları aç <span aria-hidden="true">↗</span></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-closing" aria-labelledby="home-closing-title" data-scroll-reveal><div><p class="eyebrow">03 / Takipte kal</p><h2 id="home-closing-title">Arşiv işlerle birlikte büyüyecek.</h2></div><div><p>Uygulanan, prototiplenen, araştırılan ve planlanan işler ayrı tutulur. Eksik linkler ve kanıtlar doğrulanana kadar görünür kalır.</p><a class="back" href="/tr/contact">İletişime geç →</a></div></section>
   </main>
 </BaseLayout>
