@@ -94,6 +94,15 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks: Browser click/touch/keyboard QA remains NOT RUN. Visual review at 360/768/1440 and CI-on-GitHub remain pending.
 - Example commit message: `feat(demos): add localized example-data project simulations`
 
+## Browser QA progress
+- Date and agent: 2026-10-11 — Codex
+- Scope / changes: Started Astro preview and verified EN/TR project detail route availability, all eight simulation markers and the Pagefind asset over HTTP.
+- Decisions and ADR updates: No new decision; HTTP availability is not treated as proof of interaction correctness.
+- Commands run: Preview route matrix — PASS (all checked routes 200); simulation markers — PASS (8/8); `/pagefind/pagefind.js` — PASS (200).
+- Browser/E2E: NOT RUN. Browser control tooling was unavailable; no click, keyboard, touch, screenshot or viewport result is claimed.
+- Known issues / risks: Interactive QA remains the primary open prototype verification task.
+- Example commit message: `test(quality): verify localized simulation routes and assets`
+
 ## Batch 3 progress
 - Date and agent: 2026-10-09 — Codex
 - Scope / changes: Documented three homepage compositions with hierarchy, grid, typography, mobile behavior, motion purpose and evidence constraints in `docs/HOMEPAGE_DESIGN_PROPOSALS.md`.
@@ -102,6 +111,16 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks: Final homepage implementation is intentionally paused until a composition is selected. Research/writing/CV/demo sections cannot be populated without verified content.
 - Next concrete task: Owner selects Option A, B or C; then implement the chosen homepage and run screenshot QA.
 - Example commit message: `feat(home): add approved creative studio homepage composition`
+
+## Browser visual QA completion
+- Date and agent: 2026-10-11 — Codex
+- Scope / changes: Reviewed the built site in local Chromium at desktop and mobile sizes, including EN/TR home pages, dark/light homepage captures and the Ghostellar project detail with its example-data simulation. Fixed mobile overflow caused by the invalid `min(100% - 24px, ...)` width expression; constrained the mobile nav, hero heading and lead copy.
+- Decisions and ADR updates: Kept the existing evidence-field composition. Mobile navigation uses a compact three-column grid; no menu dependency or new package was introduced.
+- Visual evidence: Chromium screenshots saved under `/tmp/buraklabs-qa/` (`home-en-1440-dark.png`, `home-en-360-light-final4.png`, `home-en-1440-light-final4.png`, `home-tr-360.png`, `project-ghostellar-1440.png`). Final mobile and desktop captures were visually inspected.
+- Commands run: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm run build` — PASS (26 pages; Pagefind indexed 22 pages / 1,117 words across 2 locales); `npm test` — PASS (2 tests); `git diff --check` — PASS; current preview route matrix — PASS (13/13 routes 200); `/pagefind/pagefind.js` — PASS (200).
+- Browser limitations: In-app browser control and Puppeteer were unavailable in this workspace. Native Chromium screenshot capture was used for visual inspection; click/keyboard automation was not claimed as run.
+- Known issues / risks: GitHub CI and production deployment remain unverified. Owner-specific final content, verified repository/demo links, CV PDF, public contact details and research evidence remain intentionally unresolved.
+- Example commit message: `fix(responsive): complete local visual QA and mobile overflow fixes`
 
 ## Update format
 - Date and agent:
