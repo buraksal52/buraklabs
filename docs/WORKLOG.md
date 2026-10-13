@@ -194,6 +194,13 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Commands run: `git diff --check` — PASS.
 - Example commit message: `docs(content): add owner input source of truth`
 
+## Content input transfer handoff
+- Date and agent: 2026-10-13 — Codex
+- Scope / changes: Transferred the owner-provided bilingual Profile and About content into `/about`, `/tr/about`, and the homepage About narrative. Updated the public social links to match the content source. Project, writing and research blocks remain unpublished because their source records still declare `public: false` and contain unresolved evidence/publication fields.
+- Provenance: All newly published prose comes from `docs/CONTENT_INPUT.md`; no email, dates, repository links, publication status or visual asset rights were invented.
+- Commands run: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,317 words); `npm test` — PASS (2 tests); `git diff --check` — PASS after whitespace cleanup.
+- Example commit message: `feat(content): transfer approved profile and about copy`
+
 ## Update format
 - Date and agent:
 - Scope / changes:
