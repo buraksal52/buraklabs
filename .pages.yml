@@ -1,0 +1,291 @@
+media:
+  - name: uploads
+    label: Media
+    input: public/media
+    output: /media
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      create: "content(create): {path}"
+      update: "content(update): {path}"
+      delete: "content(delete): {path}"
+
+content:
+  - name: site-content
+    label: Profile and About
+    type: file
+    path: src/data/site-content.json
+    format: json
+    fields:
+      - name: profile
+        label: Profile
+        type: object
+        fields:
+          - name: fullName
+            label: Full name
+            type: string
+          - name: shortName
+            label: Short name
+            type: string
+          - name: headlineEn
+            label: Headline (English)
+            type: string
+          - name: headlineTr
+            label: Headline (Turkish)
+            type: string
+          - name: location
+            label: Location
+            type: string
+          - name: email
+            label: Public email
+            type: string
+          - name: portrait
+            label: Portrait path
+            type: image
+          - name: portraitAltEn
+            label: Portrait alt text (English)
+            type: string
+          - name: portraitAltTr
+            label: Portrait alt text (Turkish)
+            type: string
+      - name: links
+        label: Public links
+        type: object
+        fields:
+          - name: website
+            label: Website
+            type: string
+          - name: github
+            label: GitHub
+            type: string
+          - name: linkedin
+            label: LinkedIn
+            type: string
+      - name: about
+        label: About copy
+        type: object
+        fields:
+          - name: en
+            label: English
+            type: object
+            fields:
+              - name: whoIAm
+                label: Who I am
+                type: rich-text
+              - name: whoIAmDetail
+                label: Who I am — detail
+                type: rich-text
+              - name: whatIDo
+                label: What I do
+                type: rich-text
+              - name: whatIDoDetail
+                label: What I do — detail
+                type: rich-text
+              - name: whereThisLeads
+                label: Where this leads
+                type: rich-text
+          - name: tr
+            label: Turkish
+            type: object
+            fields:
+              - name: whoIAm
+                label: Ben kimim
+                type: rich-text
+              - name: whoIAmDetail
+                label: Ben kimim — detay
+                type: rich-text
+              - name: whatIDo
+                label: Ne yapıyorum
+                type: rich-text
+              - name: whatIDoDetail
+                label: Ne yapıyorum — detay
+                type: rich-text
+              - name: whereThisLeads
+                label: Bu nereye gidiyor
+                type: rich-text
+
+  - name: projects-en
+    label: Projects — English
+    type: collection
+    path: src/content/projects/en
+    filename: "{slug}.mdx"
+    format: yaml-frontmatter
+    fields: &project-fields
+      - name: id
+        type: string
+      - name: translationKey
+        type: string
+      - name: locale
+        type: select
+        options: [en, tr]
+      - name: slug
+        type: string
+      - name: title
+        type: string
+      - name: summary
+        type: text
+      - name: draft
+        type: boolean
+      - name: categories
+        type: list
+        field:
+          type: string
+      - name: technologies
+        type: list
+        field:
+          type: string
+      - name: status
+        type: select
+        options: [concept, building, live, archived]
+      - name: maturity
+        type: select
+        options: [implemented, prototyped, explored, planned]
+      - name: featured
+        type: boolean
+      - name: myRole
+        type: text
+      - name: demoId
+        type: string
+      - name: sources
+        type: list
+        field:
+          type: string
+      - name: seo
+        type: object
+        fields:
+          - name: title
+            type: string
+          - name: description
+            type: text
+      - name: body
+        label: Case study
+        type: rich-text
+
+  - name: projects-tr
+    label: Projects — Turkish
+    type: collection
+    path: src/content/projects/tr
+    filename: "{slug}.mdx"
+    format: yaml-frontmatter
+    fields: *project-fields
+
+  - name: research-en
+    label: Research — English
+    type: collection
+    path: src/content/research/en
+    filename: "{slug}.mdx"
+    format: yaml-frontmatter
+    fields: &research-fields
+      - name: id
+        type: string
+      - name: translationKey
+        type: string
+      - name: locale
+        type: select
+        options: [en, tr]
+      - name: slug
+        type: string
+      - name: title
+        type: string
+      - name: summary
+        type: text
+      - name: draft
+        type: boolean
+      - name: authors
+        type: list
+        field:
+          type: string
+      - name: researchAreas
+        type: list
+        field:
+          type: string
+      - name: status
+        type: select
+        options: [ongoing, preprint, submitted, accepted, published, archived]
+      - name: startedAt
+        type: string
+      - name: venue
+        type: string
+      - name: doi
+        type: string
+      - name: paperUrl
+        type: string
+      - name: repositoryUrl
+        type: string
+      - name: sources
+        type: list
+        field:
+          type: string
+      - name: seo
+        type: object
+        fields:
+          - name: title
+            type: string
+          - name: description
+            type: text
+      - name: body
+        type: rich-text
+
+  - name: research-tr
+    label: Research — Turkish
+    type: collection
+    path: src/content/research/tr
+    filename: "{slug}.mdx"
+    format: yaml-frontmatter
+    fields: *research-fields
+
+  - name: writing-en
+    label: Writing — English
+    type: collection
+    path: src/content/writing/en
+    filename: "{slug}.mdx"
+    format: yaml-frontmatter
+    fields: &writing-fields
+      - name: id
+        type: string
+      - name: translationKey
+        type: string
+      - name: locale
+        type: select
+        options: [en, tr]
+      - name: slug
+        type: string
+      - name: title
+        type: string
+      - name: summary
+        type: text
+      - name: draft
+        type: boolean
+      - name: tags
+        type: list
+        field:
+          type: string
+      - name: publishedAt
+        type: string
+      - name: updatedAt
+        type: string
+      - name: sources
+        type: list
+        field:
+          type: string
+      - name: seo
+        type: object
+        fields:
+          - name: title
+            type: string
+          - name: description
+            type: text
+      - name: body
+        type: rich-text
+
+  - name: writing-tr
+    label: Writing — Turkish
+    type: collection
+    path: src/content/writing/tr
+    filename: "{slug}.mdx"
+    format: yaml-frontmatter
+    fields: *writing-fields

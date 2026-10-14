@@ -229,6 +229,13 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Remaining QA limitation: no Lighthouse baseline or touch-device hardware test; no blocker found in the implemented flows.
 - Example commit message: `test(quality): complete browser interaction matrix`
 
+## Git-backed CMS handoff
+- Date and agent: 2026-10-14 — Codex
+- Scope / changes: Added `.pages.yml` for Pages CMS. Profile/About data lives in `src/data/site-content.json`; EN/TR project, research and writing collections map directly to the existing Astro content model. Homepage About, About pages and contact pages now read the CMS-managed JSON source instead of duplicated hardcoded copy.
+- Decision: Use a hosted Git-backed editor, not a runtime database or visitor-facing API. Pages CMS edits commit to GitHub; the connected Cloudflare Pages project can rebuild from those commits. The editor still needs a one-time GitHub App connection by the owner.
+- Verification: `.pages.yml` parsed successfully with Ruby YAML; `npm run check` — PASS; `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,311 words); `git diff --check` — PASS.
+- Example commit message: `feat(cms): add Git-backed Pages CMS content editing`
+
 ## Update format
 - Date and agent:
 - Scope / changes:

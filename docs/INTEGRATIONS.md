@@ -15,5 +15,8 @@ Root `data-theme=light|dark` with `system` preference; minimal pre-paint inline 
 ## Cloudflare Pages
 Static output `dist`, GitHub push preview and production from main, custom domain `buraklabs.studio`, HTTPS, appropriate DNS. Node/pnpm pinned. Avoid unsupported assumption that Pages provides dynamic backend by default; use separate Workers only after a documented need.
 
+## Git-backed CMS
+Pages CMS is the editorial layer for owner-managed content. Its `.pages.yml` configuration maps the profile/About JSON source and the EN/TR project, research and writing collections to the existing Astro content model. The hosted editor writes commits to GitHub; Cloudflare Pages then rebuilds the static site from the push. There is no runtime CMS database, visitor-side API or client secret. The owner must connect the GitHub repository in `app.pagescms.org` before editing.
+
 ## Analytics
 Cloudflare Web Analytics only if consent/legal requirements have been checked. No unnecessary personal tracking, hidden fingerprinting, or surveillance scripts.

@@ -146,3 +146,9 @@ Node pin, npm CI workflow, test/check/build scripts, robots and 404 surfaces are
 - Hero ve homepage kompozisyonu görsel olarak onaylanmadı.
 - Browser/E2E altyapısı henüz kurulmadı.
 - Cloudflare ve GitHub entegrasyonları için allowlist/secret/deployment bilgileri yok.
+
+## CMS handoff — implementation complete, account connection pending
+
+The Git-backed Pages CMS configuration is implemented in `.pages.yml`. The owner still needs to sign in at `app.pagescms.org`, install the Pages CMS GitHub App for `buraksal52/buraklabs`, and open the `main` branch. Edits will commit to the repository and can trigger the existing Cloudflare Pages build. No CMS runtime database or secret is required for this static-first setup.
+
+**Commit example:** `feat(cms): add Git-backed Pages CMS content editing`

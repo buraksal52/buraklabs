@@ -1,10 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import siteContent from '../../data/site-content.json';
+
+const { profile, links, about } = siteContent;
+const content = about.tr;
 ---
 <BaseLayout locale="tr" path="/tr/about" alternatePath="/about" title="Hakkında — BurakLabs" description="BurakLabs mühendislik, araştırma ve yaratıcı stüdyosu hakkında.">
   <main data-pagefind-body>
     <p class="eyebrow">BurakLabs / Hakkında</p>
     <h1>Bağımsız bir stüdyo kaydı.</h1>
-    <div class="content-empty"><h2>Ömer Burak Şal</h2><p>Ben Burak. Ankara Bilim Üniversitesi Bilgisayar Mühendisliği öğrencisiyim. Yazılım mühendisliği, yapay zekâ, bilgisayar sistemleri ve insan-bilgisayar etkileşiminin kesişiminde bağımsız bir geliştirici olarak çalışıyorum.</p><p>Mühendisliğe merak, deney ve uygulama odaklı yaklaşıyorum. İşletim sistemlerinden altyapıya, yapay zekâ modellerinden kullanıcıya ulaşan ürünlere kadar teknolojilerin arka planda nasıl çalıştığını anlamayı önemsiyorum.</p><h3>Ne yapıyorum</h3><p>Yazılım ürünleri, araştırma odaklı prototipler ve deneysel sistemler tasarlıyor ve geliştiriyorum. Çalışmalarım arasında yapay zekâ uygulamaları, LLM tabanlı sistemler, backend altyapıları, geliştirici araçları, blockchain uygulamaları, uyarlanabilir öğrenme teknolojileri ve insan-bilgisayar etkileşimine yönelik hesaplamalı yöntemler bulunuyor.</p><p>Ağırlıklı olarak Python, Go, FastAPI ve Flutter kullanıyorum. Bunun yanında Linux, sistem programlama, makine öğrenmesi ve dağıtık sistemler üzerine teknik yetkinliğimi geliştiriyorum.</p><h3>Bu nereye gidiyor</h3><p>Uzun vadeli hedefim araştırma, ileri mühendislik ve girişimciliğin kesişiminde çalışmak. BurakLabs; projelerimi, teknik deneylerimi, geliştirdiğim ürünleri ve araştırma çalışmalarımı bir araya getiren bağımsız mühendislik ve araştırma alanım.</p><div class="content-links"><a class="button-link" href="/tr/projects">Projeleri görüntüle</a><a href="https://github.com/buraksal52" rel="me noopener noreferrer">GitHub</a><a href="https://linkedin.com/in/brksal" rel="me noopener noreferrer">LinkedIn</a><a class="back" href="/tr/contact">İletişim →</a></div></div>
+    <div class="content-empty"><h2>{profile.fullName}</h2><p>{content.whoIAm}</p><p>{content.whoIAmDetail}</p><h3>Ne yapıyorum</h3><p>{content.whatIDo}</p><p>{content.whatIDoDetail}</p><h3>Bu nereye gidiyor</h3><p>{content.whereThisLeads}</p><div class="content-links"><a class="button-link" href="/tr/projects">Projeleri görüntüle</a><a href={links.github} rel="me noopener noreferrer">GitHub</a><a href={links.linkedin} rel="me noopener noreferrer">LinkedIn</a><a class="back" href="/tr/contact">İletişim →</a></div></div>
   </main>
 </BaseLayout>

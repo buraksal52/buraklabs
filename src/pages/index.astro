@@ -1,10 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import siteContent from '../data/site-content.json';
 
 const projects = (await getCollection('projects', ({ data }) => data.locale === 'en' && !data.draft)).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
 const research = (await getCollection('research', ({ data }) => data.locale === 'en' && !data.draft)).sort((a, b) => (b.data.startedAt ?? '').localeCompare(a.data.startedAt ?? ''));
 const writing = (await getCollection('writing', ({ data }) => data.locale === 'en' && !data.draft)).slice(0, 2);
+const { profile, about } = siteContent;
 ---
 <BaseLayout locale="en" path="/" alternatePath="/tr/" title="BurakLabs — Engineering, research and creative studio" description="An independent engineering, research and creative studio.">
   <main data-pagefind-body class="home-main">
@@ -34,15 +36,15 @@ const writing = (await getCollection('writing', ({ data }) => data.locale === 'e
         <aside class="about-sticky-visual" aria-label="About BurakLabs story stages">
           <div class="about-visual-frame">
             <div class="about-visual-kicker"><span class="eyebrow">About / BurakLabs</span><span>Scroll to explore</span></div>
-            <div class="about-visual-stage is-active" data-about-stage="0"><svg class="about-visual-art about-visual-art-profile" viewBox="0 0 320 220" aria-hidden="true"><rect x="82" y="20" width="156" height="180" rx="2" /><circle cx="160" cy="84" r="34" /><path d="M102 178c8-34 28-52 58-52s50 18 58 52" /><path d="M116 56c10-20 25-30 45-30s35 10 45 30" /></svg><span class="about-visual-index">01</span><strong>A person<br />behind the work.</strong><span>Ömer Burak Şal</span></div>
+            <div class="about-visual-stage is-active" data-about-stage="0"><svg class="about-visual-art about-visual-art-profile" viewBox="0 0 320 220" aria-hidden="true"><rect x="82" y="20" width="156" height="180" rx="2" /><circle cx="160" cy="84" r="34" /><path d="M102 178c8-34 28-52 58-52s50 18 58 52" /><path d="M116 56c10-20 25-30 45-30s35 10 45 30" /></svg><span class="about-visual-index">01</span><strong>A person<br />behind the work.</strong><span>{profile.fullName}</span></div>
             <div class="about-visual-stage" data-about-stage="1"><svg class="about-visual-art about-visual-art-system" viewBox="0 0 320 220" aria-hidden="true"><path class="art-path" d="M38 110h72l35-56 42 112 34-56h61" /><circle class="art-node art-node-one" cx="38" cy="110" r="7" /><circle class="art-node art-node-two" cx="145" cy="54" r="7" /><circle class="art-node art-node-three" cx="187" cy="166" r="7" /><circle class="art-node art-node-four" cx="282" cy="110" r="7" /></svg><span class="about-visual-index">02</span><strong>Ideas become<br />working systems.</strong><span>Research → software</span></div>
             <div class="about-visual-stage" data-about-stage="2"><svg class="about-visual-art about-visual-art-archive" viewBox="0 0 320 220" aria-hidden="true"><circle class="art-orbit" cx="160" cy="110" r="66" /><circle class="art-orbit art-orbit-inner" cx="160" cy="110" r="36" /><circle class="art-node art-node-one" cx="160" cy="44" r="7" /><circle class="art-node art-node-two" cx="217" cy="143" r="7" /><circle class="art-node art-node-three" cx="103" cy="143" r="7" /><path class="art-loop" d="M160 110c22-22 52-18 64 3" /></svg><span class="about-visual-index">03</span><strong>Projects become<br />a living archive.</strong><span>Build → explain → continue</span></div>
           </div>
         </aside>
         <div class="about-sticky-steps">
-          <article class="about-step" data-scroll-reveal data-about-step="0"><span class="about-step-number">01</span><div><p class="eyebrow">Who I am</p><h3>Ömer Burak Şal</h3><p>I'm a Computer Engineering student at Ankara Bilim University and an independent developer interested in software engineering, artificial intelligence, computer systems and human-computer interaction.</p></div></article>
-          <article class="about-step" data-scroll-reveal data-about-step="1"><span class="about-step-number">02</span><div><p class="eyebrow">What I do</p><h3>I turn research ideas into working software.</h3><p>I design, develop and experiment with AI-powered applications, LLM-based systems, backend infrastructure, developer tools, blockchain applications and adaptive learning technologies.</p></div></article>
-          <article class="about-step" data-scroll-reveal data-about-step="2"><span class="about-step-number">03</span><div><p class="eyebrow">Where this leads</p><h3>Projects, notes and experiments belong together.</h3><p>BurakLabs is the working record: the built thing, the question behind it and the next version that still needs to be tested.</p><a class="back" href="/about">Read the full introduction →</a></div></article>
+          <article class="about-step" data-scroll-reveal data-about-step="0"><span class="about-step-number">01</span><div><p class="eyebrow">Who I am</p><h3>{profile.fullName}</h3><p>{about.en.whoIAm}</p></div></article>
+          <article class="about-step" data-scroll-reveal data-about-step="1"><span class="about-step-number">02</span><div><p class="eyebrow">What I do</p><h3>I turn research ideas into working software.</h3><p>{about.en.whatIDo}</p></div></article>
+          <article class="about-step" data-scroll-reveal data-about-step="2"><span class="about-step-number">03</span><div><p class="eyebrow">Where this leads</p><h3>Projects, notes and experiments belong together.</h3><p>{about.en.whereThisLeads}</p><a class="back" href="/about">Read the full introduction →</a></div></article>
         </div>
       </div>
     </section>

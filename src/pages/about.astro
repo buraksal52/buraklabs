@@ -1,10 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import siteContent from '../data/site-content.json';
+
+const { profile, links, about } = siteContent;
+const content = about.en;
 ---
 <BaseLayout locale="en" path="/about" alternatePath="/tr/about" title="About — BurakLabs" description="About the BurakLabs engineering, research and creative studio.">
   <main data-pagefind-body>
     <p class="eyebrow">BurakLabs / About</p>
     <h1>An independent studio record.</h1>
-    <div class="content-empty"><h2>Ömer Burak Şal</h2><p>I'm Burak, a Computer Engineering student at Ankara Bilim University and an independent developer interested in the intersection of software engineering, artificial intelligence, computer systems, and human-computer interaction.</p><p>I approach engineering through curiosity, experimentation, and hands-on development. I enjoy understanding how systems work beneath the surface, from operating systems and infrastructure to intelligent applications and user-facing products.</p><h3>What I do</h3><p>I design, develop, and experiment with software products and research-driven prototypes. My work includes AI-powered applications, LLM-based systems, backend infrastructure, developer tools, blockchain applications, adaptive learning technologies, and computational approaches to human-computer interaction.</p><p>I primarily work with Python, Go, FastAPI, and Flutter, while continuously exploring lower-level systems, Linux infrastructure, machine learning, and distributed computing.</p><h3>Where this leads</h3><p>My long-term direction is to work at the intersection of research, advanced engineering, and entrepreneurship. BurakLabs is my independent engineering and research space: a place to document experiments, share technical work, develop products, and explore ideas that may eventually become larger research or business initiatives.</p><div class="content-links"><a class="button-link" href="/projects">View projects</a><a href="https://github.com/buraksal52" rel="me noopener noreferrer">GitHub</a><a href="https://linkedin.com/in/brksal" rel="me noopener noreferrer">LinkedIn</a><a class="back" href="/contact">Contact →</a></div></div>
+    <div class="content-empty"><h2>{profile.fullName}</h2><p>{content.whoIAm}</p><p>{content.whoIAmDetail}</p><h3>What I do</h3><p>{content.whatIDo}</p><p>{content.whatIDoDetail}</p><h3>Where this leads</h3><p>{content.whereThisLeads}</p><div class="content-links"><a class="button-link" href="/projects">View projects</a><a href={links.github} rel="me noopener noreferrer">GitHub</a><a href={links.linkedin} rel="me noopener noreferrer">LinkedIn</a><a class="back" href="/contact">Contact →</a></div></div>
   </main>
 </BaseLayout>

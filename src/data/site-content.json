@@ -1,0 +1,34 @@
+{
+  "profile": {
+    "fullName": "Ömer Burak ŞAL",
+    "shortName": "Burak Sal",
+    "headlineEn": "Software Engineer · AI, Systems & Product Engineering",
+    "headlineTr": "Yazılım Mühendisi · Yapay Zekâ, Sistemler ve Ürün Mühendisliği",
+    "location": "Ankara, Türkiye",
+    "email": "",
+    "portrait": "",
+    "portraitAltEn": "Portrait of Burak Sal",
+    "portraitAltTr": "Burak Sal portre fotoğrafı"
+  },
+  "links": {
+    "website": "https://buraklabs.studio",
+    "github": "https://github.com/buraksal52",
+    "linkedin": "https://linkedin.com/in/brksal"
+  },
+  "about": {
+    "en": {
+      "whoIAm": "I'm Burak, a Computer Engineering student at Ankara Bilim University and an independent developer interested in the intersection of software engineering, artificial intelligence, computer systems, and human-computer interaction.",
+      "whoIAmDetail": "I approach engineering through curiosity, experimentation, and hands-on development. I enjoy understanding how systems work beneath the surface, from operating systems and infrastructure to intelligent applications and user-facing products.",
+      "whatIDo": "I design, develop, and experiment with software products and research-driven prototypes. My work includes AI-powered applications, LLM-based systems, backend infrastructure, developer tools, blockchain applications, adaptive learning technologies, and computational approaches to human-computer interaction.",
+      "whatIDoDetail": "I primarily work with Python, Go, FastAPI, and Flutter, while continuously exploring lower-level systems, Linux infrastructure, machine learning, and distributed computing.",
+      "whereThisLeads": "My long-term direction is to work at the intersection of research, advanced engineering, and entrepreneurship. BurakLabs is my independent engineering and research space: a place to document experiments, share technical work, develop products, and explore ideas that may eventually become larger research or business initiatives."
+    },
+    "tr": {
+      "whoIAm": "Ben Burak. Ankara Bilim Üniversitesi Bilgisayar Mühendisliği öğrencisiyim. Yazılım mühendisliği, yapay zekâ, bilgisayar sistemleri ve insan-bilgisayar etkileşiminin kesişiminde bağımsız bir geliştirici olarak çalışıyorum.",
+      "whoIAmDetail": "Mühendisliğe merak, deney ve uygulama odaklı yaklaşıyorum. İşletim sistemlerinden altyapıya, yapay zekâ modellerinden kullanıcıya ulaşan ürünlere kadar teknolojilerin arka planda nasıl çalıştığını anlamayı önemsiyorum.",
+      "whatIDo": "Yazılım ürünleri, araştırma odaklı prototipler ve deneysel sistemler tasarlıyor ve geliştiriyorum. Çalışmalarım arasında yapay zekâ uygulamaları, LLM tabanlı sistemler, backend altyapıları, geliştirici araçları, blockchain uygulamaları, uyarlanabilir öğrenme teknolojileri ve insan-bilgisayar etkileşimine yönelik hesaplamalı yöntemler bulunuyor.",
+      "whatIDoDetail": "Ağırlıklı olarak Python, Go, FastAPI ve Flutter kullanıyorum. Bunun yanında Linux, sistem programlama, makine öğrenmesi ve dağıtık sistemler üzerine teknik yetkinliğimi geliştiriyorum.",
+      "whereThisLeads": "Uzun vadeli hedefim araştırma, ileri mühendislik ve girişimciliğin kesişiminde çalışmak. BurakLabs; projelerimi, teknik deneylerimi, geliştirdiğim ürünleri ve araştırma çalışmalarımı bir araya getiren bağımsız mühendislik ve araştırma alanım."
+    }
+  }
+}
