@@ -236,6 +236,13 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Verification: `.pages.yml` parsed successfully with Ruby YAML; `npm run check` — PASS; `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,311 words); `git diff --check` — PASS.
 - Example commit message: `feat(cms): add Git-backed Pages CMS content editing`
 
+## Brand kit integration handoff
+- Date and agent: 2026-10-15 — Codex
+- Scope / changes: Integrated the owner-supplied `buraklabs-brand` Frame kit into `public/brand/`: outlined light/dark logos, symbol/favicon assets, app icons and the 1200×630 Open Graph image. Replaced the text-only header mark with theme-aware logo variants, added favicon/apple-touch-icon/Open Graph/Twitter metadata, and aligned the site token system with the kit’s ink `#191919`, canvas `#F5F3EF` and bronze `#B59A7B`. A readable derived accent token is used for small text labels.
+- Content and provenance: Assets came directly from `/Users/omerburaksal/Downloads/buraklabs-brand`; no new generated artwork or personal imagery was added. The kit README identifies the artwork as an editable approximation and should be treated as approved only for this current integration unless the owner revises it.
+- Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm run build` — PASS (26 pages, Pagefind indexed 1,311 words); `git diff --check` — PASS. Headless Chrome screenshot attempt — NOT RUN successfully (`exit 134` in this environment), so live visual comparison remains pending.
+- Example commit message: `feat(brand): integrate Frame brand kit across site shell`
+
 ## Update format
 - Date and agent:
 - Scope / changes:

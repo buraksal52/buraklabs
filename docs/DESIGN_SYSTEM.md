@@ -3,18 +3,19 @@
 ## Intent
 An editorial and experimental **engineering studio**, not a SaaS dashboard, luxury architecture landing page, or generic AI portfolio. High contrast content, warm surfaces, precise technical details and rare signature 3D/Canvas moments. Mixed layouts adapt to content type.
 
-## Color tokens (initial proposals, replace by token overrides)
+## Color tokens
 | Token | Light | Dark | Use |
 |---|---|---|---|
-| `--canvas` | `#FAF8F4` | `#171614` | Background |
-| `--surface` | `#FFFFFF` | `#24211E` | Panels |
-| `--ink` | `#1B1A18` | `#F6F2EC` | Text |
+| `--canvas` | `#F5F3EF` | `#191919` | Background; brand canvas/ink |
+| `--surface` | `#FFFFFF` | `#242424` | Panels |
+| `--ink` | `#191919` | `#F5F3EF` | Text; brand ink/canvas |
 | `--muted` | `#665F57` | `#BAB1A7` | Secondary text |
-| `--border` | `#D9D0C6` | `#4B433C` | Dividers |
-| `--accent` | `#B65E3D` | `#DE9675` | Primary accent |
-| `--focus` | `#7D452D` | `#F1B08C` | Keyboard focus |
+| `--border` | `#D8D1C8` | `#4B4742` | Dividers |
+| `--brand-bronze` | `#B59A7B` | `#B59A7B` | Logo module and brand accent |
+| `--accent` | `#76583A` | `#C4A884` | Accessible text accent derived from brand bronze |
+| `--focus` | `#62472D` | `#E2C6A2` | Keyboard focus |
 
-These are **starting values**: measure WCAG contrast in every component/state before release; adjust tokens when values fail. Never use accent for long-form body text without verification. Content-state colors must convey meaning with labels too.
+The Frame brand kit is stored in `public/brand/`. The exact bronze is retained for the logo and decorative surfaces; the text accent is a darker/lighter accessible derivative so small labels remain readable. Measure WCAG contrast in every component/state before release. Never use accent for long-form body text without verification. Content-state colors must convey meaning with labels too.
 
 ## Typography
 Editorial headings: trial `Instrument Serif` or `Newsreader` (license/check font files), UI/body: `Inter`, code/data: `JetBrains Mono`. One serif display family, one sans body, one mono utility. Use fluid scales (e.g. `clamp`), no arbitrary 12 font weights. Self-host licensed web fonts; fall back gracefully.

@@ -27,6 +27,13 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://buraklabs.studio/brand/icons/og-image.png" />
+    <meta property="og:image:alt" content="BurakLabs — Research / Engineering / Experiments" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://buraklabs.studio/brand/icons/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="/brand/svg/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/brand/icons/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/brand/icons/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang={locale} href={canonicalUrl} />
     {alternateUrl && <link rel="alternate" hreflang={otherLocale} href={alternateUrl} />}
@@ -45,7 +52,10 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
   <body>
     <div class="shell">
       <header class="site-header" data-pagefind-ignore>
-        <a class="brand" href={prefix || '/'}>BurakLabs</a>
+        <a class="brand" href={prefix || '/'} aria-label="BurakLabs home">
+          <img class="brand-logo brand-logo-light-theme" src="/brand/svg/logo.svg" width="180" height="45" alt="BurakLabs" />
+          <img class="brand-logo brand-logo-dark-theme" src="/brand/svg/logo-light.svg" width="180" height="45" alt="BurakLabs" />
+        </a>
         <nav aria-label={locale === 'tr' ? 'Ana navigasyon' : 'Main navigation'}>
           <a href={`${prefix}/projects`}>{locale === 'tr' ? 'Projeler' : 'Projects'}</a>
           <a href={`${prefix}/research`}>{locale === 'tr' ? 'Araştırma' : 'Research'}</a>
