@@ -201,6 +201,12 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Commands run: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,317 words); `npm test` — PASS (2 tests); `git diff --check` — PASS after whitespace cleanup.
 - Example commit message: `feat(content): transfer approved profile and about copy`
 
+## Independent theme preference handoff
+- Date and agent: 2026-10-14 — Codex
+- Scope / changes: Removed the `prefers-color-scheme` dependency from the theme bootstrap. The site now defaults to light mode regardless of the computer theme; the header toggle remains the only way to switch modes, and the chosen value persists in `localStorage`.
+- Verification: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,317 words); `git diff --check` — PASS.
+- Example commit message: `fix(theme): decouple site mode from system preference`
+
 ## Update format
 - Date and agent:
 - Scope / changes:

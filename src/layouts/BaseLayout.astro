@@ -33,12 +33,11 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
     {alternateUrl && isHome && <link rel="alternate" hreflang="x-default" href={locale === 'en' ? canonicalUrl : alternateUrl} />}
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <script is:inline>
-      const systemTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       try {
         const savedTheme = localStorage.getItem('buraklabs-theme');
-        document.documentElement.dataset.theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : systemTheme;
+        document.documentElement.dataset.theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'light';
       } catch {
-        document.documentElement.dataset.theme = systemTheme;
+        document.documentElement.dataset.theme = 'light';
       }
     </script>
     <title>{title}</title>
