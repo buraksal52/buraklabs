@@ -63,11 +63,16 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
   </body>
 </html>
 <script>
-  const themeToggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
-  themeToggle?.addEventListener('click', () => {
-    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = nextTheme;
-    try { localStorage.setItem('buraklabs-theme', nextTheme); } catch { /* system preference remains active */ }
+  const setTheme = (theme: 'light' | 'dark') => {
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem('buraklabs-theme', theme); } catch { /* persistence is optional */ }
+  };
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement | null;
+    const themeToggle = target?.closest<HTMLButtonElement>('[data-theme-toggle]');
+    if (!themeToggle) return;
+    const currentTheme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
   });
 
   const revealItems = [...document.querySelectorAll<HTMLElement>('[data-scroll-reveal]')];

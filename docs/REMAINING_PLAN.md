@@ -74,7 +74,7 @@ All four projects now have labeled local interactive simulations using example d
 
 - Repository/demo URLs, exact dates, roles and contribution splits.
 - Screenshots, licenses and attribution.
-- Verified CV PDFs, public email and profile details.
+- Public email and final profile details. The `/cv` route is the profile/CV-like surface; a separate PDF is out of scope for launch.
 - Research evidence, paper metadata and writing bodies.
 
 **Commit example:** `content(profile): complete verified owner and project provenance`
@@ -108,20 +108,20 @@ Typed empty registry and HTTPS host allowlist are implemented. Real native/embed
 
 **Commit example:** `feat(integrations): add validated scheduled GitHub metadata snapshot`
 
-## Batch 8 — Research, writing, CV and contact — shells implemented, content deferred
+## Batch 8 — Research, writing and contact — shells implemented, content deferred
 
 **Goal:** Kalan content collections ve kişisel bilgi yüzeylerini eklemek.
 
 - Research schema and verified status handling.
 - Writing/MDX layout, TOC, code, figures and citations.
-- Verified EN/TR CV PDFs.
+- Final About/contact copy; the existing `/cv` route remains the CV-like profile surface.
 - About/contact with owner-approved public facts.
 
 **Exit:** No invented claims; draft/sitemap/search rules PASS.
 
 **Commit example:** `feat(content): add verified research writing CV and contact surfaces`
 
-EN/TR route shells and honest empty states are implemented. Verified research, writing, CV and contact facts remain required before adding public claims.
+EN/TR route shells and honest empty states are implemented. Verified research, writing and contact facts remain required before adding public claims; a separate CV PDF is not required for this launch.
 
 ## Batch 9 — CI, security and release — baseline implemented, release pending
 

@@ -203,9 +203,31 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 
 ## Independent theme preference handoff
 - Date and agent: 2026-10-14 — Codex
-- Scope / changes: Removed the `prefers-color-scheme` dependency from the theme bootstrap. The site now defaults to light mode regardless of the computer theme; the header toggle remains the only way to switch modes, and the chosen value persists in `localStorage`.
+- Scope / changes: Removed the `prefers-color-scheme` dependency from the theme bootstrap and made the header control a delegated click toggle. The site defaults to light mode regardless of the computer theme; every press switches light ↔ dark and persists the chosen value in `localStorage`.
 - Verification: `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,317 words); `git diff --check` — PASS.
-- Example commit message: `fix(theme): decouple site mode from system preference`
+- Example commit message: `fix(theme): make toggle switch light and dark modes`
+
+## Vite dev-server verification handoff
+- Date and agent: 2026-10-14 — Codex
+- Scope / changes: Fixed the actual compatibility mismatch behind `builtin:vite-react-refresh-wrapper` / `Missing field moduleType`: Astro 5.18.2 uses Vite 6, while the previous `@astrojs/react` 7.0.1 pulled Vite 8. Pinned `@astrojs/react` to 4.4.2 and regenerated the lockfile so both integrations use Vite 6.4.4.
+- Verification: Fresh dev server served `/` and `/projects/ghostellar` with HTTP 200 and no Vite error; `npm run check` — PASS; `npm run build` — PASS (26 pages; Pagefind indexed 1,317 words); `npm test` — PASS (2 tests); `git diff --check` — PASS.
+- Example commit message: `fix(deps): align Astro React integration with Vite 6`
+
+## Release QA baseline handoff
+- Date and agent: 2026-10-14 — Codex
+- Scope / changes: Began the final quality pass. EN/TR home, projects, Ghostellar detail, research, writing, About, CV profile surface, contact, search and 404 routes all returned expected HTTP statuses; light screenshots were captured at 360, 768 and 1440 widths after animation settling. The separate CV/PDF deliverable was removed from the launch plan per owner direction; `/cv` remains a profile/CV-like page.
+- Evidence: `/tmp/buraklabs-qa/qa-home-360-light.png`, `/tmp/buraklabs-qa/qa-home-768-light.png`, `/tmp/buraklabs-qa/qa-home-1440-light-settled.png`; route matrix returned 200 for localized content routes and 404 for `/404.html`.
+- Not run: interactive dark-toggle persistence, keyboard-only flow, reduced-motion browser flow and automated E2E because no browser test runner is installed in the repository. Static theme tokens and reduced-motion CSS remain present.
+- Commands run: route matrix — PASS; visual light renders — PASS; `npm run check` — PASS; `npm run build` — PASS; `npm test` — PASS; `git diff --check` — PASS.
+- Example commit message: `test(quality): verify localized routes and responsive light renders`
+
+## Release QA interaction completion
+- Date and agent: 2026-10-14 — Codex
+- Scope / changes: Completed the interactive portion of the first QA batch using a real headless Chrome DevTools session. Verified light default, light → dark → light toggle, localStorage persistence, reduced-motion media handling, keyboard Tab focus and accessible names for links/buttons. Verified the About sticky visual at desktop scroll positions for stages 01/02/03 and the mobile fallback with `scrollWidth === 360`.
+- Evidence: Theme result `{ defaultTheme: light, toggleResult: dark, toggleBack: light, persisted: light }`; reduced-motion result `{ media: true, readyClass: false }`; first Tab focused the BurakLabs link with `:focus-visible`; desktop stages resolved 01 → 02 → 03; mobile computed position was `relative`.
+- Commands run: route matrix — PASS; 360/768/1440 screenshots — PASS; Chrome interaction QA — PASS; `npm run check` — PASS; `npm run build` — PASS; `npm test` — PASS; `git diff --check` — PASS.
+- Remaining QA limitation: no Lighthouse baseline or touch-device hardware test; no blocker found in the implemented flows.
+- Example commit message: `test(quality): complete browser interaction matrix`
 
 ## Update format
 - Date and agent:
