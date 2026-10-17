@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const research = await getCollection('research', ({ data }) => data.locale === 'en' && !data.draft);
 ---
-<BaseLayout locale="en" path="/research" alternatePath="/tr/research" personSchema researchSchema={research.map((item) => ({ id: item.data.id, name: item.data.title, description: item.data.seo.description, areas: item.data.researchAreas, status: item.data.status, authors: item.data.authors }))} title="Research — BurakLabs" description="Research projects and publication statuses from BurakLabs.">
+<BaseLayout locale="en" path="/research" alternatePath="/tr/research" personSchema researchSchema={research.map((item) => ({ id: item.data.id, name: item.data.title, description: item.data.seo.description, areas: item.data.researchAreas, status: item.data.status, authors: item.data.authors }))} breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Research', url: '/research' }]} title="Research — BurakLabs" description="Research projects and publication statuses from BurakLabs.">
   <main id="main-content" data-pagefind-body>
     <p class="eyebrow">BurakLabs / Research</p>
     <h1>Questions before conclusions.</h1>

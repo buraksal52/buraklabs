@@ -5,7 +5,7 @@ import siteContent from '../../data/site-content.json';
 const { profile, links, about } = siteContent;
 const content = about.tr;
 ---
-<BaseLayout locale="tr" path="/tr/about" alternatePath="/about" personSchema profilePageSchema title="Ömer Burak Şal — Hakkında | BurakLabs" description="Yazılım mühendisliği, yapay zekâ, sistemler, HCI ve ürün mühendisliği alanlarında çalışan Ömer Burak Şal hakkında.">
+<BaseLayout locale="tr" path="/tr/about" alternatePath="/about" personSchema profilePageSchema breadcrumbs={[{ name: 'Ana sayfa', url: '/tr/' }, { name: 'Ömer Burak Şal hakkında', url: '/tr/about' }]} title="Ömer Burak Şal — Hakkında | BurakLabs" description="Yazılım mühendisliği, yapay zekâ, sistemler, HCI ve ürün mühendisliği alanlarında çalışan Ömer Burak Şal hakkında.">
   <main id="main-content" data-pagefind-body>
     <p class="eyebrow">BurakLabs / Hakkında</p>
     <h1>Bağımsız bir stüdyo kaydı.</h1>

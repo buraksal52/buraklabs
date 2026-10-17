@@ -29,8 +29,9 @@ interface Props {
     status: string;
     authors: string[];
   }>;
+  breadcrumbs?: Array<{ name: string; url: string }>;
 }
-const { title, description, locale, path, alternatePath, noindex = false, personSchema = false, websiteSchema = false, profilePageSchema = false, projectSchema, researchSchema = [] } = Astro.props;
+const { title, description, locale, path, alternatePath, noindex = false, personSchema = false, websiteSchema = false, profilePageSchema = false, projectSchema, researchSchema = [], breadcrumbs = [] } = Astro.props;
 const { profile, links, about } = siteContent;
 const prefix = locale === 'tr' ? '/tr' : '';
 const canonicalPath = path ?? Astro.url.pathname;
@@ -79,7 +80,17 @@ const researchStructuredData = researchSchema.map((research) => ({
     value: research.status
   }
 }));
-const structuredData = personStructuredData || projectStructuredData || researchStructuredData.length ? {
+const breadcrumbStructuredData = breadcrumbs.length ? {
+  '@type': 'BreadcrumbList',
+  '@id': `${canonicalUrl.toString()}#breadcrumbs`,
+  itemListElement: breadcrumbs.map((breadcrumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: breadcrumb.name,
+    item: new URL(breadcrumb.url, Astro.site ?? 'https://buraklabs.studio').toString()
+  }))
+} : undefined;
+const structuredData = personStructuredData || projectStructuredData || researchStructuredData.length || breadcrumbStructuredData ? {
   '@context': 'https://schema.org',
   '@graph': [
     ...(personStructuredData ? [personStructuredData] : []),
@@ -101,7 +112,8 @@ const structuredData = personStructuredData || projectStructuredData || research
       mainEntity: { '@id': 'https://buraklabs.studio/#person' }
     }] : []),
     ...(projectStructuredData ? [projectStructuredData] : []),
-    ...researchStructuredData
+    ...researchStructuredData,
+    ...(breadcrumbStructuredData ? [breadcrumbStructuredData] : [])
   ]
 } : undefined;
 ---

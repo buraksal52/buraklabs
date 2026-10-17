@@ -5,7 +5,7 @@ import siteContent from '../data/site-content.json';
 const { profile, links, about } = siteContent;
 const content = about.en;
 ---
-<BaseLayout locale="en" path="/about" alternatePath="/tr/about" personSchema profilePageSchema title="Ömer Burak Şal — About | BurakLabs" description="Learn about Ömer Burak Şal, a software engineer and Computer Engineering student working across AI, systems, HCI and product engineering.">
+<BaseLayout locale="en" path="/about" alternatePath="/tr/about" personSchema profilePageSchema breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'About Ömer Burak Şal', url: '/about' }]} title="Ömer Burak Şal — About | BurakLabs" description="Learn about Ömer Burak Şal, a software engineer and Computer Engineering student working across AI, systems, HCI and product engineering.">
   <main id="main-content" data-pagefind-body>
     <p class="eyebrow">BurakLabs / About</p>
     <h1>An independent studio record.</h1>

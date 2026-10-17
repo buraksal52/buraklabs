@@ -294,6 +294,11 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks:
 - Next concrete task:
 
+## GEO navigation context handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Added localized `BreadcrumbList` JSON-LD to About, research and published project routes so answer engines can understand each page’s relationship to BurakLabs and its content hierarchy.
+- Example commit message: `feat(geo): add localized breadcrumb context`
+
 ## GEO research context handoff
 - Date and agent: 2026-10-17 — Codex
 - Scope / changes: Added `ResearchProject` JSON-LD to the published EN/TR research index records, including existing authors, research areas, status and SEO description. Writing remains intentionally schema-free until an article is genuinely published.

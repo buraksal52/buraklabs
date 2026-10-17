@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 ---
-<BaseLayout locale="en" path={`/projects/${project.data.slug}`} alternatePath={`/tr/projects/${project.data.slug}`} personSchema projectSchema={{ name: project.data.title, description: project.data.seo.description, categories: project.data.categories, technologies: project.data.technologies, status: project.data.status, createdAt: project.data.createdAt, updatedAt: project.data.updatedAt }} title={`${project.data.seo.title} — BurakLabs`} description={project.data.seo.description}>
+<BaseLayout locale="en" path={`/projects/${project.data.slug}`} alternatePath={`/tr/projects/${project.data.slug}`} personSchema projectSchema={{ name: project.data.title, description: project.data.seo.description, categories: project.data.categories, technologies: project.data.technologies, status: project.data.status, createdAt: project.data.createdAt, updatedAt: project.data.updatedAt }} breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Projects', url: '/projects' }, { name: project.data.title, url: `/projects/${project.data.slug}` }]} title={`${project.data.seo.title} — BurakLabs`} description={project.data.seo.description}>
   <main id="main-content" class="case-study" data-pagefind-body>
     <article>
       <a class="back" href="/projects">← Projects</a>
