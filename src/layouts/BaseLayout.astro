@@ -114,5 +114,104 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
       });
     }, { threshold: 0.2, rootMargin: '-10% 0px -10% 0px' });
     aboutSteps.forEach((step) => aboutObserver.observe(step));
+
+    const reducedMotionForStepLock = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const story = document.querySelector<HTMLElement>('.about-sticky-story');
+    let isStepAnimating = false;
+    let wheelAccumulator = 0;
+    let touchStartY: number | undefined;
+    let touchTracking = false;
+    let touchEnteringFirstStep = false;
+
+    const getStoryMetrics = () => {
+      if (!story) return undefined;
+      const rect = story.getBoundingClientRect();
+      return { top: rect.top + window.scrollY, bottom: rect.bottom + window.scrollY };
+    };
+    const isInStepLockZone = () => {
+      const metrics = getStoryMetrics();
+      if (!metrics) return false;
+      const viewport = window.innerHeight;
+      return window.scrollY >= metrics.top - viewport * 0.35 && window.scrollY <= metrics.bottom - viewport * 0.65;
+    };
+    const getCurrentStepIndex = () => {
+      const marker = window.scrollY + window.innerHeight * 0.35;
+      let currentIndex = 0;
+      aboutSteps.forEach((step, index) => {
+        const stepTop = step.getBoundingClientRect().top + window.scrollY;
+        if (stepTop <= marker) currentIndex = index;
+      });
+      return currentIndex;
+    };
+    const getStepTarget = (index: number) => Math.max(0, aboutSteps[index].getBoundingClientRect().top + window.scrollY - 24);
+    const isAlignedToStep = (index: number) => Math.abs(getStepTarget(index) - window.scrollY) < 72;
+    const isEnteringFirstStep = (direction: 1 | -1) => direction === 1 && getCurrentStepIndex() === 0 && window.scrollY < getStepTarget(0) - 8;
+    const moveAboutStep = (direction: 1 | -1) => {
+      if (reducedMotionForStepLock || isStepAnimating || !isInStepLockZone()) return false;
+      const currentIndex = getCurrentStepIndex();
+      const aligned = isAlignedToStep(currentIndex);
+      const nextIndex = aligned ? currentIndex + direction : currentIndex;
+      if (nextIndex < 0 || nextIndex >= aboutSteps.length) return false;
+
+      isStepAnimating = true;
+      window.scrollTo({ top: getStepTarget(nextIndex), behavior: 'smooth' });
+      window.setTimeout(() => { isStepAnimating = false; }, 620);
+      return true;
+    };
+
+    window.addEventListener('wheel', (event) => {
+      if (reducedMotionForStepLock || !isInStepLockZone()) return;
+      const direction: 1 | -1 = event.deltaY > 0 ? 1 : -1;
+      const currentIndex = getCurrentStepIndex();
+      const atExitBoundary = (direction === 1 && currentIndex === aboutSteps.length - 1) || (direction === -1 && currentIndex === 0);
+      if (atExitBoundary) return;
+      if (isEnteringFirstStep(direction) && window.scrollY + Math.abs(event.deltaY) < getStepTarget(0) - 8) return;
+
+      event.preventDefault();
+      if (isStepAnimating) return;
+      wheelAccumulator += event.deltaY;
+      if (Math.abs(wheelAccumulator) < 32) return;
+      const accumulatedDirection: 1 | -1 = wheelAccumulator > 0 ? 1 : -1;
+      wheelAccumulator = 0;
+      moveAboutStep(accumulatedDirection);
+    }, { passive: false });
+
+    window.addEventListener('touchstart', (event) => {
+      touchStartY = event.touches[0]?.clientY;
+      touchTracking = !reducedMotionForStepLock && isInStepLockZone();
+      touchEnteringFirstStep = touchTracking && isEnteringFirstStep(1);
+    }, { passive: true });
+    window.addEventListener('touchmove', (event) => {
+      if (!touchTracking || isStepAnimating || touchStartY === undefined) return;
+      const distance = touchStartY - (event.touches[0]?.clientY ?? touchStartY);
+      const currentIndex = getCurrentStepIndex();
+      const atExitBoundary = (distance > 0 && currentIndex === aboutSteps.length - 1) || (distance < 0 && currentIndex === 0);
+      if (isEnteringFirstStep(distance > 0 ? 1 : -1)) return;
+      if (!atExitBoundary) event.preventDefault();
+    }, { passive: false });
+    window.addEventListener('touchend', (event) => {
+      if (!touchTracking || touchStartY === undefined) return;
+      const touchEndY = event.changedTouches[0]?.clientY ?? touchStartY;
+      const distance = touchStartY - touchEndY;
+      touchStartY = undefined;
+      touchTracking = false;
+      if (touchEnteringFirstStep) {
+        touchEnteringFirstStep = false;
+        return;
+      }
+      if (Math.abs(distance) >= 28) moveAboutStep(distance > 0 ? 1 : -1);
+    }, { passive: true });
+
+    window.addEventListener('keydown', (event) => {
+      if (reducedMotionForStepLock || !isInStepLockZone()) return;
+      const direction = event.key === 'ArrowDown' || event.key === 'PageDown' ? 1 : event.key === 'ArrowUp' || event.key === 'PageUp' ? -1 : 0;
+      if (!direction) return;
+      if (isEnteringFirstStep(direction as 1 | -1)) return;
+      const currentIndex = getCurrentStepIndex();
+      const atExitBoundary = (direction === 1 && currentIndex === aboutSteps.length - 1) || (direction === -1 && currentIndex === 0);
+      if (atExitBoundary) return;
+      event.preventDefault();
+      moveAboutStep(direction as 1 | -1);
+    });
   }
 </script>

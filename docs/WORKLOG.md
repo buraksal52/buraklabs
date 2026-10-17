@@ -251,6 +251,33 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known unrelated item: Existing untracked empty file `Icon\r` was preserved and not modified.
 - Example commit message: `feat(about): add owner portrait to scroll story`
 
+## About soft snap handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Added a non-blocking soft snap to the About scroll story. After scrolling settles, the nearest 01/02/03 narrative step aligns with a short smooth movement; the implementation does not prevent default scrolling, capture the wheel/touch gesture, or apply a global page snap. The existing sticky visual and IntersectionObserver stage changes remain the source of truth.
+- Accessibility and motion: The behavior is disabled when `prefers-reduced-motion: reduce` is active. `scroll-margin-top` preserves a small reading offset and the snap only runs inside the story bounds, so leaving the section is not intercepted.
+- Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Browser interaction/screenshot verification — NOT RUN successfully in this environment.
+- Example commit message: `feat(home): add soft snap transitions to about scroll story`
+
+## About step-lock interaction handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Replaced the insufficient settle-only soft snap with an explicit About step driver. While the story is in its lock zone, wheel, touch swipe and Arrow/Page navigation advance or reverse one narrative step at a time; rapid input cannot jump directly from 01 to 03. At the first/last aligned step, movement toward the outside of the story is released back to normal page scrolling.
+- Accessibility and motion: No global scroll lock is applied. The behavior is bypassed under `prefers-reduced-motion: reduce`; keyboard focus and regular navigation remain available. Touch uses a non-passive listener only while the story is actively controlling a swipe.
+- Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Real browser interaction — NOT RUN: local server was unavailable and Puppeteer is not installed.
+- Example commit message: `feat(home): prevent skipped about story steps`
+
+## About step-lock boundary fix handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Fixed the boundary deadlock in the step driver. At 01, upward wheel/touch/keyboard input now exits to normal page scrolling; at 03, downward input does the same. The step lock remains active only for transitions inside 01 ↔ 02 ↔ 03, and the transition timeout was shortened to reduce perceived hesitation.
+- Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Real browser interaction — NOT RUN in this environment.
+- Example commit message: `fix(home): release about step lock at story boundaries`
+
+## About step-lock entry fix handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Removed the automatic jump to step 01 when the user merely reaches the “The person behind the projects” intro. The page now scrolls naturally into the first step; the one-step driver starts once 01 is aligned. A very large wheel movement that would cross the first step is still caught at 01, preserving the no-skipping rule without snapping on ordinary entry.
+- Interaction boundaries: Upward movement from 01 and downward movement from 03 remain fully released to normal page scroll. Touch entry uses the same natural-first-step behavior.
+- Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Real browser interaction — NOT RUN in this environment.
+- Example commit message: `fix(home): avoid snapping on about story entry`
+
 ## Update format
 - Date and agent:
 - Scope / changes:
