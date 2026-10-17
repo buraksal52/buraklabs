@@ -278,6 +278,14 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Real browser interaction — NOT RUN in this environment.
 - Example commit message: `fix(home): avoid snapping on about story entry`
 
+## UI/UX and HCI audit handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / evidence: Audited the current homepage narrative, responsive composition, theme tokens, navigation semantics, About step-lock behavior in code, and generated output. Accepted screenshots: `/private/tmp/buraklabs-qa/audit-home-1440-settled.png`, `/private/tmp/buraklabs-qa/audit-home-768-settled.png`, `/private/tmp/buraklabs-qa/audit-home-360-settled.png`.
+- Findings: Editorial hierarchy, responsive layout and token contrast are healthy; body ink/canvas contrast is 15.86:1, light accent/canvas 5.87:1 and dark accent/canvas 7.77:1. The step-lock has explicit boundary release and reduced-motion bypass, but live wheel/touch validation remains pending. A skip link is not currently present, and Lighthouse/Core Web Vitals have not been measured.
+- Commands: `npm run check` — PASS; `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Screenshot matrix 360/768/1440 light — PASS. Dark/reduced-motion live screenshots, Lighthouse, touch hardware and automated axe scan — NOT RUN.
+- Verdict: Good MVP portfolio UX and visual foundation; not yet evidence-complete for a formal WCAG 2.2 AA or performance release claim.
+- Example commit message: `docs(quality): record UI UX and HCI audit findings`
+
 ## Update format
 - Date and agent:
 - Scope / changes:
