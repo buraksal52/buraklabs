@@ -8,6 +8,7 @@
   --brand-bronze: #b59a7b;
   --accent: #76583a;
   --focus: #62472d;
+  --on-ink-accent: #e2c6a2;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   background: var(--canvas);
   color: var(--ink);
@@ -23,6 +24,7 @@
   --brand-bronze: #b59a7b;
   --accent: #c4a884;
   --focus: #e2c6a2;
+  --on-ink-accent: #62472d;
 }
 
 * { box-sizing: border-box; }
@@ -130,11 +132,11 @@ p { max-width: 70ch; line-height: 1.7; }
 .about-visual-frame::before { position: absolute; top: 50%; left: 50%; width: 58%; aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--surface) 22%, transparent); border-radius: 50%; transform: translate(-50%, -50%); content: ''; }
 .about-visual-frame::after { position: absolute; top: 50%; right: 0; left: 0; height: 1px; background: color-mix(in srgb, var(--surface) 18%, transparent); content: ''; }
 .about-visual-kicker { position: relative; z-index: 2; display: flex; justify-content: space-between; gap: 16px; color: color-mix(in srgb, var(--surface) 62%, transparent); font: .72rem/1.4 ui-monospace, SFMono-Regular, monospace; }
-.about-visual-kicker .eyebrow { color: var(--accent); }
+.about-visual-kicker .eyebrow { color: var(--on-ink-accent); }
 .about-visual-stage { position: absolute; inset: 28px; z-index: 1; display: flex; flex-direction: column; justify-content: center; padding-top: 52px; opacity: 0; transform: translateY(36px); transition: opacity 420ms ease, transform 520ms cubic-bezier(.2,.75,.25,1); }
 .about-visual-stage.is-active { opacity: 1; transform: translateY(0); }
 .about-visual-stage-profile { justify-content: flex-end; padding-bottom: 4%; }
-.about-visual-index { margin-bottom: 16px; color: var(--accent); font: 700 .78rem/1.2 ui-monospace, SFMono-Regular, monospace; }
+.about-visual-index { margin-bottom: 16px; color: var(--on-ink-accent); font: 700 .78rem/1.2 ui-monospace, SFMono-Regular, monospace; }
 .about-visual-stage strong { max-width: 9ch; font-size: clamp(2.8rem, 4.4vw, 4.6rem); letter-spacing: -.06em; line-height: .9; }
 .about-visual-stage > span:last-child { margin-top: 20px; color: color-mix(in srgb, var(--surface) 70%, transparent); }
 .about-visual-art { position: absolute; top: 17%; left: 50%; z-index: 0; width: min(100%, 320px); overflow: visible; transform: translateX(-50%); fill: none; stroke: color-mix(in srgb, var(--surface) 54%, transparent); stroke-width: 1.5; opacity: .7; pointer-events: none; }

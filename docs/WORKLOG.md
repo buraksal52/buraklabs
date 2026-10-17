@@ -294,6 +294,13 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks:
 - Next concrete task:
 
+## Release QA and contrast fix handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Ran production-oriented responsive screenshots at 360px EN, 768px TR and 1440px EN. Found Lighthouse’s About-panel contrast issue and added a theme-aware `--on-ink-accent` token for the always-ink visual panel. The initial Lighthouse run used Astro dev output and exposed the development toolbar; the release measurement is being repeated against static `dist` output.
+- Evidence: `/private/tmp/buraklabs-qa/release-prod-360.png`, `/private/tmp/buraklabs-qa/release-prod-768-tr.png`, `/private/tmp/buraklabs-qa/release-prod-1440.png`; production Lighthouse JSON: `/private/tmp/buraklabs-qa/lighthouse-home-production.json`.
+- Results: production Lighthouse Performance 100, Accessibility 100, Best Practices 100, SEO 100; FCP 0.9s, LCP 1.1s, CLS 0, TBT 0ms. Static route smoke test passed for EN/TR home, projects, About, research, writing, contact, search and 404 output. Physical touch hardware and live keyboard gesture simulation remain not run; the implementation respects native upward scrolling and reduced motion.
+- Example commit message: `fix(quality): improve about panel contrast and release QA`
+
 ## About upward scroll release handoff
 - Date and agent: 2026-10-17 — Codex
 - Scope / changes: Restricted the About step driver to downward movement only. Upward wheel, touch and Arrow/Page navigation now remain native browser scrolling throughout the story; only downward movement between 01 → 02 → 03 can be captured one step at a time.
