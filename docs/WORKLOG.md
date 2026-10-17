@@ -243,6 +243,14 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm run build` — PASS (26 pages, Pagefind indexed 1,311 words); `git diff --check` — PASS. Headless Chrome screenshot attempt — NOT RUN successfully (`exit 134` in this environment), so live visual comparison remains pending.
 - Example commit message: `feat(brand): integrate Frame brand kit across site shell`
 
+## About portrait integration handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Added the owner-supplied `portrait.png` to `public/media/portrait.png` and set `profile.portrait` in `src/data/site-content.json`. Replaced the abstract profile SVG in the EN/TR homepage Scroll to explore stage 01 with the portrait, using localized alt text and responsive object cropping. Stages 02 and 03 remain unchanged.
+- Content and provenance: The portrait came directly from `/Users/omerburaksal/Downloads/portrait.png`; no generated or fabricated personal image was used.
+- Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Mobile/desktop live screenshot — NOT RUN successfully in this environment.
+- Known unrelated item: Existing untracked empty file `Icon\r` was preserved and not modified.
+- Example commit message: `feat(about): add owner portrait to scroll story`
+
 ## Update format
 - Date and agent:
 - Scope / changes:

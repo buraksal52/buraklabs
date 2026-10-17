@@ -131,6 +131,7 @@ p { max-width: 70ch; line-height: 1.7; }
 .about-visual-kicker .eyebrow { color: var(--accent); }
 .about-visual-stage { position: absolute; inset: 28px; z-index: 1; display: flex; flex-direction: column; justify-content: center; padding-top: 52px; opacity: 0; transform: translateY(36px); transition: opacity 420ms ease, transform 520ms cubic-bezier(.2,.75,.25,1); }
 .about-visual-stage.is-active { opacity: 1; transform: translateY(0); }
+.about-visual-stage-profile { justify-content: flex-end; padding-bottom: 4%; }
 .about-visual-index { margin-bottom: 16px; color: var(--accent); font: 700 .78rem/1.2 ui-monospace, SFMono-Regular, monospace; }
 .about-visual-stage strong { max-width: 9ch; font-size: clamp(2.8rem, 4.4vw, 4.6rem); letter-spacing: -.06em; line-height: .9; }
 .about-visual-stage > span:last-child { margin-top: 20px; color: color-mix(in srgb, var(--surface) 70%, transparent); }
@@ -138,6 +139,7 @@ p { max-width: 70ch; line-height: 1.7; }
 .about-visual-art-profile { top: 12%; stroke: color-mix(in srgb, var(--surface) 42%, transparent); }
 .about-visual-art-profile rect { stroke-dasharray: 7 9; animation: profile-drift 8s ease-in-out infinite; }
 .about-visual-art-profile circle, .about-visual-art-profile path { stroke-linecap: round; stroke-linejoin: round; }
+.about-visual-photo { position: absolute; top: 9%; left: 50%; z-index: 0; width: min(42%, 280px); aspect-ratio: 4 / 5; border: 1px solid color-mix(in srgb, var(--surface) 36%, transparent); object-fit: cover; object-position: center 28%; transform: translateX(-50%); filter: saturate(.82) contrast(1.04); }
 .about-visual-art-system .art-path { stroke-dasharray: 420; stroke-dashoffset: 420; animation: draw-system 3.2s ease-in-out infinite; }
 .about-visual-art .art-node { fill: var(--accent); stroke: none; transform-box: fill-box; transform-origin: center; animation: node-pulse 2.4s ease-in-out infinite; }
 .about-visual-art .art-node-two { animation-delay: .35s; }
@@ -255,6 +257,7 @@ button { padding: 8px 10px; color: var(--ink); background: var(--surface); borde
   .about-sticky-visual { position: relative; top: auto; width: 100%; height: 360px; min-height: 360px; margin-bottom: 24px; }
   .about-visual-frame { height: 100%; padding: 20px; }
   .about-visual-stage { inset: 20px; }
+  .about-visual-photo { top: 8%; width: min(44%, 150px); }
   .about-visual-stage strong { font-size: clamp(2.8rem, 12vw, 4.2rem); }
   .about-step { grid-template-columns: 32px minmax(0, 1fr); min-height: 0; gap: 16px; padding: 72px 0; }
   .home-project-grid { grid-template-columns: 1fr; }
