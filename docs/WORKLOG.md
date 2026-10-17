@@ -294,6 +294,11 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks:
 - Next concrete task:
 
+## GEO research context handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Added `ResearchProject` JSON-LD to the published EN/TR research index records, including existing authors, research areas, status and SEO description. Writing remains intentionally schema-free until an article is genuinely published.
+- Example commit message: `feat(geo): describe research records without overstating status`
+
 ## GEO project context handoff
 - Date and agent: 2026-10-17 — Codex
 - Scope / changes: Added owner-backed `CreativeWork` JSON-LD to every published EN/TR project detail route. The graph includes the existing project title, SEO description, categories, technologies, status, optional dates and the shared Ömer Burak Şal `Person` entity; draft projects remain excluded by existing collection filters.

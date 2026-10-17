@@ -21,8 +21,16 @@ interface Props {
     createdAt?: string;
     updatedAt?: string;
   };
+  researchSchema?: Array<{
+    id: string;
+    name: string;
+    description: string;
+    areas: string[];
+    status: string;
+    authors: string[];
+  }>;
 }
-const { title, description, locale, path, alternatePath, noindex = false, personSchema = false, websiteSchema = false, profilePageSchema = false, projectSchema } = Astro.props;
+const { title, description, locale, path, alternatePath, noindex = false, personSchema = false, websiteSchema = false, profilePageSchema = false, projectSchema, researchSchema = [] } = Astro.props;
 const { profile, links, about } = siteContent;
 const prefix = locale === 'tr' ? '/tr' : '';
 const canonicalPath = path ?? Astro.url.pathname;
@@ -56,7 +64,22 @@ const projectStructuredData = projectSchema ? {
   ...(projectSchema.createdAt ? { dateCreated: projectSchema.createdAt } : {}),
   ...(projectSchema.updatedAt ? { dateModified: projectSchema.updatedAt } : {})
 } : undefined;
-const structuredData = personStructuredData || projectStructuredData ? {
+const researchStructuredData = researchSchema.map((research) => ({
+  '@type': 'ResearchProject',
+  '@id': `${canonicalUrl.toString()}#research-${research.id}`,
+  url: canonicalUrl.toString(),
+  name: research.name,
+  description: research.description,
+  inLanguage: locale,
+  author: research.authors,
+  keywords: research.areas,
+  additionalProperty: {
+    '@type': 'PropertyValue',
+    name: 'Research status',
+    value: research.status
+  }
+}));
+const structuredData = personStructuredData || projectStructuredData || researchStructuredData.length ? {
   '@context': 'https://schema.org',
   '@graph': [
     ...(personStructuredData ? [personStructuredData] : []),
@@ -77,7 +100,8 @@ const structuredData = personStructuredData || projectStructuredData ? {
       inLanguage: locale,
       mainEntity: { '@id': 'https://buraklabs.studio/#person' }
     }] : []),
-    ...(projectStructuredData ? [projectStructuredData] : [])
+    ...(projectStructuredData ? [projectStructuredData] : []),
+    ...researchStructuredData
   ]
 } : undefined;
 ---

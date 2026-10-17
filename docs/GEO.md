@@ -7,6 +7,8 @@ GEO burada, yapay zekâ destekli arama ve cevap motorlarının BurakLabs ile Öm
 - Ana sayfa `Person` ve `WebSite` JSON-LD verisi taşır.
 - About sayfaları `Person` ve `ProfilePage` JSON-LD verisi taşır.
 - Yayındaki proje sayfaları `CreativeWork` JSON-LD verisiyle başlık, açıklama, konu, teknoloji, durum ve yazar kimliğini taşır.
+- Yayındaki araştırma kayıtları `ResearchProject` JSON-LD verisiyle araştırmacı, alan, açıklama ve yayın durumunu taşır.
+- Yayınlanmış yazı olmadığı için henüz `Article` schema’sı üretilmez; taslaklar kamuya açık bilgi gibi işaretlenmez.
 - Kimlik, uzmanlık, portre, GitHub ve LinkedIn bilgileri yalnızca owner-approved kaynaklardan üretilir.
 - EN/TR sayfaları canonical, `hreflang` ve sitemap ile birbirine bağlanır.
 - Arama sonuçları ve taslak içerikler indeks dışı tutulur.
