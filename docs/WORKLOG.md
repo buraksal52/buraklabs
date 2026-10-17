@@ -294,6 +294,18 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks:
 - Next concrete task:
 
+## GEO identity graph handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Extended the owner-approved identity graph with `WebSite` on EN/TR homepages and `ProfilePage` with the shared `Person` entity on EN/TR About pages. Added `docs/GEO.md` with evidence-first publishing rules for AI-search discoverability; no fabricated claims or public draft content were added.
+- Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS; generated JSON-LD parsed successfully on EN/TR home and About routes.
+- Example commit message: `feat(geo): add website and profile identity graph`
+
+## Personal SEO identity handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Added an owner-backed `Person` JSON-LD entity for the homepage, About and CV routes in both locales. The entity uses the existing name, portrait, profile headline, About copy and approved GitHub/LinkedIn links. Updated EN/TR home, About and CV titles/descriptions to include `Ömer Burak Şal` naturally for name-intent searches.
+- Verification: `npm run check`, `npm test`, `npm run build` and `git diff --check` are required after this change; Google Search Console submission remains an owner-account step.
+- Example commit message: `feat(seo): add personal identity metadata and Person schema`
+
 ## Release QA and contrast fix handoff
 - Date and agent: 2026-10-17 — Codex
 - Scope / changes: Ran production-oriented responsive screenshots at 360px EN, 768px TR and 1440px EN. Found Lighthouse’s About-panel contrast issue and added a theme-aware `--on-ink-accent` token for the always-ink visual panel. The initial Lighthouse run used Astro dev output and exposed the development toolbar; the release measurement is being repeated against static `dist` output.

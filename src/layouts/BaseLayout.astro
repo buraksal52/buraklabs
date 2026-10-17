@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import siteContent from '../data/site-content.json';
 
 interface Props {
   title: string;
@@ -8,8 +9,12 @@ interface Props {
   path?: string;
   alternatePath?: string;
   noindex?: boolean;
+  personSchema?: boolean;
+  websiteSchema?: boolean;
+  profilePageSchema?: boolean;
 }
-const { title, description, locale, path, alternatePath, noindex = false } = Astro.props;
+const { title, description, locale, path, alternatePath, noindex = false, personSchema = false, websiteSchema = false, profilePageSchema = false } = Astro.props;
+const { profile, links, about } = siteContent;
 const prefix = locale === 'tr' ? '/tr' : '';
 const canonicalPath = path ?? Astro.url.pathname;
 const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://buraklabs.studio');
@@ -17,6 +22,41 @@ const alternateUrl = alternatePath ? new URL(alternatePath, Astro.site ?? 'https
 const otherLocale = locale === 'tr' ? 'en' : 'tr';
 const languageHref = alternatePath ?? (locale === 'tr' ? '/' : '/tr');
 const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
+const personStructuredData = personSchema ? {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://buraklabs.studio/#person',
+  name: profile.fullName,
+  url: 'https://buraklabs.studio/about',
+  image: new URL(profile.portrait, Astro.site ?? 'https://buraklabs.studio').toString(),
+  jobTitle: locale === 'tr' ? profile.headlineTr : profile.headlineEn,
+  description: locale === 'tr' ? about.tr.whoIAm : about.en.whoIAm,
+  sameAs: [links.github, links.linkedin],
+  knowsAbout: ['Software engineering', 'Artificial intelligence', 'Computer systems', 'Human-computer interaction', 'Product engineering']
+} : undefined;
+const structuredData = personStructuredData ? {
+  '@context': 'https://schema.org',
+  '@graph': [
+    personStructuredData,
+    ...(websiteSchema ? [{
+      '@type': 'WebSite',
+      '@id': 'https://buraklabs.studio/#website',
+      url: 'https://buraklabs.studio/',
+      name: 'BurakLabs',
+      description,
+      publisher: { '@id': 'https://buraklabs.studio/#person' },
+      inLanguage: locale
+    }] : []),
+    ...(profilePageSchema ? [{
+      '@type': 'ProfilePage',
+      '@id': `${canonicalUrl.toString()}#profile`,
+      url: canonicalUrl.toString(),
+      name: title,
+      inLanguage: locale,
+      mainEntity: { '@id': 'https://buraklabs.studio/#person' }
+    }] : [])
+  ]
+} : undefined;
 ---
 <!doctype html>
 <html lang={locale}>
@@ -39,6 +79,7 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
     {alternateUrl && <link rel="alternate" hreflang={otherLocale} href={alternateUrl} />}
     {alternateUrl && isHome && <link rel="alternate" hreflang="x-default" href={locale === 'en' ? canonicalUrl : alternateUrl} />}
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
     <script is:inline>
       try {
         const savedTheme = localStorage.getItem('buraklabs-theme');

@@ -8,7 +8,7 @@ const research = (await getCollection('research', ({ data }) => data.locale === 
 const writing = (await getCollection('writing', ({ data }) => data.locale === 'en' && !data.draft)).slice(0, 2);
 const { profile, about } = siteContent;
 ---
-<BaseLayout locale="en" path="/" alternatePath="/tr/" title="BurakLabs — Engineering, research and creative studio" description="An independent engineering, research and creative studio.">
+<BaseLayout locale="en" path="/" alternatePath="/tr/" personSchema websiteSchema title="Ömer Burak Şal — BurakLabs | Engineering, research and creative studio" description="Ömer Burak Şal is a software engineer and Computer Engineering student documenting independent engineering, AI, systems and product work at BurakLabs.">
   <main id="main-content" data-pagefind-body class="home-main">
     <section class="home-hero home-hero-editorial" aria-labelledby="home-title">
       <div class="hero-copy">
