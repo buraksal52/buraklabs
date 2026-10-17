@@ -12,8 +12,17 @@ interface Props {
   personSchema?: boolean;
   websiteSchema?: boolean;
   profilePageSchema?: boolean;
+  projectSchema?: {
+    name: string;
+    description: string;
+    categories: string[];
+    technologies: string[];
+    status: string;
+    createdAt?: string;
+    updatedAt?: string;
+  };
 }
-const { title, description, locale, path, alternatePath, noindex = false, personSchema = false, websiteSchema = false, profilePageSchema = false } = Astro.props;
+const { title, description, locale, path, alternatePath, noindex = false, personSchema = false, websiteSchema = false, profilePageSchema = false, projectSchema } = Astro.props;
 const { profile, links, about } = siteContent;
 const prefix = locale === 'tr' ? '/tr' : '';
 const canonicalPath = path ?? Astro.url.pathname;
@@ -34,10 +43,23 @@ const personStructuredData = personSchema ? {
   sameAs: [links.github, links.linkedin],
   knowsAbout: ['Software engineering', 'Artificial intelligence', 'Computer systems', 'Human-computer interaction', 'Product engineering']
 } : undefined;
-const structuredData = personStructuredData ? {
+const projectStructuredData = projectSchema ? {
+  '@type': 'CreativeWork',
+  '@id': `${canonicalUrl.toString()}#project`,
+  url: canonicalUrl.toString(),
+  name: projectSchema.name,
+  description: projectSchema.description,
+  inLanguage: locale,
+  author: { '@id': 'https://buraklabs.studio/#person' },
+  keywords: [...projectSchema.categories, ...projectSchema.technologies],
+  creativeWorkStatus: projectSchema.status,
+  ...(projectSchema.createdAt ? { dateCreated: projectSchema.createdAt } : {}),
+  ...(projectSchema.updatedAt ? { dateModified: projectSchema.updatedAt } : {})
+} : undefined;
+const structuredData = personStructuredData || projectStructuredData ? {
   '@context': 'https://schema.org',
   '@graph': [
-    personStructuredData,
+    ...(personStructuredData ? [personStructuredData] : []),
     ...(websiteSchema ? [{
       '@type': 'WebSite',
       '@id': 'https://buraklabs.studio/#website',
@@ -54,7 +76,8 @@ const structuredData = personStructuredData ? {
       name: title,
       inLanguage: locale,
       mainEntity: { '@id': 'https://buraklabs.studio/#person' }
-    }] : [])
+    }] : []),
+    ...(projectStructuredData ? [projectStructuredData] : [])
   ]
 } : undefined;
 ---

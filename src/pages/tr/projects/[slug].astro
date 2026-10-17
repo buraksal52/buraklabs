@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 ---
-<BaseLayout locale="tr" path={`/tr/projects/${project.data.slug}`} alternatePath={`/projects/${project.data.slug}`} title={`${project.data.seo.title} — BurakLabs`} description={project.data.seo.description}>
+<BaseLayout locale="tr" path={`/tr/projects/${project.data.slug}`} alternatePath={`/projects/${project.data.slug}`} personSchema projectSchema={{ name: project.data.title, description: project.data.seo.description, categories: project.data.categories, technologies: project.data.technologies, status: project.data.status, createdAt: project.data.createdAt, updatedAt: project.data.updatedAt }} title={`${project.data.seo.title} — BurakLabs`} description={project.data.seo.description}>
   <main id="main-content" class="case-study" data-pagefind-body>
     <article>
       <a class="back" href="/tr/projects">← Projeler</a>

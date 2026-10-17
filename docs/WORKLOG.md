@@ -294,6 +294,11 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks:
 - Next concrete task:
 
+## GEO project context handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Added owner-backed `CreativeWork` JSON-LD to every published EN/TR project detail route. The graph includes the existing project title, SEO description, categories, technologies, status, optional dates and the shared Ömer Burak Şal `Person` entity; draft projects remain excluded by existing collection filters.
+- Example commit message: `feat(geo): describe published projects with CreativeWork schema`
+
 ## GEO identity graph handoff
 - Date and agent: 2026-10-17 — Codex
 - Scope / changes: Extended the owner-approved identity graph with `WebSite` on EN/TR homepages and `ProfilePage` with the shared `Person` entity on EN/TR About pages. Added `docs/GEO.md` with evidence-first publishing rules for AI-search discoverability; no fabricated claims or public draft content were added.
