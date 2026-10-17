@@ -293,3 +293,10 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Commands run: PASS / FAIL / NOT RUN:
 - Known issues / risks:
 - Next concrete task:
+
+## Accessibility audit fixes handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Added a keyboard-visible skip link to every localized route and gave every page main landmark the shared `main-content` target. Added live `aria-pressed` theme state and localized accessible labels to the theme toggle, synchronized after initial theme selection and every toggle.
+- Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Built HTML contains the skip target and theme state on EN/TR home routes.
+- Remaining evidence gap: Lighthouse/Core Web Vitals, automated axe scan and physical touch-device testing are not available in the repository and were not claimed as run. These remain release-validation tasks rather than implementation blockers.
+- Example commit message: `fix(a11y): add skip navigation and theme state`

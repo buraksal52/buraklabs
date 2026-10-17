@@ -5,7 +5,7 @@ import siteContent from '../../data/site-content.json';
 const { profile, links } = siteContent;
 ---
 <BaseLayout locale="tr" path="/tr/contact" alternatePath="/contact" title="İletişim — BurakLabs" description="BurakLabs ile iletişim.">
-  <main data-pagefind-body>
+  <main id="main-content" data-pagefind-body>
     <p class="eyebrow">BurakLabs / İletişim</p>
     <h1>İşe çalışmalardan başlayalım.</h1>
     <div class="content-empty"><h2>Public iletişim noktaları</h2><p>{profile.email ? 'Bana doğrudan e-posta veya aşağıdaki onaylı public profiller üzerinden ulaşabilirsiniz.' : 'Henüz public bir e-posta adresi paylaşılmadı. Şimdilik onaylı public profillere buradan ulaşabilirsiniz.'}</p><div class="content-links">{profile.email && <a href={`mailto:${profile.email}`}>{profile.email}</a>}<a href={links.github} rel="me noopener noreferrer">GitHub</a><a href={links.linkedin} rel="me noopener noreferrer">LinkedIn</a><a class="back" href="/tr/projects">Projeleri görüntüle →</a></div></div>

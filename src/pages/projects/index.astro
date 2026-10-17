@@ -8,7 +8,7 @@ const categories = [...new Set(projects.flatMap((project) => project.data.catego
 const technologies = [...new Set(projects.flatMap((project) => project.data.technologies))].sort();
 ---
 <BaseLayout locale={locale} path="/projects" alternatePath="/tr/projects" title="Projects — BurakLabs" description="Selected BurakLabs engineering, research and creative projects.">
-  <main data-pagefind-body>
+  <main id="main-content" data-pagefind-body>
     <p class="eyebrow">BurakLabs / Projects</p>
     <h1>Selected work.</h1>
     <p class="lede">Each record separates implemented features, prototypes, explored ideas and unresolved evidence.</p>

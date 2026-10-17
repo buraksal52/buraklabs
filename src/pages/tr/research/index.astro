@@ -5,7 +5,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 const research = await getCollection('research', ({ data }) => data.locale === 'tr' && !data.draft);
 ---
 <BaseLayout locale="tr" path="/tr/research" alternatePath="/research" title="Araştırma — BurakLabs" description="BurakLabs araştırma projeleri ve yayın durumları.">
-  <main data-pagefind-body>
+  <main id="main-content" data-pagefind-body>
     <p class="eyebrow">BurakLabs / Araştırma</p>
     <h1>Sonuçlardan önce sorular.</h1>
     <div class="research-list">{research.map((item) => <article class="content-empty"><p class="eyebrow">{item.data.status}</p><h2>{item.data.title}</h2><p>{item.data.summary}</p><p><strong>Yazarlar:</strong> {item.data.authors.join(', ')}</p><div class="tags">{item.data.researchAreas.map((area) => <span class="tag">{area}</span>)}</div><p><a class="back" href="/tr/projects/lucidui">İlgili proje →</a></p></article>)}</div>

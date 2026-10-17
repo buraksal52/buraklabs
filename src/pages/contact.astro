@@ -5,7 +5,7 @@ import siteContent from '../data/site-content.json';
 const { profile, links } = siteContent;
 ---
 <BaseLayout locale="en" path="/contact" alternatePath="/tr/contact" title="Contact — BurakLabs" description="Contact BurakLabs.">
-  <main data-pagefind-body>
+  <main id="main-content" data-pagefind-body>
     <p class="eyebrow">BurakLabs / Contact</p>
     <h1>Start with the work.</h1>
     <div class="content-empty"><h2>Public contact points</h2><p>{profile.email ? 'You can reach me directly by email or through the approved public profiles below.' : 'No public email address has been supplied yet. For now, approved public profiles are available here.'}</p><div class="content-links">{profile.email && <a href={`mailto:${profile.email}`}>{profile.email}</a>}<a href={links.github} rel="me noopener noreferrer">GitHub</a><a href={links.linkedin} rel="me noopener noreferrer">LinkedIn</a><a class="back" href="/projects">Browse projects →</a></div></div>

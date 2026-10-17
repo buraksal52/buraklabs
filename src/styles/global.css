@@ -30,6 +30,8 @@ html, body { max-width: 100%; overflow-x: clip; }
 body { margin: 0; background: var(--canvas); color: var(--ink); }
 a { color: inherit; }
 a:focus-visible, button:focus-visible, select:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.skip-link { position: absolute; z-index: 20; top: 0; left: 16px; padding: 12px 16px; color: var(--surface); background: var(--ink); text-decoration: none; transform: translateY(-120%); transition: transform 160ms ease; }
+.skip-link:focus { transform: translateY(16px); }
 .shell { width: min(1440px, calc(100% - 32px)); margin: 0 auto; }
 .site-header { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); }
 .brand { display: inline-flex; width: 180px; height: 45px; flex: 0 0 auto; text-decoration: none; }

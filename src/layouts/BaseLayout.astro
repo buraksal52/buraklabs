@@ -51,6 +51,7 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
   </head>
   <body>
     <div class="shell">
+      <a class="skip-link" href="#main-content">{locale === 'tr' ? 'Ana içeriğe geç' : 'Skip to main content'}</a>
       <header class="site-header" data-pagefind-ignore>
         <a class="brand" href={prefix || '/'} aria-label="BurakLabs home">
           <img class="brand-logo brand-logo-light-theme" src="/brand/svg/logo.svg" width="180" height="45" alt="BurakLabs" />
@@ -65,7 +66,7 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
           <a href={`${prefix}/contact`}>{locale === 'tr' ? 'İletişim' : 'Contact'}</a>
           <a href={`${prefix}/search`}>{locale === 'tr' ? 'Ara' : 'Search'}</a>
           <a href={languageHref}>{locale === 'tr' ? 'English' : 'Türkçe'}</a>
-          <button type="button" data-theme-toggle aria-label={locale === 'tr' ? 'Temayı değiştir' : 'Change theme'}>◐</button>
+          <button type="button" data-theme-toggle aria-label={locale === 'tr' ? 'Temayı değiştir' : 'Change theme'} aria-pressed="false">◐</button>
         </nav>
       </header>
       <slot />
@@ -73,10 +74,22 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
   </body>
 </html>
 <script>
+  const syncThemeToggle = () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+    if (!toggle) return;
+    toggle.setAttribute('aria-pressed', String(theme === 'dark'));
+    const isTurkish = document.documentElement.lang === 'tr';
+    toggle.setAttribute('aria-label', isTurkish
+      ? `${theme === 'dark' ? 'Karanlık' : 'Aydınlık'} tema. Temayı değiştir`
+      : `${theme === 'dark' ? 'Dark' : 'Light'} theme. Toggle theme`);
+  };
   const setTheme = (theme: 'light' | 'dark') => {
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem('buraklabs-theme', theme); } catch { /* persistence is optional */ }
+    syncThemeToggle();
   };
+  syncThemeToggle();
   document.addEventListener('click', (event) => {
     const target = event.target as HTMLElement | null;
     const themeToggle = target?.closest<HTMLButtonElement>('[data-theme-toggle]');

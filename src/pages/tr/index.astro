@@ -9,7 +9,7 @@ const writing = (await getCollection('writing', ({ data }) => data.locale === 't
 const { profile, about } = siteContent;
 ---
 <BaseLayout locale="tr" path="/tr/" alternatePath="/" title="BurakLabs — Mühendislik, araştırma ve yaratıcı stüdyo" description="Bağımsız mühendislik, araştırma ve yaratıcı stüdyo.">
-  <main data-pagefind-body class="home-main">
+  <main id="main-content" data-pagefind-body class="home-main">
     <section class="home-hero home-hero-editorial" aria-labelledby="home-title">
       <div class="hero-copy">
         <p class="eyebrow">Mühendislik × araştırma × yaratıcı stüdyo</p>

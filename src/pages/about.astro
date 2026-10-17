@@ -6,7 +6,7 @@ const { profile, links, about } = siteContent;
 const content = about.en;
 ---
 <BaseLayout locale="en" path="/about" alternatePath="/tr/about" title="About — BurakLabs" description="About the BurakLabs engineering, research and creative studio.">
-  <main data-pagefind-body>
+  <main id="main-content" data-pagefind-body>
     <p class="eyebrow">BurakLabs / About</p>
     <h1>An independent studio record.</h1>
     <div class="content-empty"><h2>{profile.fullName}</h2><p>{content.whoIAm}</p><p>{content.whoIAmDetail}</p><h3>What I do</h3><p>{content.whatIDo}</p><p>{content.whatIDoDetail}</p><h3>Where this leads</h3><p>{content.whereThisLeads}</p><div class="content-links"><a class="button-link" href="/projects">View projects</a><a href={links.github} rel="me noopener noreferrer">GitHub</a><a href={links.linkedin} rel="me noopener noreferrer">LinkedIn</a><a class="back" href="/contact">Contact →</a></div></div>
