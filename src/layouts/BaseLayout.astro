@@ -175,8 +175,12 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
     window.addEventListener('wheel', (event) => {
       if (reducedMotionForStepLock || !isInStepLockZone()) return;
       const direction: 1 | -1 = event.deltaY > 0 ? 1 : -1;
+      if (direction === -1) {
+        wheelAccumulator = 0;
+        return;
+      }
       const currentIndex = getCurrentStepIndex();
-      const atExitBoundary = (direction === 1 && currentIndex === aboutSteps.length - 1) || (direction === -1 && currentIndex === 0);
+      const atExitBoundary = currentIndex === aboutSteps.length - 1;
       if (atExitBoundary) return;
       if (isEnteringFirstStep(direction) && window.scrollY + Math.abs(event.deltaY) < getStepTarget(0) - 8) return;
 
@@ -197,9 +201,10 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
     window.addEventListener('touchmove', (event) => {
       if (!touchTracking || isStepAnimating || touchStartY === undefined) return;
       const distance = touchStartY - (event.touches[0]?.clientY ?? touchStartY);
+      if (distance <= 0) return;
       const currentIndex = getCurrentStepIndex();
-      const atExitBoundary = (distance > 0 && currentIndex === aboutSteps.length - 1) || (distance < 0 && currentIndex === 0);
-      if (isEnteringFirstStep(distance > 0 ? 1 : -1)) return;
+      const atExitBoundary = currentIndex === aboutSteps.length - 1;
+      if (isEnteringFirstStep(1)) return;
       if (!atExitBoundary) event.preventDefault();
     }, { passive: false });
     window.addEventListener('touchend', (event) => {
@@ -212,19 +217,19 @@ const isHome = canonicalPath === '/' || canonicalPath === '/tr/';
         touchEnteringFirstStep = false;
         return;
       }
-      if (Math.abs(distance) >= 28) moveAboutStep(distance > 0 ? 1 : -1);
+      if (distance >= 28) moveAboutStep(1);
     }, { passive: true });
 
     window.addEventListener('keydown', (event) => {
       if (reducedMotionForStepLock || !isInStepLockZone()) return;
       const direction = event.key === 'ArrowDown' || event.key === 'PageDown' ? 1 : event.key === 'ArrowUp' || event.key === 'PageUp' ? -1 : 0;
-      if (!direction) return;
-      if (isEnteringFirstStep(direction as 1 | -1)) return;
+      if (direction !== 1) return;
+      if (isEnteringFirstStep(1)) return;
       const currentIndex = getCurrentStepIndex();
-      const atExitBoundary = (direction === 1 && currentIndex === aboutSteps.length - 1) || (direction === -1 && currentIndex === 0);
+      const atExitBoundary = currentIndex === aboutSteps.length - 1;
       if (atExitBoundary) return;
       event.preventDefault();
-      moveAboutStep(direction as 1 | -1);
+      moveAboutStep(1);
     });
   }
 </script>

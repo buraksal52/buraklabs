@@ -294,6 +294,12 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Known issues / risks:
 - Next concrete task:
 
+## About upward scroll release handoff
+- Date and agent: 2026-10-17 — Codex
+- Scope / changes: Restricted the About step driver to downward movement only. Upward wheel, touch and Arrow/Page navigation now remain native browser scrolling throughout the story; only downward movement between 01 → 02 → 03 can be captured one step at a time.
+- Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Real wheel/touch interaction remains pending because no browser interaction runner is installed.
+- Example commit message: `fix(home): release about lock while scrolling upward`
+
 ## Accessibility audit fixes handoff
 - Date and agent: 2026-10-17 — Codex
 - Scope / changes: Added a keyboard-visible skip link to every localized route and gave every page main landmark the shared `main-content` target. Added live `aria-pressed` theme state and localized accessible labels to the theme toggle, synchronized after initial theme selection and every toggle.
