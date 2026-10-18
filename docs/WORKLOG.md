@@ -340,3 +340,17 @@ Follow the revised prototype-first order in `docs/REMAINING_PLAN.md`. Defer fina
 - Verification: `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,321 words); `git diff --check` — PASS. Built HTML contains the skip target and theme state on EN/TR home routes.
 - Remaining evidence gap: Lighthouse/Core Web Vitals, automated axe scan and physical touch-device testing are not available in the repository and were not claimed as run. These remain release-validation tasks rather than implementation blockers.
 - Example commit message: `fix(a11y): add skip navigation and theme state`
+
+## Try to beat me demo handoff
+- Date and agent: 2026-10-18 — Codex
+- Scope / changes: Added a localized EN/TR “Try to beat me” section to the bottom of both homepages. The section has a portrait-based idle preview and loads the React canvas game only when it becomes visible; the animation loop starts only after the user activates the challenge. Pointer, touch and arrow-key controls are supported, the opponent is intentionally hard to beat, ball speed increases on each return, losses show a retry action, and the third loss reveals a random internal-link recommendation.
+- Performance and accessibility decisions: No requestAnimationFrame loop or canvas is active in the idle state. The canvas has a keyboard focus target, an accessible control label, visible focus styling and a live result region. Existing design tokens and the supplied portrait asset are reused; no fabricated portrait or project claim was added.
+- Verification: `git diff --check` — PASS; `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,349 words). Local production server started successfully for visual QA, but the available Puppeteer package was missing, so automated desktop/mobile screenshots and real pointer/touch interaction were NOT RUN.
+- Example commit message: `feat(home): add click-to-load try to beat me game`
+
+## Try to beat me visual revision handoff
+- Date and agent: 2026-10-18 — Codex
+- Scope / changes: Removed the portrait from the challenge entirely. Reworked the idle preview from a flat CSS table into a vertical polygonal/trapezoid table drawn with inline SVG, including perspective edges, center line, two paddles and a restrained drifting ball. Matched the active canvas rendering to the same upright polygon language so the preview and game do not feel like separate designs.
+- Motion and performance: The idle ball uses a lightweight CSS animation; the actual canvas loop remains inactive until the user starts the game. The SVG is semantic and remains visible as the reduced-motion fallback without relying on the photo asset.
+- Verification: `git diff --check` — PASS; `npm run check` — PASS (0 errors, 0 warnings, 0 hints); `npm test` — PASS (2 tests); `npm run build` — PASS (26 pages, Pagefind indexed 1,349 words). Screenshot comparison and real pointer/touch interaction — NOT RUN because no browser automation package is installed.
+- Example commit message: `refactor(home): replace challenge portrait with polygon table`

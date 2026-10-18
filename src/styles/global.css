@@ -126,6 +126,37 @@ p { max-width: 70ch; line-height: 1.7; }
 .home-closing h2 { max-width: 560px; margin: 0; }
 .home-closing p { max-width: 480px; color: var(--muted); }
 .home-closing .back { display: inline-block; margin-top: 12px; }
+.try-to-beat { display: grid; grid-template-columns: minmax(240px, .7fr) minmax(0, 1.3fr); gap: 32px; margin-top: 120px; padding: 28px 0 0; border-top: 1px solid var(--border); }
+.try-to-beat-intro h2 { max-width: 500px; margin: 12px 0 18px; font-size: clamp(2.8rem, 6vw, 6rem); }
+.try-to-beat-intro > p:last-child { max-width: 36ch; color: var(--muted); }
+.try-to-beat-stage { min-width: 0; }
+.try-to-beat-preview, .try-to-beat-game { position: relative; min-height: 360px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+.try-to-beat-preview { display: grid; min-height: 360px; place-items: center; padding: 20px; background: var(--ink); }
+.try-to-beat-preview > p { position: absolute; right: 24px; bottom: 18px; left: 24px; margin: 0; color: var(--muted); font: .78rem/1.4 ui-monospace, SFMono-Regular, monospace; }
+.try-to-beat-table { display: block; width: min(100%, 660px); height: auto; overflow: visible; }
+.try-to-beat-table-surface { fill: #232323; stroke: color-mix(in srgb, var(--surface) 45%, transparent); stroke-width: 2; }
+.try-to-beat-table-center { fill: none; stroke: color-mix(in srgb, var(--surface) 26%, transparent); stroke-dasharray: 10 16; stroke-width: 1; }
+.try-to-beat-table-edge { fill: none; stroke: color-mix(in srgb, var(--accent) 68%, transparent); stroke-width: 1; }
+.try-to-beat-table-paddle { fill: none; stroke: var(--surface); stroke-linecap: square; stroke-width: 14; }
+.try-to-beat-table-paddle-ai { stroke: var(--accent); }
+.try-to-beat-table-ball { fill: var(--accent); filter: drop-shadow(0 0 0.45rem color-mix(in srgb, var(--accent) 65%, transparent)); animation: try-to-beat-ball-drift 2.8s ease-in-out infinite; }
+@keyframes try-to-beat-ball-drift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(260px, -48px); } }
+.try-to-beat-game canvas { display: block; width: 100%; height: auto; min-height: 360px; cursor: none; touch-action: none; }
+.try-to-beat-game canvas:focus-visible { outline: 3px solid var(--focus); outline-offset: -6px; }
+.try-to-beat-result { position: absolute; inset: 0; display: grid; place-content: center; justify-items: start; gap: 12px; padding: 32px; background: color-mix(in srgb, var(--ink) 88%, transparent); color: var(--surface); }
+.try-to-beat-result p { max-width: 34ch; margin: 0; }
+.try-to-beat-result .eyebrow { color: var(--on-ink-accent); }
+.try-to-beat-result .button-link { margin-top: 8px; color: var(--surface); background: var(--accent); }
+.try-to-beat-result button { color: var(--ink); background: var(--surface); }
+.try-to-beat-footer { grid-column: 2; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.try-to-beat-footer p { margin: 0; color: var(--muted); font-size: .86rem; }
+.try-to-beat-score { color: var(--muted); font: .72rem/1.2 ui-monospace, SFMono-Regular, monospace; text-transform: uppercase; }
+@media (max-width: 760px) {
+  .try-to-beat { grid-template-columns: 1fr; gap: 24px; margin-top: 88px; }
+  .try-to-beat-footer { grid-column: 1; }
+  .try-to-beat-preview, .try-to-beat-game, .try-to-beat-game canvas { min-height: 280px; }
+  .try-to-beat-preview { padding: 12px; }
+}
 .about-sticky-story { display: grid; grid-template-columns: minmax(300px, .9fr) minmax(0, 1.1fr); gap: clamp(40px, 8vw, 128px); margin-top: 32px; }
 .about-sticky-visual { position: sticky; top: 0; align-self: start; width: 100%; height: 100vh; }
 .about-visual-frame { position: relative; width: 100%; height: 100%; overflow: hidden; padding: 30px; color: var(--surface); background: var(--ink); }

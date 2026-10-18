@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TryToBeatMe from '../components/interactive/TryToBeatMe';
 import siteContent from '../data/site-content.json';
 
 const projects = (await getCollection('projects', ({ data }) => data.locale === 'en' && !data.draft)).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
@@ -76,5 +77,6 @@ const { profile, about } = siteContent;
         <li class="cycle-step"><span class="cycle-step-index">01</span><strong>Science</strong><span>Ask better questions.</span></li><li class="cycle-connector" aria-hidden="true"></li><li class="cycle-step"><span class="cycle-step-index">02</span><strong>Engineering</strong><span>Make the idea testable.</span></li><li class="cycle-connector" aria-hidden="true"></li><li class="cycle-step"><span class="cycle-step-index">03</span><strong>Product</strong><span>Give it a useful shape.</span></li>
       </ol>
     </section>
+    <TryToBeatMe client:visible locale="en" links={[{ label: 'About', href: '/about' }, { label: 'Projects', href: '/projects' }, { label: 'Research', href: '/research' }, { label: 'Writing', href: '/writing' }, { label: 'Contact', href: '/contact' }]} />
   </main>
 </BaseLayout>
